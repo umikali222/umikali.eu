@@ -5,28 +5,30 @@
         <title>universal money</title>
     </head>
     <body>
-        <h3 id="money">money : 0$</h3> <br>
+        <h3>money : <a id="money">0</a>$</h3> <br>
         <button id="makeMoneyButton" onclick="makeMoney()">make money</button> <br> <br> <br>
         
         <b>stats</b> <br> <hr>
-        <a id="energy">energy : 1000</a>
+        energy : <a id="energy">100</a>
         
         <br> <br> <br>
-
+        <div id="actions" style="display: none;">
         <b>actions</b> <br> <hr>
+        <div id="eatDiv" style="display: none;">
         <button id="eat" onclick="eat()">eat</button> <br>
-        <a>cost : 20$</a>
+        cost : <a id="eatCost">20</a>$
+        </div>
+        </div>
 
-        <br><br><br>
+        <br><br>
 
         <div id="automationDiv" style="display: none;">
         <b>automation</b> <br> <hr>
+        <div id="vendingMachineDiv" style="display: none;">
+        <a id="vendingMachines"></a> <button id="vendingMachine" onclick="vendingMachine()">vending machine</button><br>
+        cost : <a id="vendingMachineCost">60</a>$
         </div>
-        <div id="vendingmachineDiv" style="display: none;">
-        <button id="vendingMachine" onclick="vendingMachine()"></button><br>
-        <a id="vendingMachineCost">cost : 50$</a>
         </div>
-
         
     </body>    
 </html>
