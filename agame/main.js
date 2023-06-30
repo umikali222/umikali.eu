@@ -8,6 +8,9 @@ var vendingMachines = 0
 
 var vendingMachineProfitPerSec = 1
 
+var marketing2upgrade = true
+var marketing3upgrade = false
+
 function refreshGame(){
     document.getElementById('money').textContent = money // update money
     document.getElementById('energy').textContent = energy // update energy
@@ -38,12 +41,55 @@ function refreshGame(){
     }else{
         document.getElementById('vendingMachine').removeAttribute('disabled') // enable it
     }
+    if (money >= 100){
+        document.getElementById('upgrades').style.display = 'block'
+    }
+
+    // UPGRADES
+
+
+    if (marketing2upgrade){
+        document.getElementById('marketing2').style.display = 'block'
+        document.getElementById('marketing2').setAttribute('disabled', 'disabled') // disable marketing 2 upgrade
+        if (money >= 100){
+            document.getElementById('marketing2').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('marketing2').style.display = 'none'
+    }
+
+    if (marketing3upgrade){
+        document.getElementById('marketing3').style.display = 'block'
+        document.getElementById('marketing3').setAttribute('disabled', 'disabled') // disable marketing 3 upgrade
+        if (money >= 100){
+            document.getElementById('marketing3').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('marketing3').style.display = 'none'
+    }
+}
+
+function upgrade(identifier){
+    switch (identifier){
+        case 1:
+            money -= 100
+            vendingMachineProfitPerSec *= 5
+            marketing2upgrade = false
+            marketing3upgrade = true
+            break
+        case 2:
+            money -= 100
+            vendingMachineProfitPerSec *= 5
+            marketing3upgrade = false
+            break
+    }
+    refreshGame()
 }
 
 function vendingMachine(){
     money -= vendingMachineCost
     vendingMachines += 1
-    vendingMachineCost = Math.round(vendingMachineCost * 1.5)
+    vendingMachineCost = Math.round(vendingMachineCost * 2)
     refreshGame()
 }
 
