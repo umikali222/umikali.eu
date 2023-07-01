@@ -51,10 +51,42 @@
                     <b>upgrades</b> <br> <hr>
                     <button id="marketing2" onclick="upgrade(1)" ><span align="center"><b>marketing level 2</b> (100$)<br>Improves profits from vending machines by 5 times</span></button>
                     <button id="marketing3" onclick="upgrade(2)" ><span align="center"><b>marketing level 3</b> (500$)<br>Improves profits from vending machines by another 5 times</span></button>
+                    <button id="gambling" onclick="upgrade(3)" ><span align="center"><b>gambl- I mean an engine for multiplying money</b> (2500$)<br>gives you a way to be- I mean make money way faster</span></button>
                 </div>
             </div>
             <div class="column">
-                
+                <div id="gamblingDiv" style="display: none;">
+                    <b>gambling</b> <br> <hr>
+                    bet <input type="number" id="betAmount">$ on 
+                    <select name="number" id="bet">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                    </select> <br>
+                    <button id="gambleButton" onclick="gamble()">Gamble!</button> <br>
+                    <span id="gambleMessage"></span>
+                </div>
             </div>
         </div>
     </body>    
