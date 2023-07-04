@@ -1,7 +1,6 @@
 var money = 0
 var energy = 100
 
-var eatCost = 20
 var vendingMachineCost = 60
 var cornerStoreCost = 2000
 
@@ -31,7 +30,6 @@ function refreshGame(){
 
 
     if (!secondCompany){
-        document.getElementById('eatCost').textContent = eatCost // update eating cost
         document.getElementById('vendingMachineCost').textContent = vendingMachineCost // update vending machine cost
         document.getElementById('cornerStoreCost').textContent = cornerStoreCost // update corner store cost
         if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
@@ -45,7 +43,7 @@ function refreshGame(){
         }else{
             document.getElementById('makeMoneyButton').removeAttribute("disabled") // enable it
         }
-        if (money <= eatCost){
+        if (money <= 20){
             document.getElementById('eat').setAttribute("disabled", "disabled") // enable eating
         } else{
             document.getElementById('eat').removeAttribute("disabled") // disable it
@@ -54,7 +52,7 @@ function refreshGame(){
             document.getElementById('automationDiv').style.display = 'block' // show automation div
             document.getElementById('vendingMachineDiv').style.display = 'block' // show vending machine buy
         }
-        if (money > eatCost){
+        if (money > 20){
             document.getElementById('eatDiv').style.display = 'block' // show eating button and cost
             document.getElementById('actions').style.display = 'block' // show actions div 
         }
@@ -82,7 +80,7 @@ function refreshGame(){
             sellEverythingUpgrade = true // enable the sell everything upgrade if you got at least 5 corner stores
         }
     }
-    
+
 
     if (document.getElementById('betAmount').value <= money){ // if the bet amount not is too high
         document.getElementById('gambleButton').removeAttribute('disabled') // turn on the gamble button
@@ -185,7 +183,7 @@ function upgrade(identifier){
             cornerStoreUpgradeBought = true
             cornerStoreUpgrade = false
             break
-        case 4:
+        case 5:
             money -= 1000000
             secondCompany = true
             sellEverythingUpgrade = false
@@ -226,8 +224,7 @@ function makeMoney(){
 
 function eat(){
     energy += 100
-    money -= eatCost
-    //eatCost = Math.round(eatCost * 1.5)
+    money -= 20
     refreshGame()
 }
 
