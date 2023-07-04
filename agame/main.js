@@ -3,24 +3,31 @@ var energy = 100
 
 var eatCost = 20
 var vendingMachineCost = 60
+var cornerStoreCost = 2000
 
 var vendingMachines = 0
+var cornerStores = 0
 
 var vendingMachineProfitPerSec = 1
+var cornerStoreProfitPerSec = 250
 
 var marketing2upgrade = true
 var marketing3upgrade = false
 var gamblingUpgrade = false
+var cornerStoreUpgrade = false
 
 var gamblingEngine = false
+var cornerStoreUpgradeBought = false
 
 var updatesBeforeGambleMesssageReset = 0
+
 
 function refreshGame(){
     document.getElementById('money').textContent = money // update money
     document.getElementById('energy').textContent = energy // update energy
     document.getElementById('eatCost').textContent = eatCost // update eating cost
     document.getElementById('vendingMachineCost').textContent = vendingMachineCost // update vending machine cost
+    document.getElementById('cornerStoreCost').textContent = cornerStoreCost // update corner store cost
     if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
     else{updatesBeforeGambleMesssageReset--}
     if (vendingMachines != 0) {document.getElementById('vendingMachines').textContent = vendingMachines} // update amount of vending machines
@@ -30,7 +37,7 @@ function refreshGame(){
     }else{
         document.getElementById('makeMoneyButton').removeAttribute("disabled") // enable it
     }
-    if (money < eatCost){
+    if (money <= eatCost){
         document.getElementById('eat').setAttribute("disabled", "disabled") // enable eating
     } else{
         document.getElementById('eat').removeAttribute("disabled") // disable it
@@ -65,10 +72,24 @@ function refreshGame(){
     }else{
         document.getElementById('gamblingDiv').style.display = 'none'
     }
+    if (cornerStoreUpgradeBought){
+        document.getElementById('cornerStoreDiv').style.display = 'block'
+    }else{
+        document.getElementById('cornerStoreDiv').style.display = 'none'
+    }
+    if (money < cornerStoreCost){
+        document.getElementById('cornerStore').setAttribute("disabled", "disabled") // disable corner store button
+    }else{
+        document.getElementById('cornerStore').removeAttribute('disabled') // enable it
+    }
 
 
     // UPGRADES
 
+
+    if (vendingMachines >= 10 & !cornerStoreUpgradeBought){
+        cornerStoreUpgrade = true
+    }
 
     if (marketing2upgrade){
         document.getElementById('marketing2').style.display = 'block'
@@ -92,12 +113,22 @@ function refreshGame(){
 
     if (gamblingUpgrade){
         document.getElementById('gambling').style.display = 'block'
-        document.getElementById('gambling').setAttribute('disabled', 'disabled') // disable marketing 3 upgrade
+        document.getElementById('gambling').setAttribute('disabled', 'disabled') // disable gambling upgrade
         if (money >= 2500){
             document.getElementById('gambling').removeAttribute('disabled') // enable it
         } 
     }else{
         document.getElementById('gambling').style.display = 'none'
+    }
+
+    if (cornerStoreUpgrade){
+        document.getElementById('cornerStoreUpgrade').style.display = 'block'
+        document.getElementById('cornerStoreUpgrade').setAttribute('disabled', 'disabled') // disable corner store upgrade
+        if (money >= 1000){
+            document.getElementById('cornerStoreUpgrade').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('cornerStoreUpgrade').style.display = 'none'
     }
 }
 
@@ -120,6 +151,11 @@ function upgrade(identifier){
             gamblingUpgrade = false
             gamblingEngine = true
             break
+        case 4:
+            money -= 2000
+            cornerStoreUpgradeBought = true
+            cornerStoreUpgrade = false
+            break
     }
     refreshGame()
 }
@@ -141,6 +177,13 @@ function vendingMachine(){
     refreshGame()
 }
 
+function cornerStore(){
+    money -= cornerStoreCost
+    cornerStores += 1
+    cornerStoreCost = Math.round(cornerStoreCost * 2)
+    refreshGame()
+}
+
 function makeMoney(){
     money++
     energy--
@@ -159,6 +202,10 @@ refreshGame()
 function secondUpdate(){
     if (energy >= vendingMachines){
         money += vendingMachines * vendingMachineProfitPerSec
+        energy -= vendingMachines
+    }
+    if (energy >= cornerStores){
+        money += cornerStores * cornerStoreProfitPerSec
         energy -= vendingMachines
     }
     refreshGame()
