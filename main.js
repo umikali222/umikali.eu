@@ -1,3 +1,5 @@
+// V 0.3.7
+
 var money = 0
 var energy = 100
 
@@ -85,6 +87,8 @@ function refreshGame(){
 
         document.getElementById('automationDiv').style.display = 'none' // hide automation div
         document.getElementById('vendingMachineDiv').style.display = 'none' // hide vending machine div
+
+        document.getElementById('statsDiv').style.display = 'none'
     }
 
 
