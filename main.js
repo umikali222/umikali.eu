@@ -32,8 +32,7 @@ function refreshGame(){
     if (!secondCompany){
         document.getElementById('vendingMachineCost').textContent = vendingMachineCost // update vending machine cost
         document.getElementById('cornerStoreCost').textContent = cornerStoreCost // update corner store cost
-        if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
-        else{updatesBeforeGambleMesssageReset--}
+        
         if (vendingMachines != 0) {document.getElementById('vendingMachines').textContent = vendingMachines} // update amount of vending machines
         else {document.getElementById('vendingMachines').textContent = ''}// or set it to nothing
         if (cornerStores != 0) {document.getElementById('cornerStores').textContent = cornerStores} // update amount of corner stores
@@ -62,7 +61,7 @@ function refreshGame(){
             document.getElementById('vendingMachine').removeAttribute('disabled') // enable it
         }
         if (money >= 100){
-            document.getElementById('upgrades').style.display = 'block'
+            document.getElementById('upgrades').style.display = 'block' // show upgrades
         }
         
         if (cornerStoreUpgradeBought){
@@ -79,8 +78,21 @@ function refreshGame(){
         if (cornerStores >= 5){
             sellEverythingUpgrade = true // enable the sell everything upgrade if you got at least 5 corner stores
         }
+    }else{
+        document.getElementById('cornerStoreDiv').style.display = 'none'
+
+        document.getElementById('eatDiv').style.display = 'none' // hide eating button and cost
+        document.getElementById('actions').style.display = 'none' // hide actions div (might remove this for obvious reasons)
+
+        document.getElementById('automationDiv').style.display = 'none' // hide automation div
+        document.getElementById('vendingMachineDiv').style.display = 'none' // hide vending machine div
     }
 
+
+    // GAMBLING 
+
+    if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
+    else{updatesBeforeGambleMesssageReset--}
 
     if (document.getElementById('betAmount').value <= money){ // if the bet amount not is too high
         document.getElementById('gambleButton').removeAttribute('disabled') // turn on the gamble button
