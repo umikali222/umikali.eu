@@ -1,4 +1,4 @@
-// V 0.3.8
+// V 0.3.9
 
 var money = 0
 var energy = 100
@@ -266,11 +266,13 @@ function upgrade(identifier){
             money -= 500
             vendingMachineProfitPerSec *= 5
             marketing3upgrade = false
+            marketing4upgrade = true
             break
         case 3:
             money -= 2000
             vendingMachineProfitPerSec *= 5
             marketing4upgrade = false
+            marketing5upgrade = true
             break
         case 4:
             money -= 50000
@@ -286,21 +288,25 @@ function upgrade(identifier){
             money -= 2000
             cornerStoreUpgradeBought = true
             cornerStoreUpgrade = false
+            storeMarketing2upgrade = true
             break
         case 7:
             money -= 5000
             cornerStoreProfitPerSec *= 20
             storeMarketing2upgrade = false
+            storeMarketing3upgrade = true
             break
         case 8:
             money -= 25000
             cornerStoreProfitPerSec *= 20
             storeMarketing3upgrade = false
+            storeMarketing4upgrade = true
             break
         case 9:
             money -= 100000
             cornerStoreProfitPerSec *= 20
             storeMarketing4upgrade = false
+            storeMarketing5upgrade = true
             break
         case 10:
             money -= 500000
