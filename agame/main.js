@@ -31,7 +31,9 @@ function refreshGame(){
     if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
     else{updatesBeforeGambleMesssageReset--}
     if (vendingMachines != 0) {document.getElementById('vendingMachines').textContent = vendingMachines} // update amount of vending machines
-    else {document.getElementById('vendingMachines').textContent = vendingMachines}// or set it to nothing
+    else {document.getElementById('vendingMachines').textContent = ''}// or set it to nothing
+    if (cornerStores != 0) {document.getElementById('cornerStores').textContent = cornerStores} // update amount of corner stores
+    else {document.getElementById('cornerStores').textContent = ''}// or set it to nothing
     if (energy < 1){
         document.getElementById('makeMoneyButton').setAttribute("disabled", "disabled") // disable making money
     }else{
