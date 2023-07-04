@@ -1,64 +1,101 @@
-<head>
-    <title>budowa zaglowki</title>
+<!DOCTYPE html>
+
+<style>
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .column {
+      width: 33%;
+      box-sizing: border-box;
+      margin-bottom: 20px; /* Adds spacing between columns */
+    }
+</style>
+
+<html>
+    <head>
+        <title>universal money</title>
     </head>
-    <body style="background-color:rgb(241, 104, 253);">
-    <h1 align="center">
-    
-    JAK ZBUDOWAC ZAGLUFKE
-    
-    <br>
-    
-    <a href="https://www.youtube.com/watch?v=Y-rWnNLqLx4">budujemy zaglufke</a>
-    
-    <br>
-    
-    <iframe width="1511" height="756" src="https://www.youtube.com/embed/Y-rWnNLqLx4" title="Budowa żaglowki Mista (Sailboat building)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    
-    <br>
-    <br>
-    
-    <img src="budofa.PNG">
-    
-    <br>
-    
-    zrup se bicka
-    
-    <br>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu1zWFhNhNUKYMbK0KIq_KjMTe1CpghHI10c3a24HNx2yBa1nx">
-    
-    <br>
-    
-    /\
-    
-    <br>
-    
-    |
-    
-    <br>
-    
-    ja po budowaniu zaklufki
-    
-    </h1>
-    
-    <br>
-    
-    dizen dobry iestem wichal mojtowicz i stysiek, wichal to syn jego taty (tomasza wujtowicza)
-    zaglufke putfalizmy 2015, 2016 z Tomaszem , stahulcem, i wichalem (nie ze styskiem idioto)
-    wienc tak to pyro, byra beka i bedzie dopiero w zime . wtety pedciemy putofcac kurnik
-    
-    <br>
-    
-    Dobra ale jak zbudowac zaglufke, Hmmmmmm? to proste, wez dzieci i miej z nimi beke .
-    nastepnie sklejka ciach bedzie jacht. Polecam ogladnac muj filmik odnosnie budowy zaglowki,
-    <br>
-    <h1 align=center>
-    polecam strone <a href="http://www.dinghy.pl/">dinghy</a> , som tam fajne projekty zaglufki.
-    
-    <br>
-    
-    btw nie <a href=https://www.google.com/search?q=babcia+gosia&tbm=isch&ved=2ahUKEwjLhOPqy_76AhXYsCoKHf5cDvIQ2-cCegQIABAA&oq=babcia+gosia&gs_lcp=CgNpbWcQAzoECCMQJzoFCAAQgAQ6BAgAEEM6BAgAEB46BggAEAUQHjoGCAAQCBAeOgcIABCABBAYUKA5WKtfYOlgaAJwAHgAgAF-iAHkC5IBBDEwLjWYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=gIVZY8vEMdjhqgH-ubmQDw&bih=1698&biw=1166>gugluj "babcia gosia"</a>
-    <br>
-    WTF? co to jest?
-    </h1>
-    <img src="https://i1.memy.pl/obrazki/6bb3946347_kazdego_dnia_babcia_gosia_w_.jpg>
-    </body>
+    <body>
+        <h3>money : <a id="money">0</a>$</h3> <br>
+        <button id="makeMoneyButton" onclick="makeMoney()">make money</button> <br> <br> <br>
+        <div class="container">
+            <div class="column">
+                <div>
+                <b>stats</b> <br> <hr>
+                energy : <a id="energy">100</a>
+                </div>
+        
+                <br> <br> <br> <br> <br> <br>
+                <div id="actions" style="display: none;">
+                <b>actions</b> <br> <hr>
+                <div id="eatDiv" style="display: none;">
+                <button id="eat" onclick="eat()">eat</button> <br>
+                cost : <a id="eatCost">20</a>$
+                </div>
+                </div>
+        
+                <br> <br> <br> <br> <br> <br>
+        
+                <div id="automationDiv" style="display: none;">
+                <b>automation</b> <br> <hr>
+                <div id="vendingMachineDiv" style="display: none;">
+                <a id="vendingMachines"></a> <button id="vendingMachine" onclick="vendingMachine()">vending machine</button><br>
+                cost : <a id="vendingMachineCost">60</a>$
+                </div>
+                <div id="cornerStoreDiv" style="display: none;">
+                <a id="cornerStores"></a> <button id="cornerStore" onclick="cornerStore()">corner store</button><br>
+                cost : <a id="cornerStoreCost">2000</a>$
+                </div>
+                </div>
+            </div>
+            <div class="column">
+                <div id="upgrades" style="display: none;">
+                    <b>upgrades</b> <br> <hr>
+                    <button id="marketing2" onclick="upgrade(1)" ><span align="center"><b>marketing level 2</b> (100$)<br>Improves profits from vending machines by 5 times</span></button>
+                    <button id="marketing3" onclick="upgrade(2)" ><span align="center"><b>marketing level 3</b> (500$)<br>Improves profits from vending machines by another 5 times</span></button>
+                    <button id="gambling" onclick="upgrade(3)" ><span align="center"><b>gambl- I mean an engine for multiplying money</b> (2500$)<br>gives you a way to be- I mean make money way faster</span></button>
+                    <button id="cornerStoreUpgrade" onclick="upgrade(4)" ><span align="center"><b>corner store</b> (1000$)<br>allows you to buy a corner store, which makes 250$ per sec</span></button>
+                    <button id="endStartUpgrade" onclick="upgrade(5)" ><span align="center"><b>The End, and The Start</b> (1`000`000$)<br>allows you to buy a corner store, which makes 250$ per sec</span></button>
+                </div>
+            </div>
+            <div class="column">
+                <div id="gamblingDiv" style="display: none;">
+                    <b>gambling</b> <br> <hr>
+                    bet <input type="number" id="betAmount">$ on 
+                    <select name="number" id="bet">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                    </select> <br>
+                    <button id="gambleButton" onclick="gamble()">Gamble!</button> <br>
+                    <span id="gambleMessage"></span>
+                </div>
+            </div>
+        </div>
+    </body>    
+</html>
+
+<script src="main.js"></script>
