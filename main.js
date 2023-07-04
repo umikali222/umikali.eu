@@ -26,10 +26,9 @@ var secondCompany = false
 
 function refreshGame(){
     document.getElementById('money').textContent = money // update money
-    document.getElementById('energy').textContent = energy // update energy
-
 
     if (!secondCompany){
+        document.getElementById('energy').textContent = energy // update energy
         document.getElementById('vendingMachineCost').textContent = vendingMachineCost // update vending machine cost
         document.getElementById('cornerStoreCost').textContent = cornerStoreCost // update corner store cost
         
