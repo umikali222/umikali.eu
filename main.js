@@ -86,6 +86,10 @@ function refreshGame(){
         document.getElementById('cornerStore').removeAttribute('disabled') // enable it
     }
 
+    if (cornerStores > 5){
+        sellEverythingUpgrade = true
+    }
+
 
     // UPGRADES
 
