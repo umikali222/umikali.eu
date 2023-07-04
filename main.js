@@ -1,4 +1,4 @@
-// V 0.3.7
+// V 0.3.8
 
 var money = 0
 var energy = 100
@@ -12,11 +12,22 @@ var cornerStores = 0
 var vendingMachineProfitPerSec = 1
 var cornerStoreProfitPerSec = 250
 
-var marketing2upgrade = true
-var marketing3upgrade = false
+// upgrades
 var gamblingUpgrade = false
 var cornerStoreUpgrade = false
 var sellEverythingUpgrade = false
+
+// marketing for vending machines
+var marketing2upgrade = true
+var marketing3upgrade = false
+var marketing4upgrade = false
+var marketing5upgrade = false
+
+// marketing for corner stores
+var storeMarketing2upgrade = false
+var storeMarketing3upgrade = false
+var storeMarketing4upgrade = false
+var storeMarketing5upgrade = false
 
 var gamblingEngine = false
 var cornerStoreUpgradeBought = false
@@ -79,6 +90,7 @@ function refreshGame(){
         if (cornerStores >= 5){
             sellEverythingUpgrade = true // enable the sell everything upgrade if you got at least 5 corner stores
         }
+
     }else{
         document.getElementById('cornerStoreDiv').style.display = 'none'
 
@@ -89,6 +101,9 @@ function refreshGame(){
         document.getElementById('vendingMachineDiv').style.display = 'none' // hide vending machine div
 
         document.getElementById('statsDiv').style.display = 'none'
+
+        vendingMachines = 0
+        cornerStores = 0
     }
 
 
@@ -123,26 +138,6 @@ function refreshGame(){
         cornerStoreUpgrade = true
     }
 
-    if (marketing2upgrade){
-        document.getElementById('marketing2').style.display = 'block'
-        document.getElementById('marketing2').setAttribute('disabled', 'disabled') // disable marketing 2 upgrade
-        if (money >= 100){
-            document.getElementById('marketing2').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('marketing2').style.display = 'none'
-    }
-
-    if (marketing3upgrade){
-        document.getElementById('marketing3').style.display = 'block'
-        document.getElementById('marketing3').setAttribute('disabled', 'disabled') // disable marketing 3 upgrade
-        if (money >= 500){
-            document.getElementById('marketing3').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('marketing3').style.display = 'none'
-    }
-
     if (gamblingUpgrade){
         document.getElementById('gambling').style.display = 'block'
         document.getElementById('gambling').setAttribute('disabled', 'disabled') // disable gambling upgrade
@@ -172,6 +167,90 @@ function refreshGame(){
     }else{
         document.getElementById('sellEverything').style.display = 'none'
     }
+
+    // MARKETING UPGRADES FOR VENDING MACHINES
+
+    if (marketing2upgrade){
+        document.getElementById('marketing2').style.display = 'block'
+        document.getElementById('marketing2').setAttribute('disabled', 'disabled') // disable marketing 2 upgrade
+        if (money >= 100){
+            document.getElementById('marketing2').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('marketing2').style.display = 'none'
+    }
+
+    if (marketing3upgrade){
+        document.getElementById('marketing3').style.display = 'block'
+        document.getElementById('marketing3').setAttribute('disabled', 'disabled') // disable marketing 3 upgrade
+        if (money >= 500){
+            document.getElementById('marketing3').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('marketing3').style.display = 'none'
+    }
+
+    if (marketing4upgrade){
+        document.getElementById('marketing4').style.display = 'block'
+        document.getElementById('marketing4').setAttribute('disabled', 'disabled') // disable marketing 4 upgrade
+        if (money >= 2000){
+            document.getElementById('marketing4').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('marketing4').style.display = 'none'
+    }
+
+    if (marketing5upgrade){
+        document.getElementById('marketing5').style.display = 'block'
+        document.getElementById('marketing5').setAttribute('disabled', 'disabled') // disable marketing 5 upgrade
+        if (money >= 50000){
+            document.getElementById('marketing5').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('marketing5').style.display = 'none'
+    }
+
+    // MARKETING UPGRADES FOR CORENR STORES
+
+    if (storeMarketing2upgrade){
+        document.getElementById('storeMarketing2').style.display = 'block'
+        document.getElementById('storeMarketing2').setAttribute('disabled', 'disabled') // disable store marketing 2 upgrade
+        if (money >= 5000){
+            document.getElementById('storeMarketing2').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('storeMarketing2').style.display = 'none'
+    }
+
+    if (storeMarketing3upgrade){
+        document.getElementById('storeMarketing3').style.display = 'block'
+        document.getElementById('storeMarketing3').setAttribute('disabled', 'disabled') // disable store marketing 3 upgrade
+        if (money >= 25000){
+            document.getElementById('storeMarketing3').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('storeMarketing3').style.display = 'none'
+    }
+
+    if (storeMarketing4upgrade){
+        document.getElementById('storeMarketing4').style.display = 'block'
+        document.getElementById('storeMarketing4').setAttribute('disabled', 'disabled') // disable store marketing 3 upgrade
+        if (money >= 100000){
+            document.getElementById('storeMarketing4').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('storeMarketing4').style.display = 'none'
+    }
+
+    if (storeMarketing5upgrade){
+        document.getElementById('storeMarketing5').style.display = 'block'
+        document.getElementById('storeMarketing5').setAttribute('disabled', 'disabled') // disable store marketing 3 upgrade
+        if (money >= 500000){
+            document.getElementById('storeMarketing5').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('storeMarketing5').style.display = 'none'
+    }
 }
 
 function upgrade(identifier){
@@ -189,17 +268,49 @@ function upgrade(identifier){
             marketing3upgrade = false
             break
         case 3:
+            money -= 2000
+            vendingMachineProfitPerSec *= 5
+            marketing4upgrade = false
+            break
+        case 4:
+            money -= 50000
+            vendingMachineProfitPerSec *= 5
+            marketing5upgrade = false
+            break
+        case 5:
             money -= 2500
             gamblingUpgrade = false
             gamblingEngine = true
             break
-        case 4:
+        case 6:
             money -= 2000
             cornerStoreUpgradeBought = true
             cornerStoreUpgrade = false
             break
-        case 5:
+        case 7:
+            money -= 5000
+            cornerStoreProfitPerSec *= 20
+            storeMarketing2upgrade = false
+            break
+        case 8:
+            money -= 25000
+            cornerStoreProfitPerSec *= 20
+            storeMarketing3upgrade = false
+            break
+        case 9:
+            money -= 100000
+            cornerStoreProfitPerSec *= 20
+            storeMarketing4upgrade = false
+            break
+        case 10:
+            money -= 500000
+            cornerStoreProfitPerSec *= 20
+            storeMarketing5upgrade = false
+            break
+        case 11:
             money -= 1000000
+            money += cornerStores * cornerStoreCost
+            money += vendingMachines * vendingMachineCost
             secondCompany = true
             sellEverythingUpgrade = false
             break
@@ -246,13 +357,15 @@ function eat(){
 refreshGame()
 
 function secondUpdate(){
-    if (energy >= vendingMachines){
-        money += vendingMachines * vendingMachineProfitPerSec
-        energy -= vendingMachines
-    }
-    if (energy >= cornerStores){
-        money += cornerStores * cornerStoreProfitPerSec
-        energy -= vendingMachines
+    if (!secondCompany){
+        if (energy >= vendingMachines){
+            money += vendingMachines * vendingMachineProfitPerSec
+            energy -= vendingMachines
+        }
+        if (energy >= cornerStores){
+            money += cornerStores * cornerStoreProfitPerSec
+            energy -= vendingMachines
+        }
     }
     refreshGame()
 }
