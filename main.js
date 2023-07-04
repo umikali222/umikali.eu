@@ -22,72 +22,84 @@ var cornerStoreUpgradeBought = false
 
 var updatesBeforeGambleMesssageReset = 0
 
+var secondCompany = false
+
 
 function refreshGame(){
     document.getElementById('money').textContent = money // update money
     document.getElementById('energy').textContent = energy // update energy
-    document.getElementById('eatCost').textContent = eatCost // update eating cost
-    document.getElementById('vendingMachineCost').textContent = vendingMachineCost // update vending machine cost
-    document.getElementById('cornerStoreCost').textContent = cornerStoreCost // update corner store cost
-    if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
-    else{updatesBeforeGambleMesssageReset--}
-    if (vendingMachines != 0) {document.getElementById('vendingMachines').textContent = vendingMachines} // update amount of vending machines
-    else {document.getElementById('vendingMachines').textContent = ''}// or set it to nothing
-    if (cornerStores != 0) {document.getElementById('cornerStores').textContent = cornerStores} // update amount of corner stores
-    else {document.getElementById('cornerStores').textContent = ''}// or set it to nothing
-    if (energy < 1){
-        document.getElementById('makeMoneyButton').setAttribute("disabled", "disabled") // disable making money
-    }else{
-        document.getElementById('makeMoneyButton').removeAttribute("disabled") // enable it
-    }
-    if (money <= eatCost){
-        document.getElementById('eat').setAttribute("disabled", "disabled") // enable eating
-    } else{
-        document.getElementById('eat').removeAttribute("disabled") // disable it
-    }
-    if (money >= vendingMachineCost){
-        document.getElementById('automationDiv').style.display = 'block' // show automation div
-        document.getElementById('vendingMachineDiv').style.display = 'block' // show vending machine buy
-    }
-    if (money > eatCost){
-        document.getElementById('eatDiv').style.display = 'block' // show eating button and cost
-        document.getElementById('actions').style.display = 'block' // show actions div 
-    }
-    if (money < vendingMachineCost){
-        document.getElementById('vendingMachine').setAttribute("disabled", "disabled") // disable vending machine button
-    }else{
-        document.getElementById('vendingMachine').removeAttribute('disabled') // enable it
-    }
-    if (money >= 100){
-        document.getElementById('upgrades').style.display = 'block'
-    }
-    if (document.getElementById('betAmount').value <= money){
-        document.getElementById('gambleButton').removeAttribute('disabled')
-    }else{
-        document.getElementById('gambleButton').setAttribute('disabled', 'disabled')
-    }
-    var x = document.getElementById('betAmount').value
-    if (Math.abs(x) != x){
-        document.getElementById('gambleButton').setAttribute('disabled', 'disabled')
-    }
-    if (gamblingEngine){
-        document.getElementById('gamblingDiv').style.display = 'block'
-    }else{
-        document.getElementById('gamblingDiv').style.display = 'none'
-    }
-    if (cornerStoreUpgradeBought){
-        document.getElementById('cornerStoreDiv').style.display = 'block'
-    }else{
-        document.getElementById('cornerStoreDiv').style.display = 'none'
-    }
-    if (money < cornerStoreCost){
-        document.getElementById('cornerStore').setAttribute("disabled", "disabled") // disable corner store button
-    }else{
-        document.getElementById('cornerStore').removeAttribute('disabled') // enable it
-    }
 
-    if (cornerStores > 5){
-        sellEverythingUpgrade = true
+
+    if (!secondCompany){
+        document.getElementById('eatCost').textContent = eatCost // update eating cost
+        document.getElementById('vendingMachineCost').textContent = vendingMachineCost // update vending machine cost
+        document.getElementById('cornerStoreCost').textContent = cornerStoreCost // update corner store cost
+        if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
+        else{updatesBeforeGambleMesssageReset--}
+        if (vendingMachines != 0) {document.getElementById('vendingMachines').textContent = vendingMachines} // update amount of vending machines
+        else {document.getElementById('vendingMachines').textContent = ''}// or set it to nothing
+        if (cornerStores != 0) {document.getElementById('cornerStores').textContent = cornerStores} // update amount of corner stores
+        else {document.getElementById('cornerStores').textContent = ''}// or set it to nothing
+        if (energy < 1){
+            document.getElementById('makeMoneyButton').setAttribute("disabled", "disabled") // disable making money
+        }else{
+            document.getElementById('makeMoneyButton').removeAttribute("disabled") // enable it
+        }
+        if (money <= eatCost){
+            document.getElementById('eat').setAttribute("disabled", "disabled") // enable eating
+        } else{
+            document.getElementById('eat').removeAttribute("disabled") // disable it
+        }
+        if (money >= vendingMachineCost){
+            document.getElementById('automationDiv').style.display = 'block' // show automation div
+            document.getElementById('vendingMachineDiv').style.display = 'block' // show vending machine buy
+        }
+        if (money > eatCost){
+            document.getElementById('eatDiv').style.display = 'block' // show eating button and cost
+            document.getElementById('actions').style.display = 'block' // show actions div 
+        }
+        if (money < vendingMachineCost){
+            document.getElementById('vendingMachine').setAttribute("disabled", "disabled") // disable vending machine button
+        }else{
+            document.getElementById('vendingMachine').removeAttribute('disabled') // enable it
+        }
+        if (money >= 100){
+            document.getElementById('upgrades').style.display = 'block'
+        }
+        
+        if (cornerStoreUpgradeBought){
+            document.getElementById('cornerStoreDiv').style.display = 'block' // show the corner store div
+        }else{
+            document.getElementById('cornerStoreDiv').style.display = 'none' // hide it
+        }
+        if (money < cornerStoreCost){
+            document.getElementById('cornerStore').setAttribute("disabled", "disabled") // disable corner store button
+        }else{
+            document.getElementById('cornerStore').removeAttribute('disabled') // enable it
+        }
+
+        if (cornerStores >= 5){
+            sellEverythingUpgrade = true // enable the sell everything upgrade if you got at least 5 corner stores
+        }
+    }
+    
+
+    if (document.getElementById('betAmount').value <= money){ // if the bet amount not is too high
+        document.getElementById('gambleButton').removeAttribute('disabled') // turn on the gamble button
+    }else{
+        document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // else turn it off
+    }
+    
+    if (gamblingEngine){
+        document.getElementById('gamblingDiv').style.display = 'block' // turn on the gambling part
+
+        var x = document.getElementById('betAmount').value // get the bet amount
+
+        if (Math.abs(x) != x){
+            document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // disable the gambling button
+        }
+    }else{
+        document.getElementById('gamblingDiv').style.display = 'none' // turn off the gambling div
     }
 
 
@@ -172,6 +184,11 @@ function upgrade(identifier){
             money -= 2000
             cornerStoreUpgradeBought = true
             cornerStoreUpgrade = false
+            break
+        case 4:
+            money -= 1000000
+            secondCompany = true
+            sellEverythingUpgrade = false
             break
     }
     refreshGame()
