@@ -1,4 +1,4 @@
-// V 0.3.9
+// V 0.3.10
 
 var money = 0
 var energy = 100
@@ -10,7 +10,7 @@ var vendingMachines = 0
 var cornerStores = 0
 
 var vendingMachineProfitPerSec = 1
-var cornerStoreProfitPerSec = 250
+var cornerStoreProfitPerSec = 25
 
 // upgrades
 var gamblingUpgrade = false
@@ -257,26 +257,26 @@ function upgrade(identifier){
     switch (identifier){
         case 1:
             money -= 100
-            vendingMachineProfitPerSec *= 5
+            vendingMachineProfitPerSec *= 2
             marketing2upgrade = false
             marketing3upgrade = true
             gamblingUpgrade = true
             break
         case 2:
             money -= 500
-            vendingMachineProfitPerSec *= 5
+            vendingMachineProfitPerSec *= 2
             marketing3upgrade = false
             marketing4upgrade = true
             break
         case 3:
             money -= 2000
-            vendingMachineProfitPerSec *= 5
+            vendingMachineProfitPerSec *= 2
             marketing4upgrade = false
             marketing5upgrade = true
             break
         case 4:
             money -= 50000
-            vendingMachineProfitPerSec *= 5
+            vendingMachineProfitPerSec *= 2
             marketing5upgrade = false
             break
         case 5:
@@ -292,25 +292,25 @@ function upgrade(identifier){
             break
         case 7:
             money -= 5000
-            cornerStoreProfitPerSec *= 20
+            cornerStoreProfitPerSec *= 5
             storeMarketing2upgrade = false
             storeMarketing3upgrade = true
             break
         case 8:
             money -= 25000
-            cornerStoreProfitPerSec *= 20
+            cornerStoreProfitPerSec *= 5
             storeMarketing3upgrade = false
             storeMarketing4upgrade = true
             break
         case 9:
             money -= 100000
-            cornerStoreProfitPerSec *= 20
+            cornerStoreProfitPerSec *= 5
             storeMarketing4upgrade = false
             storeMarketing5upgrade = true
             break
         case 10:
             money -= 500000
-            cornerStoreProfitPerSec *= 20
+            cornerStoreProfitPerSec *= 5
             storeMarketing5upgrade = false
             break
         case 11:
