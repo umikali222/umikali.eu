@@ -1,4 +1,4 @@
-// V 0.3.11
+// V 0.3.12
 
 var money = 0
 var energy = 100
@@ -203,7 +203,7 @@ function refreshGame(){
     if (marketing5upgrade){
         document.getElementById('marketing5').style.display = 'block'
         document.getElementById('marketing5').setAttribute('disabled', 'disabled') // disable marketing 5 upgrade
-        if (money >= 50000){
+        if (money >= 15000){
             document.getElementById('marketing5').removeAttribute('disabled') // enable it
         } 
     }else{
@@ -275,7 +275,7 @@ function upgrade(identifier){
             marketing5upgrade = true
             break
         case 4:
-            money -= 50000
+            money -= 15000
             vendingMachineProfitPerSec *= 5
             marketing5upgrade = false
             break
