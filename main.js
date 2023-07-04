@@ -15,6 +15,7 @@ var marketing2upgrade = true
 var marketing3upgrade = false
 var gamblingUpgrade = false
 var cornerStoreUpgrade = false
+var sellEverythingUpgrade = false
 
 var gamblingEngine = false
 var cornerStoreUpgradeBought = false
@@ -131,6 +132,16 @@ function refreshGame(){
         } 
     }else{
         document.getElementById('cornerStoreUpgrade').style.display = 'none'
+    }
+
+    if (sellEverythingUpgrade){
+        document.getElementById('sellEverything').style.display = 'block'
+        document.getElementById('sellEverything').setAttribute('disabled', 'disabled') // disable corner store upgrade
+        if (money >= 1000000){
+            document.getElementById('sellEverything').removeAttribute('disabled') // enable it
+        } 
+    }else{
+        document.getElementById('sellEverything').style.display = 'none'
     }
 }
 
