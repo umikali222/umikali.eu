@@ -1,4 +1,4 @@
-// V 0.3.10
+// V 0.3.11
 
 var money = 0
 var energy = 100
@@ -276,7 +276,7 @@ function upgrade(identifier){
             break
         case 4:
             money -= 50000
-            vendingMachineProfitPerSec *= 2
+            vendingMachineProfitPerSec *= 5
             marketing5upgrade = false
             break
         case 5:
@@ -364,11 +364,11 @@ refreshGame()
 
 function secondUpdate(){
     if (!secondCompany){
-        if (energy >= vendingMachines){
+        if (energy > vendingMachines){
             money += vendingMachines * vendingMachineProfitPerSec
             energy -= vendingMachines
         }
-        if (energy >= cornerStores){
+        if (energy > cornerStores){
             money += cornerStores * cornerStoreProfitPerSec
             energy -= vendingMachines
         }
