@@ -1,4 +1,4 @@
-// V 0.3.12
+// V 0.3.13
 
 var money = 0
 var energy = 100
@@ -298,19 +298,19 @@ function upgrade(identifier){
             break
         case 8:
             money -= 25000
-            cornerStoreProfitPerSec *= 5
+            cornerStoreProfitPerSec *= 2
             storeMarketing3upgrade = false
             storeMarketing4upgrade = true
             break
         case 9:
             money -= 100000
-            cornerStoreProfitPerSec *= 5
+            cornerStoreProfitPerSec *= 2
             storeMarketing4upgrade = false
             storeMarketing5upgrade = true
             break
         case 10:
             money -= 500000
-            cornerStoreProfitPerSec *= 5
+            cornerStoreProfitPerSec *= 2
             storeMarketing5upgrade = false
             break
         case 11:
