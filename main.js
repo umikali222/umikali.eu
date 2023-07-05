@@ -1,10 +1,10 @@
-// V 0.3.13
+// V 0.3.14
 
 var money = 0
 var energy = 100
 
 var vendingMachineCost = 60
-var cornerStoreCost = 2000
+var cornerStoreCost = 20000
 
 var vendingMachines = 0
 var cornerStores = 0
@@ -151,7 +151,7 @@ function refreshGame(){
     if (cornerStoreUpgrade){
         document.getElementById('cornerStoreUpgrade').style.display = 'block'
         document.getElementById('cornerStoreUpgrade').setAttribute('disabled', 'disabled') // disable corner store upgrade
-        if (money >= 1000){
+        if (money >= 20000){
             document.getElementById('cornerStoreUpgrade').removeAttribute('disabled') // enable it
         } 
     }else{
@@ -210,12 +210,12 @@ function refreshGame(){
         document.getElementById('marketing5').style.display = 'none'
     }
 
-    // MARKETING UPGRADES FOR CORENR STORES
+    // MARKETING UPGRADES FOR CORNER STORES
 
     if (storeMarketing2upgrade){
         document.getElementById('storeMarketing2').style.display = 'block'
         document.getElementById('storeMarketing2').setAttribute('disabled', 'disabled') // disable store marketing 2 upgrade
-        if (money >= 5000){
+        if (money >= 50000){
             document.getElementById('storeMarketing2').removeAttribute('disabled') // enable it
         } 
     }else{
@@ -225,7 +225,7 @@ function refreshGame(){
     if (storeMarketing3upgrade){
         document.getElementById('storeMarketing3').style.display = 'block'
         document.getElementById('storeMarketing3').setAttribute('disabled', 'disabled') // disable store marketing 3 upgrade
-        if (money >= 25000){
+        if (money >= 100000){
             document.getElementById('storeMarketing3').removeAttribute('disabled') // enable it
         } 
     }else{
@@ -235,7 +235,7 @@ function refreshGame(){
     if (storeMarketing4upgrade){
         document.getElementById('storeMarketing4').style.display = 'block'
         document.getElementById('storeMarketing4').setAttribute('disabled', 'disabled') // disable store marketing 3 upgrade
-        if (money >= 100000){
+        if (money >= 200000){
             document.getElementById('storeMarketing4').removeAttribute('disabled') // enable it
         } 
     }else{
@@ -270,7 +270,7 @@ function upgrade(identifier){
             break
         case 3:
             money -= 2000
-            vendingMachineProfitPerSec *= 2
+            vendingMachineProfitPerSec *= 5
             marketing4upgrade = false
             marketing5upgrade = true
             break
@@ -285,7 +285,7 @@ function upgrade(identifier){
             gamblingEngine = true
             break
         case 6:
-            money -= 2000
+            money -= 10000
             cornerStoreUpgradeBought = true
             cornerStoreUpgrade = false
             storeMarketing2upgrade = true
