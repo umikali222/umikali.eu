@@ -1,4 +1,4 @@
-// V0.3.15 candidate
+// V0.4
 
 var money = 0
 var energy = 100
