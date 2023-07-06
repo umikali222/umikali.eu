@@ -1,20 +1,35 @@
-// V0.4.1
+// V0.4.2
 
 var money = 0
 var energy = 100
 var food = 5
 
 
-
-var vendingMachineCost = 50
-var cornerStoreCost = 20000
-
+// amounts
 var vendingMachines = 0
 var cornerStores = 0
+var restaurants = 0
+var workers = 0
 
+
+
+// costs
+var vendingMachineCost = 50
+var cornerStoreCost = 20000
+var restaurantCost = 100
+var workerCost = 100
+
+
+
+// per second values
 var vendingMachineProfitPerSec = 1
 var cornerStoreProfitPerSec = 25
+
+
+
+// second company
 var restaurantFoodPerSec = 5
+var workerProfitPerSec = 100
 
 
 
@@ -107,14 +122,21 @@ function refreshGame(){
         }
 
     }else{
-        
+        if (money >= restaurantCost){
+            document.getElementById('restaurantButton').removeAttribute('disabled')
+        }else{
+            document.getElementById('restaurantButton').setAttribute('disabled', 'disabled')
+        }
+
+        if (money >= workerCost){
+            document.getElementById('workerButton').removeAttribute('disabled')
+        }else{
+            document.getElementById('workerButton').setAttribute('disabled', 'disabled')
+        }
     }
 
 
     // GAMBLING 
-
-    if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
-    else{updatesBeforeGambleMesssageReset--}
 
     if (document.getElementById('betAmount').value <= money){ // if the bet amount not is too high
         document.getElementById('gambleButton').removeAttribute('disabled') // turn on the gamble button
@@ -413,6 +435,18 @@ function eat(){
     refreshGame()
 }
 
+function restaurant(){
+    restaurants += 1
+    money = money - restaurantCost
+    restaurantCost *= 2   
+}
+
+function worker(){
+    workers += 1
+    money = money - restaurantCost
+    restaurantCost *= 2
+}
+
 refreshGame()
 
 function secondUpdate(){
@@ -426,8 +460,16 @@ function secondUpdate(){
             energy = energy - cornerStores
         }
     }else{
-
+        food += restaurants * restaurantFoodPerSec
+        if (food > workers){
+            food = food - workers
+            money += workers * workerProfitPerSec
+        }
     }
+
+    if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
+    else{updatesBeforeGambleMesssageReset--}
+
     refreshGame()
 }
 
