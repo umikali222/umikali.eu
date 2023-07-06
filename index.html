@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!--V0.4-->
+<!--V0.4.1-->
 
 <style>
     .container {
@@ -41,15 +41,26 @@
                 <br> <br> <br> <br> <br> <br>
         
                 <div id="automationDiv" style="display: none;">
-                <b>automation</b> <br> <hr>
-                <div id="vendingMachineDiv" style="display: none;">
-                <a id="vendingMachines"></a> <button id="vendingMachine" onclick="vendingMachine()">vending machine</button><br>
-                cost : <a id="vendingMachineCost">50</a>$
-                </div>
-                <div id="cornerStoreDiv" style="display: none;">
-                <a id="cornerStores"></a> <button id="cornerStore" onclick="cornerStore()">corner store</button><br>
-                cost : <a id="cornerStoreCost">2000</a>$
-                </div>
+                    <b>automation</b> <br> <hr>
+                    <div id="vendingMachineDiv" style="display: none;">
+                    <a id="vendingMachines"></a> <button id="vendingMachine" onclick="vendingMachine()">vending machine</button><br>
+                    cost : <a id="vendingMachineCost">50</a>$
+                    </div>
+
+                    <div id="cornerStoreDiv" style="display: none;">
+                    <a id="cornerStores"></a> <button id="cornerStore" onclick="cornerStore()">corner store</button> <br>
+                    cost : <a id="cornerStoreCost">2000</a>$
+                    </div>
+
+                    <div id="restaurantDiv" style="display: none;">
+                    <span id="restaurants"></span> <button id="restaurantButton" onclick="restaurant()">restaurant</button> <br>
+                    cost : <span id="restaurantPrice">1</span>$
+                    </div>
+
+                    <div id="workerDiv" style="display: none;">
+                    <span id="workers"></span> <button id="workerButton" onclick="worker()">worker</button> <br>
+                    cost : <span id="workerPrice">1</span>$
+                    </div>
                 </div>
             </div>
             <div class="column">
@@ -66,12 +77,14 @@
                     <button id="storeMarketing4" onclick="upgrade(9)" ><span align="center"><b>corner store marketing level 4</b> (200`000$)<br>Improves profits from corner stores by yet another 2 times</span></button>
                     <button id="storeMarketing5" onclick="upgrade(10)" ><span align="center"><b>corner store marketing level 5</b> (500`000$)<br>Improves profits from corner stores still by 2 times</span></button>
                     <button id="sellEverything" onclick="upgrade(11)" ><span align="center"><b>sell everything</b> (1`000`000$)<br>sells your entire company, and starts a new one.</span></button>
+                    <button id="restaurant" onclick="upgrade(12)" ><span align="center"><b>restaurants</b><br>start making restaurants for your workers</span></button>
+                    <button id="worker" onclick="upgrade(13)" ><span align="center"><b>slave- I mean workers</b><br>start getting <h6>unpaid</h6> workers</span></button>
                 </div>
             </div>
             <div class="column">
                 <div id="gamblingDiv" style="display: none;">
                     <b>gambling</b> <br> <hr>
-                    btw DO NOT gamble in real life you're gonna loose all your money (I think I have to legally say that) <br>
+                    btw DO NOT gamble in real life you're gonna loose all your money (I think I have to legally say that) <br> <br>
                     bet <input type="number" id="betAmount">$ on 
                     <select name="number" id="bet">
                         <option value="1">1</option>
