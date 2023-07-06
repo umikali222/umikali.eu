@@ -1,4 +1,4 @@
-// V0.4.2
+// V0.4.3
 
 var money = 0
 var energy = 100
@@ -381,11 +381,13 @@ function upgrade(identifier){
             break
         case 12:
             document.getElementById('automationDiv').style.display = 'block'
+            document.getElementById('restaurantDiv').style.display = 'block'
             restaurantUpgradeBought = true
             restaurantUpgrade = false
             break
         case 13:
             document.getElementById('automationDiv').style.display = 'block'
+            document.getElementById('workerDiv').style.display = 'block'
             workerUpgradeBought = true
             workerUpgrade = false
             break
