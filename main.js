@@ -1,4 +1,4 @@
-// V0.4.3
+// V0.4.4
 
 var money = 0
 var energy = 100
@@ -122,6 +122,12 @@ function refreshGame(){
         }
 
     }else{
+        if (restaurants != 0){document.getElementById('restaurants').textContent = restaurants}
+        else{document.getElementById('restaurants').textContent = ''}
+
+        if (workers != 0){document.getElementById('workers').textContent = workers}
+        else{document.getElementById('workers').textContent = ''}
+
         if (money >= restaurantCost){
             document.getElementById('restaurantButton').removeAttribute('disabled')
         }else{
