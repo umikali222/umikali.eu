@@ -1,9 +1,9 @@
-// V 0.3.14
+// V0.3.15 candidate
 
 var money = 0
 var energy = 100
 
-var vendingMachineCost = 60
+var vendingMachineCost = 50
 var cornerStoreCost = 20000
 
 var vendingMachines = 0
@@ -326,10 +326,16 @@ function upgrade(identifier){
 
 function gamble(){
     money -= Math.abs(document.getElementById('betAmount').value)
-    if (Math.floor(Math.random() * 24) + 1 == document.getElementById('bet').value){
+
+    var valueRolled = Math.floor(Math.random() * 24) + 1
+
+    if (valueRolled == document.getElementById('bet').value){
         money += document.getElementById('betAmount').value * 24
         updatesBeforeGambleMesssageReset = 10
         document.getElementById('gambleMessage').textContent = 'Your Bet Was Right!!! you made ' + (document.getElementById('betAmount').value) * 23 + '$'
+    }else{
+        updatesBeforeGambleMesssageReset = 10
+        document.getElementById('gambleMessage').textContent = 'Your bet was not right. You lost ' + (document.getElementById('betAmount').value) + '$. The number rolled was ' + valueRolled
     }
     refreshGame()
 }
@@ -366,11 +372,11 @@ function secondUpdate(){
     if (!secondCompany){
         if (energy > vendingMachines){
             money += vendingMachines * vendingMachineProfitPerSec
-            energy -= vendingMachines
+            energy = energy - vendingMachines
         }
         if (energy > cornerStores){
             money += cornerStores * cornerStoreProfitPerSec
-            energy -= vendingMachines
+            energy = energy - cornerStores
         }
     }
     refreshGame()
