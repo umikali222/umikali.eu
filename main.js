@@ -1,4 +1,4 @@
-// V0.4.4
+// V0.4.5
 
 var money = 0
 var energy = 100
@@ -122,6 +122,8 @@ function refreshGame(){
         }
 
     }else{
+        document.getElementById('foodPerSec').textContent  = restaurants * restaurantFoodPerSec
+
         if (restaurants != 0){document.getElementById('restaurants').textContent = restaurants}
         else{document.getElementById('restaurants').textContent = ''}
 
@@ -381,6 +383,7 @@ function upgrade(identifier){
             document.getElementById('vendingMachineDiv').style.display = 'none' // hide vending machine div
 
             document.getElementById('statsDiv').style.display = 'none'
+            document.getElementById('energyDiv').style.display = 'none'
 
             restaurantUpgrade = true
             workerUpgrade = true
@@ -388,12 +391,17 @@ function upgrade(identifier){
         case 12:
             document.getElementById('automationDiv').style.display = 'block'
             document.getElementById('restaurantDiv').style.display = 'block'
+            document.getElementById('statsDiv').style.display = 'block'
+            document.getElementById('foodPerSecDiv').style.display = 'block'
+            document.getElementById('foodDiv').style.display = 'block'
             restaurantUpgradeBought = true
             restaurantUpgrade = false
             break
         case 13:
             document.getElementById('automationDiv').style.display = 'block'
             document.getElementById('workerDiv').style.display = 'block'
+            document.getElementById('statsDiv').style.display = 'block'
+            document.getElementById('moneyPerSecDiv').style.display = 'block'
             workerUpgradeBought = true
             workerUpgrade = false
             break
@@ -446,13 +454,15 @@ function eat(){
 function restaurant(){
     restaurants += 1
     money = money - restaurantCost
-    restaurantCost *= 2   
+    restaurantCost *= 2
+    refreshGame()
 }
 
 function worker(){
     workers += 1
     money = money - restaurantCost
-    restaurantCost *= 2
+    workerCost *= 2
+    refreshGame()
 }
 
 refreshGame()
@@ -472,7 +482,10 @@ function secondUpdate(){
         if (food > workers){
             food = food - workers
             money += workers * workerProfitPerSec
+            document.getElementById('moneyPerSec').textContent = workers * workerProfitPerSec
         }
+        document.getElementById('food').textContent = food
+        
     }
 
     if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
