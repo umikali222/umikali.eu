@@ -1,4 +1,4 @@
-// V0.4.6
+// V0.4.7
 
 var money = 0
 var energy = 100
@@ -25,34 +25,9 @@ var workerCost = 100
 var vendingMachineProfitPerSec = 1
 var cornerStoreProfitPerSec = 25
 
-
-
 // second company
 var restaurantFoodPerSec = 5
 var workerProfitPerSec = 100
-
-
-
-// upgrades
-var gamblingUpgrade = false
-var cornerStoreUpgrade = false
-var sellEverythingUpgrade = false
-
-// marketing for vending machines
-var marketing2upgrade = true
-var marketing3upgrade = false
-var marketing4upgrade = false
-var marketing5upgrade = false
-
-// marketing for corner stores
-var storeMarketing2upgrade = false
-var storeMarketing3upgrade = false
-var storeMarketing4upgrade = false
-var storeMarketing5upgrade = false
-
-// second company upgrades
-var workerUpgrade = false
-var restaurantUpgrade = false
 
 
 
@@ -60,8 +35,6 @@ var restaurantUpgrade = false
 var gamblingEngine = false
 var cornerStoreUpgradeBought = false
 var secondCompany = false
-var workerUpgradeBought = false
-var restaurantUpgradeBought = false
 
 // other variables
 var updatesBeforeGambleMesssageReset = 0
@@ -118,17 +91,11 @@ function refreshGame(){
         }
 
         if (cornerStores >= 5){
-            sellEverythingUpgrade = true // enable the sell everything upgrade if you got at least 5 corner stores
+            document.getElementById('sellEverything').style.display = 'block'
         }
 
     }else{
         document.getElementById('foodPerSec').textContent  = restaurants * restaurantFoodPerSec
-
-        if (restaurants != 0){document.getElementById('restaurants').textContent = restaurants}
-        else{document.getElementById('restaurants').textContent = ''}
-
-        if (workers != 0){document.getElementById('workers').textContent = workers}
-        else{document.getElementById('workers').textContent = ''}
 
         if (money >= restaurantCost){
             document.getElementById('restaurantButton').removeAttribute('disabled')
@@ -169,135 +136,77 @@ function refreshGame(){
 
 
     if (vendingMachines >= 10 & !cornerStoreUpgradeBought){
-        cornerStoreUpgrade = true
-    }
-
-    if (gamblingUpgrade){
-        document.getElementById('gambling').style.display = 'block'
-        document.getElementById('gambling').setAttribute('disabled', 'disabled') // disable gambling upgrade
-        if (money >= 2500){
-            document.getElementById('gambling').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('gambling').style.display = 'none'
-    }
-
-    if (cornerStoreUpgrade){
         document.getElementById('cornerStoreUpgrade').style.display = 'block'
-        document.getElementById('cornerStoreUpgrade').setAttribute('disabled', 'disabled') // disable corner store upgrade
-        if (money >= 20000){
-            document.getElementById('cornerStoreUpgrade').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('cornerStoreUpgrade').style.display = 'none'
     }
 
-    if (sellEverythingUpgrade){
-        document.getElementById('sellEverything').style.display = 'block'
-        document.getElementById('sellEverything').setAttribute('disabled', 'disabled') // disable corner store upgrade
-        if (money >= 1000000){
-            document.getElementById('sellEverything').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('sellEverything').style.display = 'none'
+    if (money >= 2500){
+        document.getElementById('gambling').removeAttribute('disabled')
+    } else{
+        document.getElementById('gambling').setAttribute('disabled', 'disabled') // gambling upgrade
+    }
+    
+    if (money >= 20000){
+        document.getElementById('cornerStoreUpgrade').removeAttribute('disabled')
+    } else{
+        document.getElementById('cornerStoreUpgrade').setAttribute('disabled', 'disabled') // corner store upgrade
+    }
+
+    if (money >= 1000000){
+        document.getElementById('sellEverything').removeAttribute('disabled')
+    } else{
+        document.getElementById('sellEverything').setAttribute('disabled', 'disabled') // sell everything upgrade
     }
 
     // MARKETING UPGRADES FOR VENDING MACHINES
-
-    if (marketing2upgrade){
-        document.getElementById('marketing2').style.display = 'block'
-        document.getElementById('marketing2').setAttribute('disabled', 'disabled') // disable marketing 2 upgrade
-        if (money >= 100){
-            document.getElementById('marketing2').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('marketing2').style.display = 'none'
+    
+    if (money >= 100){
+        document.getElementById('marketing2').removeAttribute('disabled')
+    } else{
+        document.getElementById('marketing2').setAttribute('disabled', 'disabled') // marketing 2 upgrade
     }
 
-    if (marketing3upgrade){
-        document.getElementById('marketing3').style.display = 'block'
-        document.getElementById('marketing3').setAttribute('disabled', 'disabled') // disable marketing 3 upgrade
-        if (money >= 500){
-            document.getElementById('marketing3').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('marketing3').style.display = 'none'
+    if (money >= 500){
+        document.getElementById('marketing3').removeAttribute('disabled')
+    } else{
+        document.getElementById('marketing3').setAttribute('disabled', 'disabled') // marketing 3 upgrade
     }
 
-    if (marketing4upgrade){
-        document.getElementById('marketing4').style.display = 'block'
-        document.getElementById('marketing4').setAttribute('disabled', 'disabled') // disable marketing 4 upgrade
-        if (money >= 2000){
-            document.getElementById('marketing4').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('marketing4').style.display = 'none'
+    if (money >= 2000){
+        document.getElementById('marketing4').removeAttribute('disabled')
+    } else{
+        document.getElementById('marketing4').setAttribute('disabled', 'disabled') // marketing 4 upgrade
     }
 
-    if (marketing5upgrade){
-        document.getElementById('marketing5').style.display = 'block'
-        document.getElementById('marketing5').setAttribute('disabled', 'disabled') // disable marketing 5 upgrade
-        if (money >= 15000){
-            document.getElementById('marketing5').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('marketing5').style.display = 'none'
+    if (money >= 15000){
+        document.getElementById('marketing5').removeAttribute('disabled')
+    } else{
+        document.getElementById('marketing5').setAttribute('disabled', 'disabled') // marketing 5 upgrade
     }
 
     // MARKETING UPGRADES FOR CORNER STORES
 
-    if (storeMarketing2upgrade){
-        document.getElementById('storeMarketing2').style.display = 'block'
-        document.getElementById('storeMarketing2').setAttribute('disabled', 'disabled') // disable store marketing 2 upgrade
-        if (money >= 50000){
-            document.getElementById('storeMarketing2').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('storeMarketing2').style.display = 'none'
+    if (money >= 50000){
+        document.getElementById('storeMarketing2').removeAttribute('disabled')
+    } else{
+        document.getElementById('storeMarketing2').setAttribute('disabled', 'disabled') // store marketing 2 upgrade
     }
 
-    if (storeMarketing3upgrade){
-        document.getElementById('storeMarketing3').style.display = 'block'
-        document.getElementById('storeMarketing3').setAttribute('disabled', 'disabled') // disable store marketing 3 upgrade
-        if (money >= 100000){
-            document.getElementById('storeMarketing3').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('storeMarketing3').style.display = 'none'
+    if (money >= 100000){
+        document.getElementById('storeMarketing3').removeAttribute('disabled')
+    } else{
+        document.getElementById('storeMarketing3').setAttribute('disabled', 'disabled') // store marketing 3 upgrade
     }
-
-    if (storeMarketing4upgrade){
-        document.getElementById('storeMarketing4').style.display = 'block'
-        document.getElementById('storeMarketing4').setAttribute('disabled', 'disabled') // disable store marketing 4 upgrade
-        if (money >= 200000){
-            document.getElementById('storeMarketing4').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('storeMarketing4').style.display = 'none'
-    }
-
-    if (storeMarketing5upgrade){
-        document.getElementById('storeMarketing5').style.display = 'block'
-        document.getElementById('storeMarketing5').setAttribute('disabled', 'disabled') // disable store marketing 5 upgrade
-        if (money >= 500000){
-            document.getElementById('storeMarketing5').removeAttribute('disabled') // enable it
-        } 
-    }else{
-        document.getElementById('storeMarketing5').style.display = 'none'
-    }
-
-    //  SECOND COMPANY UPGRADES
-
-    if (workerUpgrade){
-        document.getElementById('worker').style.display = 'block'
-    }else{
-        document.getElementById('worker').style.display = 'none'
-    }
-
-    if (restaurantUpgrade){
-        document.getElementById('restaurant').style.display = 'block'
-    }else{
-        document.getElementById('restaurant').style.display = 'none'
+    
+    if (money >= 200000){
+        document.getElementById('storeMarketing4').removeAttribute('disabled')
+    } else{
+        document.getElementById('storeMarketing4').setAttribute('disabled', 'disabled') // store marketing 4 upgrade
+    }  
+    
+    if (money >= 500000){
+        document.getElementById('storeMarketing5').removeAttribute('disabled')
+    } else{
+        document.getElementById('storeMarketing5').setAttribute('disabled', 'disabled') // store marketing 5 upgrade
     }
 }
 
@@ -306,60 +215,60 @@ function upgrade(identifier){
         case 1:
             money -= 100
             vendingMachineProfitPerSec *= 2
-            marketing2upgrade = false
-            marketing3upgrade = true
-            gamblingUpgrade = true
+            document.getElementById('marketing2').style.display = 'none'
+            document.getElementById('marketing3').style.display = 'block'
+            document.getElementById('gambling').style.display = 'block'
             break
         case 2:
             money -= 500
             vendingMachineProfitPerSec *= 2
-            marketing3upgrade = false
-            marketing4upgrade = true
+            document.getElementById('marketing3').style.display = 'none'
+            document.getElementById('marketing4').style.display = 'block'
             break
         case 3:
             money -= 2000
             vendingMachineProfitPerSec *= 5
-            marketing4upgrade = false
-            marketing5upgrade = true
+            document.getElementById('marketing4').style.display = 'none'
+            document.getElementById('marketing5').style.display = 'block'
             break
         case 4:
             money -= 15000
             vendingMachineProfitPerSec *= 5
-            marketing5upgrade = false
+            document.getElementById('marketing5').style.display = 'none'
             break
         case 5:
             money -= 2500
-            gamblingUpgrade = false
+            document.getElementById('gambling').style.display = 'none'
             gamblingEngine = true
             break
         case 6:
             money -= 10000
             cornerStoreUpgradeBought = true
-            cornerStoreUpgrade = false
-            storeMarketing2upgrade = true
+            document.getElementById('cornerStoreUpgrade').style.display = 'none'
+            document.getElementById('storeMarketing2').style.display = 'block'
             break
         case 7:
             money -= 5000
             cornerStoreProfitPerSec *= 5
-            storeMarketing2upgrade = false
-            storeMarketing3upgrade = true
+            document.getElementById('storeMarketing2').style.display = 'none'
+            document.getElementById('storeMarketing3').style.display = 'block'
             break
         case 8:
             money -= 25000
             cornerStoreProfitPerSec *= 2
-            storeMarketing3upgrade = false
-            storeMarketing4upgrade = true
+            document.getElementById('storeMarketing3').style.display = 'none'
+            document.getElementById('storeMarketing4').style.display = 'block'
             break
         case 9:
             money -= 100000
             cornerStoreProfitPerSec *= 2
-            storeMarketing4upgrade = false
-            storeMarketing5upgrade = true
+            document.getElementById('storeMarketing4').style.display = 'none'
+            document.getElementById('storeMarketing5').style.display = 'block'
             break
         case 10:
             money -= 500000
             cornerStoreProfitPerSec *= 2
-            storeMarketing5upgrade = false
+            document.getElementById('storeMarketing5').style.display = 'none'
             break
         case 11:
             money -= 1000000
@@ -371,7 +280,7 @@ function upgrade(identifier){
             cornerStores = 0
 
             secondCompany = true
-            sellEverythingUpgrade = false
+            document.getElementById('sellEverything').style.display = 'none'
 
             document.getElementById('cornerStoreDiv').style.display = 'none'
 
@@ -385,8 +294,8 @@ function upgrade(identifier){
             document.getElementById('statsDiv').style.display = 'none'
             document.getElementById('energyDiv').style.display = 'none'
 
-            restaurantUpgrade = true
-            workerUpgrade = true
+            document.getElementById('restaurant').style.display = 'block'
+            document.getElementById('worker').style.display = 'block'
             break
         case 12:
             document.getElementById('automationDiv').style.display = 'block'
@@ -394,16 +303,14 @@ function upgrade(identifier){
             document.getElementById('statsDiv').style.display = 'block'
             document.getElementById('foodPerSecDiv').style.display = 'block'
             document.getElementById('foodDiv').style.display = 'block'
-            restaurantUpgradeBought = true
-            restaurantUpgrade = false
+            document.getElementById('restaurant').style.display = 'none'
             break
         case 13:
             document.getElementById('automationDiv').style.display = 'block'
             document.getElementById('workerDiv').style.display = 'block'
             document.getElementById('statsDiv').style.display = 'block'
             document.getElementById('moneyPerSecDiv').style.display = 'block'
-            workerUpgradeBought = true
-            workerUpgrade = false
+            document.getElementById('worker').style.display = 'none'
             break
     }
     refreshGame()
@@ -455,7 +362,11 @@ function restaurant(){
     restaurants += 1
     money = money - restaurantCost
     restaurantCost *= 2
-    document.getElementById('restaurantCost').textContent = restaurantCost
+    document.getElementById('restaurantPrice').textContent = restaurantCost
+    if (restaurants != 0){document.getElementById('restaurants').textContent = restaurants}
+    else{document.getElementById('restaurants').textContent = ''}
+
+    
     refreshGame()
 }
 
@@ -463,7 +374,9 @@ function worker(){
     workers += 1
     money = money - restaurantCost
     workerCost *= 2
-    document.getElementById('workerCost').textContent = workerCost
+    document.getElementById('workerPrice').textContent = workerCost
+    if (workers != 0){document.getElementById('workers').textContent = workers}
+    else{document.getElementById('workers').textContent = ''}
     refreshGame()
 }
 
@@ -487,7 +400,6 @@ function secondUpdate(){
             document.getElementById('moneyPerSec').textContent = workers * workerProfitPerSec
         }
         document.getElementById('food').textContent = food
-        
     }
 
     if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
