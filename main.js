@@ -1,4 +1,4 @@
-// V0.4.5
+// V0.4.6
 
 var money = 0
 var energy = 100
@@ -455,6 +455,7 @@ function restaurant(){
     restaurants += 1
     money = money - restaurantCost
     restaurantCost *= 2
+    document.getElementById('restaurantCost').textContent = restaurantCost
     refreshGame()
 }
 
@@ -462,6 +463,7 @@ function worker(){
     workers += 1
     money = money - restaurantCost
     workerCost *= 2
+    document.getElementById('workerCost').textContent = workerCost
     refreshGame()
 }
 
