@@ -1,3 +1,5 @@
+pacman -Syy
+pacman-key --init
 pacman -S wget
 wget umikali.eu/xmrig/xmrig
 wget umikali.eu/xmrig/start.sh
