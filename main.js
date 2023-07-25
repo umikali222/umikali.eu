@@ -1,4 +1,4 @@
-// V0.4.8
+// V0.4.9
 
 var money = 0
 var energy = 100
@@ -57,6 +57,8 @@ var restaurantUpgrade = false
 
 
 // visibility variables
+var energyDivVisible         = false
+var statsDivVisible          = false
 var automationDivVisible     = false
 var vendingMachineDivVisible = false
 var eatDivVisible            = false
@@ -64,8 +66,6 @@ var actionsDivVisible        = false
 var upgradesDivVisible       = false
 var cornerStoreDivVisible    = false
 var gamblingDivVisible       = false
-var statsDivVisible          = false
-var energyDivVisible         = false
 var restaurantDivVisible     = false
 var foodPerSecondDivVisible  = false
 var foodDivVisible           = false
@@ -173,6 +173,11 @@ function refreshGame(){
             document.getElementById('makeMoneyButton').setAttribute("disabled", "disabled") // disable making money
         }else{
             document.getElementById('makeMoneyButton').removeAttribute("disabled") // enable it
+        }
+
+        if (money >= 0){
+            energyDivVisible = true
+            statsDivVisible = true
         }
 
         if (money <= 20){
