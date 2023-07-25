@@ -1,4 +1,4 @@
-// V0.4.10
+// V0.4.11
 
 var money = 0
 var energy = 100
@@ -682,5 +682,11 @@ function minuteUpdate(){
 setInterval(minuteUpdate, 60000)
 
 function gameTab(){
+    state = 'game'
+    refreshGame()
+}
+
+function settingsTab(){
+    state = 'settings'
     refreshGame()
 }
