@@ -1,4 +1,4 @@
-// V0.4.9
+// V0.4.10
 
 var money = 0
 var energy = 100
@@ -77,8 +77,9 @@ var moneyPerSecondDivVisible = false
 // bought upgrades variables
 var secondCompany = false
 
-// other variables
+// variables, that don't need to be in the save
 var updatesBeforeGambleMesssageReset = 0
+var state = 'game'
 
 
 function getListFromCookie(cookieName) {
@@ -95,8 +96,8 @@ function getListFromCookie(cookieName) {
 }
 
 
-function load(){
-    save = getListFromCookie('save1')
+function load(saveName){
+    save = getListFromCookie(saveName)
     if (save == null){
         console.log('Save file not found!')
         return
@@ -146,7 +147,7 @@ function load(){
     secondCompany              = save[42]
 }
 
-load()
+load('save1')
 
 function updateVisibility(id, visibilityStatus){
     if (visibilityStatus){
@@ -405,6 +406,21 @@ function refreshGame(){
     }else{
         document.getElementById('restaurant').style.display = 'none'
     }
+
+
+    if (state == 'game'){
+        document.getElementById('game').style.display = 'block'
+        document.getElementById('settings').style.display = 'none'
+
+        document.getElementById('gameButton').setAttribute('disabled', 'disabled')
+        document.getElementById('settingsButton').removeAttribute('disabled')
+    }else{
+        document.getElementById('game').style.display = 'none'
+        document.getElementById('settings').style.display = 'block'
+
+        document.getElementById('gameButton').removeAttribute('disabled')
+        document.getElementById('settingsButton').setAttribute('disabled', 'disabled')
+    }
 }
 
 function upgrade(identifier){
@@ -573,13 +589,44 @@ function worker(){
     refreshGame()
 }
 
+refreshGame()
+
+function secondUpdate(){
+    if (!secondCompany){
+        if (energy > vendingMachines){
+            money += vendingMachines * vendingMachineProfitPerSec
+            energy = energy - vendingMachines
+        }
+        if (energy > cornerStores){
+            money += cornerStores * cornerStoreProfitPerSec
+            energy = energy - cornerStores
+        }
+    }else{
+        food += restaurants * restaurantFoodPerSec
+        if (food > workers){
+            food = food - workers
+            money += workers * workerProfitPerSec
+            document.getElementById('moneyPerSec').textContent = workers * workerProfitPerSec
+        }
+        document.getElementById('food').textContent = food
+        
+    }
+
+    if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
+    else{updatesBeforeGambleMesssageReset--}
+
+    refreshGame()
+}
+
+setInterval(secondUpdate, 1000)
+
 function saveListToCookie(list, cookieName) {
     const jsonString = JSON.stringify(list)
     const cookieValue = encodeURIComponent(jsonString)
     document.cookie = cookieName + '=' + cookieValue + ';'
 }
 
-function saveGame(){
+function saveGame(saveName){
     valuesToSave = [
         money,
         energy,
@@ -625,42 +672,15 @@ function saveGame(){
         moneyPerSecondDivVisible,
         secondCompany
     ]
-    saveListToCookie(valuesToSave, 'save1')
+    saveListToCookie(valuesToSave, saveName)
 }
-
-refreshGame()
-
-function secondUpdate(){
-    if (!secondCompany){
-        if (energy > vendingMachines){
-            money += vendingMachines * vendingMachineProfitPerSec
-            energy = energy - vendingMachines
-        }
-        if (energy > cornerStores){
-            money += cornerStores * cornerStoreProfitPerSec
-            energy = energy - cornerStores
-        }
-    }else{
-        food += restaurants * restaurantFoodPerSec
-        if (food > workers){
-            food = food - workers
-            money += workers * workerProfitPerSec
-            document.getElementById('moneyPerSec').textContent = workers * workerProfitPerSec
-        }
-        document.getElementById('food').textContent = food
-        
-    }
-
-    if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
-    else{updatesBeforeGambleMesssageReset--}
-
-    refreshGame()
-}
-
-setInterval(secondUpdate, 1000)
 
 function minuteUpdate(){
-    saveGame()
+    saveGame('save1')
 }
 
 setInterval(minuteUpdate, 60000)
+
+function gameTab(){
+    refreshGame()
+}
