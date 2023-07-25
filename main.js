@@ -1,81 +1,84 @@
-// V0.4.11
-
-var money = 0
-var energy = 100
-var food = 5
+// V0.4.12
 
 
-// amounts
-var vendingMachines = 0
-var cornerStores = 0
-var restaurants = 0
-var workers = 0
+function gameReset(){
+    var money = 0
+    var energy = 100
+    var food = 5
 
 
-
-// costs
-var vendingMachineCost = 50
-var cornerStoreCost = 20000
-var restaurantCost = 100
-var workerCost = 100
+    // amounts
+    var vendingMachines = 0
+    var cornerStores = 0
+    var restaurants = 0
+    var workers = 0
 
 
 
-// per second values
-var vendingMachineProfitPerSec = 1
-var cornerStoreProfitPerSec = 25
+    // costs
+    var vendingMachineCost = 50
+    var cornerStoreCost = 20000
+    var restaurantCost = 100
+    var workerCost = 100
 
 
 
-// second company
-var restaurantFoodPerSec = 5
-var workerProfitPerSec = 100
+    // per second values
+    var vendingMachineProfitPerSec = 1
+    var cornerStoreProfitPerSec = 25
 
 
 
-// upgrades
-var gamblingUpgrade       = false
-var cornerStoreUpgrade    = false
-var sellEverythingUpgrade = false
-
-// marketing for vending machines
-var marketing2upgrade = false
-var marketing3upgrade = false
-var marketing4upgrade = false
-var marketing5upgrade = false
-
-// marketing for corner stores
-var storeMarketing2upgrade = false
-var storeMarketing3upgrade = false
-var storeMarketing4upgrade = false
-var storeMarketing5upgrade = false
-
-// second company upgrades
-var workerUpgrade     = false
-var restaurantUpgrade = false
+    // second company
+    var restaurantFoodPerSec = 5
+    var workerProfitPerSec = 100
 
 
 
-// visibility variables
-var energyDivVisible         = false
-var statsDivVisible          = false
-var automationDivVisible     = false
-var vendingMachineDivVisible = false
-var eatDivVisible            = false
-var actionsDivVisible        = false
-var upgradesDivVisible       = false
-var cornerStoreDivVisible    = false
-var gamblingDivVisible       = false
-var restaurantDivVisible     = false
-var foodPerSecondDivVisible  = false
-var foodDivVisible           = false
-var workerDivVisible         = false
-var moneyPerSecondDivVisible = false
+    // upgrades
+    var gamblingUpgrade       = false
+    var cornerStoreUpgrade    = false
+    var sellEverythingUpgrade = false
+
+    // marketing for vending machines
+    var marketing2upgrade = false
+    var marketing3upgrade = false
+    var marketing4upgrade = false
+    var marketing5upgrade = false
+
+    // marketing for corner stores
+    var storeMarketing2upgrade = false
+    var storeMarketing3upgrade = false
+    var storeMarketing4upgrade = false
+    var storeMarketing5upgrade = false
+
+    // second company upgrades
+    var workerUpgrade     = false
+    var restaurantUpgrade = false
 
 
 
-// bought upgrades variables
-var secondCompany = false
+    // visibility variables
+    var energyDivVisible         = false
+    var statsDivVisible          = false
+    var automationDivVisible     = false
+    var vendingMachineDivVisible = false
+    var eatDivVisible            = false
+    var actionsDivVisible        = false
+    var upgradesDivVisible       = false
+    var cornerStoreDivVisible    = false
+    var gamblingDivVisible       = false
+    var restaurantDivVisible     = false
+    var foodPerSecondDivVisible  = false
+    var foodDivVisible           = false
+    var workerDivVisible         = false
+    var moneyPerSecondDivVisible = false
+
+
+
+    // bought upgrades variables
+    var secondCompany = false
+}
 
 // variables, that don't need to be in the save
 var updatesBeforeGambleMesssageReset = 0
@@ -100,6 +103,7 @@ function load(saveName){
     save = getListFromCookie(saveName)
     if (save == null){
         console.log('Save file not found!')
+        gameReset()
         return
     }
     money                      = save[0]

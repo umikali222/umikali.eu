@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!--V0.4.11-->
+<!--V0.4.12-->
 
 <style>
     .container {
@@ -20,7 +20,7 @@
         <title>universal money</title>
     </head>
     <body>
-        <button id="Button" onclick="gameTab()">game</button> <button id="settingsButton" onclick="settingsTab()">settings</button> <br>
+        <button id="gameButton" onclick="gameTab()">game</button> <button id="settingsButton" onclick="settingsTab()">settings</button> <br>
         <div id="game">
         <h3>money : <a id="money">0</a>$</h3> <br>
         <button id="makeMoneyButton" onclick="makeMoney()">make money</button> <br> <br> <br>
@@ -128,14 +128,18 @@
             the default save is always slot 1, it gets loaded be default, and auto-saves every minute <br> <br>
 
             save to slot #
-            <button onclick="save('save1')">1</button> <button onclick="save('save2')">2</button>
-            <button onclick="save('save3')">3</button> <button onclick="save('save4')">4</button>
+            <button onclick="saveGame('save1')">1</button> <button onclick="saveGame('save2')">2</button>
+            <button onclick="saveGame('save3')">3</button> <button onclick="saveGame('save4')">4</button>
 
             <br> <br> <br>
 
             load from slot #
             <button onclick="load('save1')">1</button> <button onclick="load('save2')">2</button>
             <button onclick="load('save3')">3</button> <button onclick="load('save4')">4</button>
+
+            <br> <br> <br>
+
+            <button onclick="gameReset()">reset the game</button>
         </div>
     </body>    
 </html>
