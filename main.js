@@ -1,4 +1,4 @@
-// V0.4.7
+// V0.4.8
 
 var money = 0
 var energy = 100
@@ -261,7 +261,7 @@ function refreshGame(){
         document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // else turn it off
     }
     
-    if (document.getElementById('betAmount').value.isInteger()){
+    if (Math.floor(document.getElementById('betAmount').value) == document.getElementById('betAmount').value){
         document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // disable the gambling button
     }
 
@@ -570,7 +570,6 @@ function worker(){
 
 function saveListToCookie(list, cookieName) {
     const jsonString = JSON.stringify(list)
-    expirationDate.setDate(expirationDate.getDate() + expirationDays)
     const cookieValue = encodeURIComponent(jsonString)
     document.cookie = cookieName + '=' + cookieValue + ';'
 }
