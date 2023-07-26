@@ -1,4 +1,4 @@
-// V0.4.20
+// V0.4.21
 
 var money = 0
 var energy = 100
@@ -346,7 +346,7 @@ function refreshGame(){
         document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // else turn it off
     }
     
-    if (Math.floor(document.getElementById('betAmount').value) == document.getElementById('betAmount').value){
+    if (Math.abs(document.getElementById('betAmount').value) != document.getElementById('betAmount').value){
         document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // disable the gambling button
     }
 
