@@ -504,7 +504,7 @@ function upgrade(identifier){
         case 1:
             money -= 100
             vendingMachineProfitPerSec *= 2
-            marketing2upgrade = false
+            marketing2upgrade = false 
             marketing3upgrade = true
             gamblingUpgrade = true
             break
