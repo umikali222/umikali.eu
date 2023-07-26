@@ -1,4 +1,4 @@
-// V0.4.18
+// V0.4.19
 
 var money = 0
 var energy = 100
@@ -39,7 +39,7 @@ var cornerStoreUpgrade    = false
 var sellEverythingUpgrade = false
 
 // marketing for vending machines
-var marketing2upgrade = false
+var marketing2upgrade = true
 var marketing3upgrade = false
 var marketing4upgrade = false
 var marketing5upgrade = false
@@ -279,7 +279,6 @@ function refreshGame(){
         
         if (money >= 100){
             upgradesDivVisible = true // show upgrades
-            marketing2upgrade = true // show the 1st upgrade
         }
 
         if (money < vendingMachineCost){
