@@ -1,4 +1,4 @@
-// V0.4.23
+// V0.4.24
 
 var money = 0
 var energy = 100
@@ -504,6 +504,7 @@ function upgrade(identifier){
         case 1:
             money -= 100
             vendingMachineProfitPerSec *= 2
+            console.log('bought case 1')
             marketing2upgrade = false 
             marketing3upgrade = true
             gamblingUpgrade = true
