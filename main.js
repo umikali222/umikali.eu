@@ -504,10 +504,13 @@ function upgrade(identifier){
         case 1:
             money -= 100
             vendingMachineProfitPerSec *= 2
-            console.log('bought case 1')
+            console.log('bought case 1 probably')
             marketing2upgrade = false 
+            console.log('bought case 1')
             marketing3upgrade = true
+            console.log('bought case 1 I think')
             gamblingUpgrade = true
+            console.log('bought case 1 for sure')
             break
         case 2:
             money -= 500
