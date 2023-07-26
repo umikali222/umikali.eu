@@ -1,4 +1,4 @@
-// V0.4.22
+// V0.4.23
 
 var money = 0
 var energy = 100
@@ -585,6 +585,20 @@ function upgrade(identifier){
 
             restaurantUpgrade = true
             workerUpgrade = true
+
+
+            var cornerStoreUpgrade = false
+
+            var marketing2upgrade = false
+            var marketing3upgrade = false
+            var marketing4upgrade = false
+            var marketing5upgrade = false
+
+            var storeMarketing2upgrade = false
+            var storeMarketing3upgrade = false
+            var storeMarketing4upgrade = false
+            var storeMarketing5upgrade = false
+
             break
         case 12:
             automationDivVisible = true
