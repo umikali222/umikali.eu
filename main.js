@@ -1,4 +1,6 @@
-// V0.4.25
+// V0.4.26
+
+console.log('huh')
 
 var money = 0
 var energy = 100
