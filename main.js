@@ -1,4 +1,4 @@
-// V0.4.16
+// V0.4.17
 
 var money = 0
 var energy = 100
@@ -779,3 +779,14 @@ function applyCss(){
 }
 
 applyCss()
+
+function resetCustomCss(){
+    document.getElementById('cssCode').value = `
+.button{
+
+}
+.text{
+    /* not all textboxes work (working on adding more) */
+}
+    `
+}

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!--V0.4.16-->
+<!--V0.4.17-->
 
 <style></style>
 
@@ -24,13 +24,13 @@
     <body>
         <button class="button" id="gameButton" onclick="gameTab()">game</button> <button class="button" id="settingsButton" onclick="settingsTab()">settings</button> <br>
         <div id="game">
-        <h3>money : <a id="money">0</a>$</h3> <br>
+        <h3>money : <span class="text" id="money">0</a>$</h3> <br>
         <button class="button" id="makeMoneyButton" onclick="makeMoney()">make money</button> <br> <br> <br>
         <div class="container">
             <div class="column">
                 <div id="statsDiv">
                     <b>stats</b> <br> <hr>
-                    <div id="energyDiv">energy : <a id="energy">100</a></div>
+                    <div id="energyDiv">energy : <span class="text" id="energy">100</a></div>
                     <div id="foodDiv" style="display: none;">food : <span id="food">5</span></div>
                     <div id="foodPerSecDiv" style="display: none;">food per second : <span id="foodPerSec">0</span></div>
                     <div id="moneyPerSecDiv" style="display: none;">money per second : <span id="moneyPerSec"></span>$</div>
@@ -41,7 +41,7 @@
                 <b>actions</b> <br> <hr>
                 <div id="eatDiv" style="display: none;">
                 <button class="button" id="eat" onclick="eat()">eat</button> <br>
-                cost : <a id="eatCost">20</a>$
+                cost : <span class="text" id="eatCost">20</a>$
                 </div>
                 </div>
         
@@ -50,13 +50,13 @@
                 <div id="automationDiv" style="display: none;">
                     <b>automation</b> <br> <hr>
                     <div id="vendingMachineDiv" style="display: none;">
-                    <a id="vendingMachines"></a> <button class="button" id="vendingMachine" onclick="vendingMachine()">vending machine</button><br>
-                    cost : <a id="vendingMachineCost">50</a>$
+                    <span class="text" id="vendingMachines"></a> <button class="button" id="vendingMachine" onclick="vendingMachine()">vending machine</button><br>
+                    cost : <span class="text" id="vendingMachineCost">50</a>$
                     </div>
 
                     <div id="cornerStoreDiv" style="display: none;">
-                    <a id="cornerStores"></a> <button class="button" id="cornerStore" onclick="cornerStore()">corner store</button> <br>
-                    cost : <a id="cornerStoreCost">2000</a>$
+                    <span class="text" id="cornerStores"></a> <button class="button" id="cornerStore" onclick="cornerStore()">corner store</button> <br>
+                    cost : <span class="text" id="cornerStoreCost">2000</a>$
                     </div>
 
                     <div id="restaurantDiv" style="display: none;">
@@ -127,7 +127,7 @@
         </div>
         <div id="settings">
             <h2>saves</h2>
-            the default save is always slot 1, it gets loaded be default, and auto-saves every minute <br> <br>
+            the default save is always slot 1, it gets loaded by default, and auto-saves every minute <br> <br>
 
             save to slot #
             <button class="button" onclick="saveGame('save1')">1</button> <button class="button" onclick="saveGame('save2')">2</button>
@@ -150,6 +150,7 @@
 
             <textarea rows="20" cols="50" id="cssCode">.button{}</textarea> <br>
             <button class="button" onclick="applyCss()">apply!</button>
+            <button class="button" onclick="resetCustomCss()">reset to default</button>
         </div>
     </body>    
 </html>
