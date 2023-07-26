@@ -1,4 +1,4 @@
-// V0.4.14
+// V0.4.15
 
 var money = 0
 var energy = 100
@@ -769,4 +769,8 @@ function gameTab(){
 function settingsTab(){
     state = 'settings'
     refreshGame()
+}
+
+function applyCss(){
+    document.querySelector('style').innerHTML = document.getElementById('cssCode').value
 }
