@@ -1,4 +1,4 @@
-// V0.4.24
+// V0.4.25
 
 var money = 0
 var energy = 100
@@ -504,13 +504,13 @@ function upgrade(identifier){
         case 1:
             money -= 100
             vendingMachineProfitPerSec *= 2
-            console.log('bought case 1 probably')
-            marketing2upgrade = false 
-            console.log('bought case 1')
+            console.log('bought case 1 probably ' + marketing2upgrade)
+            marketing2upgrade = false
+            console.log('bought case 1 I think ' + marketing2upgrade)
             marketing3upgrade = true
-            console.log('bought case 1 I think')
+            console.log('bought case 1' + marketing2upgrade)
             gamblingUpgrade = true
-            console.log('bought case 1 for sure')
+            console.log('bought case 1 for sure' + marketing2upgrade)
             break
         case 2:
             money -= 500
