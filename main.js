@@ -781,10 +781,10 @@ function applyCss(){
 applyCss()
 
 function resetCustomCss(){
-    document.getElementById('cssCode').value = `
-.button{
+    document.getElementById('cssCode').value = `.button{
 
 }
+
 .text{
     /* not all textboxes work (working on adding more) */
 }
