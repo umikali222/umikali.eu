@@ -1,4 +1,4 @@
-// V0.4.26
+// V0.4.27
 
 console.log('huh')
 
@@ -119,7 +119,7 @@ function gameReset(){
     sellEverythingUpgrade = false
 
     // marketing for vending machines
-    marketing2upgrade = true
+    //marketing2upgrade = true
     marketing3upgrade = false
     marketing4upgrade = false
     marketing5upgrade = false
