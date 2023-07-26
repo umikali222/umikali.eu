@@ -1,83 +1,159 @@
-// V0.4.12
+// V0.4.13
+
+var money = 0
+var energy = 100
+var food = 5
+
+
+// amounts
+var vendingMachines = 0
+var cornerStores = 0
+var restaurants = 0
+var workers = 0
+
+
+
+// costs
+var vendingMachineCost = 50
+var cornerStoreCost = 20000
+var restaurantCost = 100
+var workerCost = 100
+
+
+
+// per second values
+var vendingMachineProfitPerSec = 1
+var cornerStoreProfitPerSec = 25
+
+
+
+// second company
+var restaurantFoodPerSec = 5
+var workerProfitPerSec = 100
+
+
+
+// upgrades
+var gamblingUpgrade       = false
+var cornerStoreUpgrade    = false
+var sellEverythingUpgrade = false
+
+// marketing for vending machines
+var marketing2upgrade = false
+var marketing3upgrade = false
+var marketing4upgrade = false
+var marketing5upgrade = false
+
+// marketing for corner stores
+var storeMarketing2upgrade = false
+var storeMarketing3upgrade = false
+var storeMarketing4upgrade = false
+var storeMarketing5upgrade = false
+
+// second company upgrades
+var workerUpgrade     = false
+var restaurantUpgrade = false
+
+
+
+// visibility variables
+var energyDivVisible         = false
+var statsDivVisible          = false
+var automationDivVisible     = false
+var vendingMachineDivVisible = false
+var eatDivVisible            = false
+var actionsDivVisible        = false
+var upgradesDivVisible       = false
+var cornerStoreDivVisible    = false
+var gamblingDivVisible       = false
+var restaurantDivVisible     = false
+var foodPerSecondDivVisible  = false
+var foodDivVisible           = false
+var workerDivVisible         = false
+var moneyPerSecondDivVisible = false
+
+
+
+// bought upgrades variables
+var secondCompany = false
 
 
 function gameReset(){
-    var money = 0
-    var energy = 100
-    var food = 5
-
+    money = 0
+    energy = 100
+    food = 5
 
     // amounts
-    var vendingMachines = 0
-    var cornerStores = 0
-    var restaurants = 0
-    var workers = 0
+    vendingMachines = 0
+    cornerStores = 0
+    restaurants = 0
+    workers = 0
 
 
 
     // costs
-    var vendingMachineCost = 50
-    var cornerStoreCost = 20000
-    var restaurantCost = 100
-    var workerCost = 100
+    vendingMachineCost = 50
+    cornerStoreCost = 20000
+    restaurantCost = 100
+    workerCost = 100
 
 
 
     // per second values
-    var vendingMachineProfitPerSec = 1
-    var cornerStoreProfitPerSec = 25
+    vendingMachineProfitPerSec = 1
+    cornerStoreProfitPerSec = 25
 
 
 
     // second company
-    var restaurantFoodPerSec = 5
-    var workerProfitPerSec = 100
+    restaurantFoodPerSec = 5
+    workerProfitPerSec = 100
 
 
 
     // upgrades
-    var gamblingUpgrade       = false
-    var cornerStoreUpgrade    = false
-    var sellEverythingUpgrade = false
+    gamblingUpgrade       = false
+    cornerStoreUpgrade    = false
+    sellEverythingUpgrade = false
 
     // marketing for vending machines
-    var marketing2upgrade = false
-    var marketing3upgrade = false
-    var marketing4upgrade = false
-    var marketing5upgrade = false
+    marketing2upgrade = false
+    marketing3upgrade = false
+    marketing4upgrade = false
+    marketing5upgrade = false
 
     // marketing for corner stores
-    var storeMarketing2upgrade = false
-    var storeMarketing3upgrade = false
-    var storeMarketing4upgrade = false
-    var storeMarketing5upgrade = false
+    storeMarketing2upgrade = false
+    storeMarketing3upgrade = false
+    storeMarketing4upgrade = false
+    storeMarketing5upgrade = false
 
     // second company upgrades
-    var workerUpgrade     = false
-    var restaurantUpgrade = false
+    workerUpgrade     = false
+    restaurantUpgrade = false
 
 
 
     // visibility variables
-    var energyDivVisible         = false
-    var statsDivVisible          = false
-    var automationDivVisible     = false
-    var vendingMachineDivVisible = false
-    var eatDivVisible            = false
-    var actionsDivVisible        = false
-    var upgradesDivVisible       = false
-    var cornerStoreDivVisible    = false
-    var gamblingDivVisible       = false
-    var restaurantDivVisible     = false
-    var foodPerSecondDivVisible  = false
-    var foodDivVisible           = false
-    var workerDivVisible         = false
-    var moneyPerSecondDivVisible = false
+    energyDivVisible         = false
+    statsDivVisible          = false
+    automationDivVisible     = false
+    vendingMachineDivVisible = false
+    eatDivVisible            = false
+    actionsDivVisible        = false
+    upgradesDivVisible       = false
+    cornerStoreDivVisible    = false
+    gamblingDivVisible       = false
+    restaurantDivVisible     = false
+    foodPerSecondDivVisible  = false
+    foodDivVisible           = false
+    workerDivVisible         = false
+    moneyPerSecondDivVisible = false
 
 
 
     // bought upgrades variables
-    var secondCompany = false
+    secondCompany = false
 }
 
 // variables, that don't need to be in the save
