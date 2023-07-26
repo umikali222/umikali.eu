@@ -1,4 +1,4 @@
-// V0.4.15
+// V0.4.16
 
 var money = 0
 var energy = 100
@@ -707,6 +707,9 @@ function saveListToCookie(list, cookieName) {
 }
 
 function saveGame(saveName){
+    if (document.cookie == ''){
+        document.cookie = 'SameSite = None'
+    }
     valuesToSave = [
         money,
         energy,
@@ -774,3 +777,5 @@ function settingsTab(){
 function applyCss(){
     document.querySelector('style').innerHTML = document.getElementById('cssCode').value
 }
+
+applyCss()
