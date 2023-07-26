@@ -1,4 +1,4 @@
-// V0.4.19
+// V0.4.20
 
 var money = 0
 var energy = 100
@@ -117,7 +117,7 @@ function gameReset(){
     sellEverythingUpgrade = false
 
     // marketing for vending machines
-    marketing2upgrade = false
+    marketing2upgrade = true
     marketing3upgrade = false
     marketing4upgrade = false
     marketing5upgrade = false
