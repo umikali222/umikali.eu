@@ -1,4 +1,4 @@
-// V0.4.21
+// V0.4.22
 
 var money = 0
 var energy = 100
@@ -232,7 +232,7 @@ load('save1')
 function updateVisibility(id, visibilityStatus){
     if (visibilityStatus){
         document.getElementById(id).style.display = 'block'
-    } else{
+    }else{
         document.getElementById(id).style.display = 'none'
     }
 }
@@ -296,15 +296,6 @@ function refreshGame(){
         if (cornerStores >= 5){
             sellEverythingUpgrade = true // enable the sell everything upgrade if you got at least 5 corner stores
         }
-
-
-        // VISIBILITY UPDATES
-
-        updateVisibility('eatDiv', eatDivVisible)
-        updateVisibility('cornerStoreDiv', cornerStoreDivVisible)
-        updateVisibility('vendingMachineDiv', vendingMachineDivVisible)
-        updateVisibility('energyDiv', energyDivVisible)
-
     }else{
         document.getElementById('foodPerSec').textContent  = restaurants * restaurantFoodPerSec
 
@@ -327,6 +318,12 @@ function refreshGame(){
         }
     }
 
+    // VISIBILITY UPDATES
+
+    updateVisibility('eatDiv', eatDivVisible)
+    updateVisibility('energyDiv', energyDivVisible)
+    updateVisibility('cornerStoreDiv', cornerStoreDivVisible)
+    updateVisibility('vendingMachineDiv', vendingMachineDivVisible)
     updateVisibility('automationDiv', automationDivVisible)
     updateVisibility('actionsDiv', actionsDivVisible)
     updateVisibility('upgradesDiv', upgradesDivVisible)
@@ -786,6 +783,5 @@ function resetCustomCss(){
 
 .text{
     /* not all textboxes work (working on adding more) */
-}
-    `
+}`
 }
