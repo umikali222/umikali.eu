@@ -1,20 +1,41 @@
-// V0.4
+// V0.5
 
 var money = 0
 var energy = 100
+var food = 5
 
-var vendingMachineCost = 50
-var cornerStoreCost = 20000
 
+// amounts
 var vendingMachines = 0
 var cornerStores = 0
+var restaurants = 0
+var workers = 0
 
+
+
+// costs
+var vendingMachineCost = 50
+var cornerStoreCost = 20000
+var restaurantCost = 100
+var workerCost = 100
+
+
+
+// per second values
 var vendingMachineProfitPerSec = 1
 var cornerStoreProfitPerSec = 25
 
+
+
+// second company
+var restaurantFoodPerSec = 5
+var workerProfitPerSec = 100
+
+
+
 // upgrades
-var gamblingUpgrade = false
-var cornerStoreUpgrade = false
+var gamblingUpgrade       = false
+var cornerStoreUpgrade    = false
 var sellEverythingUpgrade = false
 
 // marketing for vending machines
@@ -29,13 +50,192 @@ var storeMarketing3upgrade = false
 var storeMarketing4upgrade = false
 var storeMarketing5upgrade = false
 
-var gamblingEngine = false
-var cornerStoreUpgradeBought = false
+// second company upgrades
+var workerUpgrade     = false
+var restaurantUpgrade = false
 
-var updatesBeforeGambleMesssageReset = 0
 
+
+// visibility variables
+var energyDivVisible         = false
+var statsDivVisible          = false
+var automationDivVisible     = false
+var vendingMachineDivVisible = false
+var eatDivVisible            = false
+var actionsDivVisible        = false
+var upgradesDivVisible       = false
+var cornerStoreDivVisible    = false
+var gamblingDivVisible       = false
+var restaurantDivVisible     = false
+var foodPerSecondDivVisible  = false
+var foodDivVisible           = false
+var workerDivVisible         = false
+var moneyPerSecondDivVisible = false
+
+
+
+// bought upgrades variables
 var secondCompany = false
 
+
+function gameReset(){
+    money = 0
+    energy = 100
+    food = 5
+
+    // amounts
+    vendingMachines = 0
+    cornerStores = 0
+    restaurants = 0
+    workers = 0
+
+
+
+    // costs
+    vendingMachineCost = 50
+    cornerStoreCost = 20000
+    restaurantCost = 100
+    workerCost = 100
+
+
+
+    // per second values
+    vendingMachineProfitPerSec = 1
+    cornerStoreProfitPerSec = 25
+
+
+
+    // second company
+    restaurantFoodPerSec = 5
+    workerProfitPerSec = 100
+
+
+
+    // upgrades
+    gamblingUpgrade       = false
+    cornerStoreUpgrade    = false
+    sellEverythingUpgrade = false
+
+    // marketing for vending machines
+    marketing2upgrade = true
+    marketing3upgrade = false
+    marketing4upgrade = false
+    marketing5upgrade = false
+
+    // marketing for corner stores
+    storeMarketing2upgrade = false
+    storeMarketing3upgrade = false
+    storeMarketing4upgrade = false
+    storeMarketing5upgrade = false
+
+    // second company upgrades
+    workerUpgrade     = false
+    restaurantUpgrade = false
+
+
+
+    // visibility variables
+    energyDivVisible         = false
+    statsDivVisible          = false
+    automationDivVisible     = false
+    vendingMachineDivVisible = false
+    eatDivVisible            = false
+    actionsDivVisible        = false
+    upgradesDivVisible       = false
+    cornerStoreDivVisible    = false
+    gamblingDivVisible       = false
+    restaurantDivVisible     = false
+    foodPerSecondDivVisible  = false
+    foodDivVisible           = false
+    workerDivVisible         = false
+    moneyPerSecondDivVisible = false
+
+
+
+    // bought upgrades variables
+    secondCompany = false
+}
+
+// variables, that don't need to be in the save
+var updatesBeforeGambleMesssageReset = 0
+var state = 'game'
+
+
+function getListFromCookie(cookieName) {
+    const name = cookieName + '='
+    const cookies = document.cookie.split(';')
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i].trim()
+      if (cookie.indexOf(name) === 0) {
+        const jsonString = decodeURIComponent(cookie.substring(name.length))
+        return JSON.parse(jsonString)
+      }
+    }
+    return null;
+}
+
+
+function load(saveName){
+    save = getListFromCookie(saveName)
+    if (save == null){
+        console.log('Save file not found!')
+        gameReset()
+        return
+    }
+    money                      = save[0]
+    energy                     = save[1]
+    food                       = save[2]
+    vendingMachines            = save[3]
+    cornerStores               = save[4]
+    restaurants                = save[5]
+    workers                    = save[6]
+    vendingMachineCost         = save[7]
+    cornerStoreCost            = save[8]
+    restaurantCost             = save[9]
+    workerCost                 = save[10]
+    vendingMachineProfitPerSec = save[11]
+    cornerStoreProfitPerSec    = save[12]
+    restaurantFoodPerSec       = save[13]
+    workerProfitPerSec         = save[14]
+    gamblingUpgrade            = save[15]
+    cornerStoreUpgrade         = save[16]
+    sellEverythingUpgrade      = save[17]
+    marketing2upgrade          = save[18]
+    marketing3upgrade          = save[19]
+    marketing4upgrade          = save[20]
+    marketing5upgrade          = save[21]
+    storeMarketing2upgrade     = save[22]
+    storeMarketing3upgrade     = save[23]
+    storeMarketing4upgrade     = save[24]
+    storeMarketing5upgrade     = save[25]
+    workerUpgrade              = save[26]
+    restaurantUpgrade          = save[27]
+    automationDivVisible       = save[28]
+    vendingMachineDivVisible   = save[29]
+    eatDivVisible              = save[30]
+    actionsDivVisible          = save[31]
+    upgradesDivVisible         = save[32]
+    cornerStoreDivVisible      = save[33]
+    gamblingDivVisible         = save[34]
+    statsDivVisible            = save[35]
+    energyDivVisible           = save[36]
+    restaurantDivVisible       = save[37]
+    foodPerSecondDivVisible    = save[38]
+    foodDivVisible             = save[39]
+    workerDivVisible           = save[40]
+    moneyPerSecondDivVisible   = save[41]
+    secondCompany              = save[42]
+}
+
+load('save1')
+
+function updateVisibility(id, visibilityStatus){
+    if (visibilityStatus){
+        document.getElementById(id).style.display = 'block'
+    } else{
+        document.getElementById(id).style.display = 'none'
+    }
+}
 
 function refreshGame(){
     document.getElementById('money').textContent = money // update money
@@ -49,38 +249,44 @@ function refreshGame(){
         else {document.getElementById('vendingMachines').textContent = ''}// or set it to nothing
         if (cornerStores != 0) {document.getElementById('cornerStores').textContent = cornerStores} // update amount of corner stores
         else {document.getElementById('cornerStores').textContent = ''}// or set it to nothing
+        
         if (energy < 1){
             document.getElementById('makeMoneyButton').setAttribute("disabled", "disabled") // disable making money
         }else{
             document.getElementById('makeMoneyButton').removeAttribute("disabled") // enable it
         }
+
+        if (money >= 0){
+            energyDivVisible = true
+            statsDivVisible = true
+        }
+
         if (money <= 20){
             document.getElementById('eat').setAttribute("disabled", "disabled") // enable eating
-        } else{
+        }else{
             document.getElementById('eat').removeAttribute("disabled") // disable it
         }
-        if (money >= vendingMachineCost){
-            document.getElementById('automationDiv').style.display = 'block' // show automation div
-            document.getElementById('vendingMachineDiv').style.display = 'block' // show vending machine buy
-        }
+
         if (money > 20){
-            document.getElementById('eatDiv').style.display = 'block' // show eating button and cost
-            document.getElementById('actions').style.display = 'block' // show actions div 
+            eatDivVisible = true // show eating button and cost
+            actionsDivVisible = true // show actions div 
         }
+
+        if (money >= 50){
+            automationDivVisible = true // show automation div
+            vendingMachineDivVisible = true // show vending machine buy
+        }
+        
+        if (money >= 100){
+            upgradesDivVisible = true // show upgrades
+        }
+
         if (money < vendingMachineCost){
             document.getElementById('vendingMachine').setAttribute("disabled", "disabled") // disable vending machine button
         }else{
             document.getElementById('vendingMachine').removeAttribute('disabled') // enable it
         }
-        if (money >= 100){
-            document.getElementById('upgrades').style.display = 'block' // show upgrades
-        }
-        
-        if (cornerStoreUpgradeBought){
-            document.getElementById('cornerStoreDiv').style.display = 'block' // show the corner store div
-        }else{
-            document.getElementById('cornerStoreDiv').style.display = 'none' // hide it
-        }
+
         if (money < cornerStoreCost){
             document.getElementById('cornerStore').setAttribute("disabled", "disabled") // disable corner store button
         }else{
@@ -91,26 +297,49 @@ function refreshGame(){
             sellEverythingUpgrade = true // enable the sell everything upgrade if you got at least 5 corner stores
         }
 
+
+        
+
     }else{
-        document.getElementById('cornerStoreDiv').style.display = 'none'
+        document.getElementById('foodPerSec').textContent  = restaurants * restaurantFoodPerSec
 
-        document.getElementById('eatDiv').style.display = 'none' // hide eating button and cost
-        document.getElementById('actions').style.display = 'none' // hide actions div (might remove this for obvious reasons)
+        if (restaurants != 0){document.getElementById('restaurants').textContent = restaurants}
+        else{document.getElementById('restaurants').textContent = ''}
 
-        document.getElementById('automationDiv').style.display = 'none' // hide automation div
-        document.getElementById('vendingMachineDiv').style.display = 'none' // hide vending machine div
+        if (workers != 0){document.getElementById('workers').textContent = workers}
+        else{document.getElementById('workers').textContent = ''}
 
-        document.getElementById('statsDiv').style.display = 'none'
+        if (money >= restaurantCost){
+            document.getElementById('restaurantButton').removeAttribute('disabled')
+        }else{
+            document.getElementById('restaurantButton').setAttribute('disabled', 'disabled')
+        }
 
-        vendingMachines = 0
-        cornerStores = 0
+        if (money >= workerCost){
+            document.getElementById('workerButton').removeAttribute('disabled')
+        }else{
+            document.getElementById('workerButton').setAttribute('disabled', 'disabled')
+        }
     }
 
+    // VISIBILITY UPDATES
+
+    updateVisibility('eatDiv', eatDivVisible)
+    updateVisibility('cornerStoreDiv', cornerStoreDivVisible)
+    updateVisibility('vendingMachineDiv', vendingMachineDivVisible)
+    updateVisibility('energyDiv', energyDivVisible)
+    updateVisibility('automationDiv', automationDivVisible)
+    updateVisibility('actionsDiv', actionsDivVisible)
+    updateVisibility('upgradesDiv', upgradesDivVisible)
+    updateVisibility('gamblingDiv', gamblingDivVisible)
+    updateVisibility('statsDiv', statsDivVisible)
+    updateVisibility('restaurantDiv', restaurantDivVisible)
+    updateVisibility('foodPerSecDiv', foodPerSecondDivVisible)
+    updateVisibility('foodDiv', foodDivVisible)
+    updateVisibility('workerDiv', workerDivVisible)
+    updateVisibility('moneyPerSecDiv', moneyPerSecondDivVisible)
 
     // GAMBLING 
-
-    if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
-    else{updatesBeforeGambleMesssageReset--}
 
     if (document.getElementById('betAmount').value <= money){ // if the bet amount not is too high
         document.getElementById('gambleButton').removeAttribute('disabled') // turn on the gamble button
@@ -118,23 +347,15 @@ function refreshGame(){
         document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // else turn it off
     }
     
-    if (gamblingEngine){
-        document.getElementById('gamblingDiv').style.display = 'block' // turn on the gambling part
-
-        var x = document.getElementById('betAmount').value // get the bet amount
-
-        if (Math.abs(x) != x){
-            document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // disable the gambling button
-        }
-    }else{
-        document.getElementById('gamblingDiv').style.display = 'none' // turn off the gambling div
+    if (Math.abs(document.getElementById('betAmount').value) != document.getElementById('betAmount').value){
+        document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // disable the gambling button
     }
 
 
     // UPGRADES
 
 
-    if (vendingMachines >= 10 & !cornerStoreUpgradeBought){
+    if (vendingMachines >= 10 & !cornerStoreDivVisible){
         cornerStoreUpgrade = true
     }
 
@@ -234,7 +455,7 @@ function refreshGame(){
 
     if (storeMarketing4upgrade){
         document.getElementById('storeMarketing4').style.display = 'block'
-        document.getElementById('storeMarketing4').setAttribute('disabled', 'disabled') // disable store marketing 3 upgrade
+        document.getElementById('storeMarketing4').setAttribute('disabled', 'disabled') // disable store marketing 4 upgrade
         if (money >= 200000){
             document.getElementById('storeMarketing4').removeAttribute('disabled') // enable it
         } 
@@ -244,12 +465,41 @@ function refreshGame(){
 
     if (storeMarketing5upgrade){
         document.getElementById('storeMarketing5').style.display = 'block'
-        document.getElementById('storeMarketing5').setAttribute('disabled', 'disabled') // disable store marketing 3 upgrade
+        document.getElementById('storeMarketing5').setAttribute('disabled', 'disabled') // disable store marketing 5 upgrade
         if (money >= 500000){
             document.getElementById('storeMarketing5').removeAttribute('disabled') // enable it
         } 
     }else{
         document.getElementById('storeMarketing5').style.display = 'none'
+    }
+
+    //  SECOND COMPANY UPGRADES
+
+    if (workerUpgrade){
+        document.getElementById('worker').style.display = 'block'
+    }else{
+        document.getElementById('worker').style.display = 'none'
+    }
+
+    if (restaurantUpgrade){
+        document.getElementById('restaurant').style.display = 'block'
+    }else{
+        document.getElementById('restaurant').style.display = 'none'
+    }
+
+
+    if (state == 'game'){
+        document.getElementById('game').style.display = 'block'
+        document.getElementById('settings').style.display = 'none'
+
+        document.getElementById('gameButton').setAttribute('disabled', 'disabled')
+        document.getElementById('settingsButton').removeAttribute('disabled')
+    }else{
+        document.getElementById('game').style.display = 'none'
+        document.getElementById('settings').style.display = 'block'
+
+        document.getElementById('gameButton').removeAttribute('disabled')
+        document.getElementById('settingsButton').setAttribute('disabled', 'disabled')
     }
 }
 
@@ -282,11 +532,11 @@ function upgrade(identifier){
         case 5:
             money -= 2500
             gamblingUpgrade = false
-            gamblingEngine = true
+            gamblingDivVisible = true
             break
         case 6:
             money -= 10000
-            cornerStoreUpgradeBought = true
+            cornerStoreDivVisible = true
             cornerStoreUpgrade = false
             storeMarketing2upgrade = true
             break
@@ -315,10 +565,59 @@ function upgrade(identifier){
             break
         case 11:
             money -= 1000000
+
             money += cornerStores * cornerStoreCost
             money += vendingMachines * vendingMachineCost
+
+            vendingMachines = 0
+            cornerStores = 0
+
             secondCompany = true
             sellEverythingUpgrade = false
+
+            cornerStoreDivVisible = false
+
+            eatDivVisible = false
+            actionsDivVisible = false
+
+            automationDivVisible = false
+            cornerStoreDivVisible = false
+            vendingMachineDivVisible = false
+
+            statsDivVisible = false
+            energyDivVisible = false
+
+            cornerStoreUpgrade = false
+
+            marketing2upgrade = false
+            marketing3upgrade = false
+            marketing4upgrade = false
+            marketing5upgrade = false
+
+            storeMarketing2upgrade = false
+            storeMarketing3upgrade = false
+            storeMarketing4upgrade = false
+            storeMarketing5upgrade = false
+
+            restaurantUpgrade = true
+            workerUpgrade = true
+            break
+        case 12:
+            automationDivVisible = true
+            restaurantDivVisible = true
+            statsDivVisible = true
+            foodPerSecondDivVisible = true
+            foodDivVisible = true
+            restaurantDivVisible = true
+            restaurantUpgrade = false
+            break
+        case 13:
+            automationDivVisible = true
+            workerDivVisible = true
+            statsDivVisible = true
+            moneyPerSecondDivVisible = true
+            workerDivVisible = true
+            workerUpgrade = false
             break
     }
     refreshGame()
@@ -366,6 +665,22 @@ function eat(){
     refreshGame()
 }
 
+function restaurant(){
+    restaurants += 1
+    money = money - restaurantCost
+    restaurantCost *= 2
+    document.getElementById('restaurantCost').textContent = restaurantCost
+    refreshGame()
+}
+
+function worker(){
+    workers += 1
+    money = money - restaurantCost
+    workerCost *= 2
+    document.getElementById('workerCost').textContent = workerCost
+    refreshGame()
+}
+
 refreshGame()
 
 function secondUpdate(){
@@ -378,8 +693,112 @@ function secondUpdate(){
             money += cornerStores * cornerStoreProfitPerSec
             energy = energy - cornerStores
         }
+    }else{
+        food += restaurants * restaurantFoodPerSec
+        if (food > workers){
+            food = food - workers
+            money += workers * workerProfitPerSec
+            document.getElementById('moneyPerSec').textContent = workers * workerProfitPerSec
+        }
+        document.getElementById('food').textContent = food
+        
     }
+
+    if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
+    else{updatesBeforeGambleMesssageReset--}
+
     refreshGame()
 }
 
 setInterval(secondUpdate, 1000)
+
+function saveListToCookie(list, cookieName) {
+    const jsonString = JSON.stringify(list)
+    const cookieValue = encodeURIComponent(jsonString)
+    document.cookie = cookieName + '=' + cookieValue + ';'
+}
+
+function saveGame(saveName){
+    if (document.cookie == ''){
+        document.cookie = 'SameSite = None'
+    }
+    valuesToSave = [
+        money,
+        energy,
+        food,
+        vendingMachines,
+        cornerStores,
+        restaurants,
+        workers,
+        vendingMachineCost,
+        cornerStoreCost,
+        restaurantCost,
+        workerCost,
+        vendingMachineProfitPerSec,
+        cornerStoreProfitPerSec,
+        restaurantFoodPerSec,
+        workerProfitPerSec,
+        gamblingUpgrade,
+        cornerStoreUpgrade,
+        sellEverythingUpgrade,
+        marketing2upgrade,
+        marketing3upgrade,
+        marketing4upgrade,
+        marketing5upgrade,
+        storeMarketing2upgrade,
+        storeMarketing3upgrade,
+        storeMarketing4upgrade,
+        storeMarketing5upgrade,
+        workerUpgrade,
+        restaurantUpgrade,
+        automationDivVisible,
+        vendingMachineDivVisible,
+        eatDivVisible,
+        actionsDivVisible,
+        upgradesDivVisible,
+        cornerStoreDivVisible,
+        gamblingDivVisible,
+        statsDivVisible,
+        energyDivVisible,
+        restaurantDivVisible,
+        foodPerSecondDivVisible,
+        foodDivVisible,
+        workerDivVisible,
+        moneyPerSecondDivVisible,
+        secondCompany
+    ]
+    saveListToCookie(valuesToSave, saveName)
+}
+
+function minuteUpdate(){
+    saveGame('save1')
+}
+
+setInterval(minuteUpdate, 60000)
+
+function gameTab(){
+    state = 'game'
+    refreshGame()
+}
+
+function settingsTab(){
+    state = 'settings'
+    refreshGame()
+}
+
+function applyCss(){
+    document.querySelector('style').innerHTML = document.getElementById('cssCode').value
+}
+
+applyCss()
+
+function resetCustomCss(){
+    document.getElementById('cssCode').value = `.button{
+
+}
+
+.text{
+    /* not all textboxes work (working on adding more) */
+}
+    `
+}
