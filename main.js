@@ -1,6 +1,4 @@
-// V0.4.27
-
-console.log('huh')
+// V0.4.18
 
 var money = 0
 var energy = 100
@@ -41,7 +39,7 @@ var cornerStoreUpgrade    = false
 var sellEverythingUpgrade = false
 
 // marketing for vending machines
-var marketing2upgrade = true
+var marketing2upgrade = false
 var marketing3upgrade = false
 var marketing4upgrade = false
 var marketing5upgrade = false
@@ -119,7 +117,7 @@ function gameReset(){
     sellEverythingUpgrade = false
 
     // marketing for vending machines
-    //marketing2upgrade = true
+    marketing2upgrade = false
     marketing3upgrade = false
     marketing4upgrade = false
     marketing5upgrade = false
@@ -234,7 +232,7 @@ load('save1')
 function updateVisibility(id, visibilityStatus){
     if (visibilityStatus){
         document.getElementById(id).style.display = 'block'
-    }else{
+    } else{
         document.getElementById(id).style.display = 'none'
     }
 }
@@ -281,6 +279,7 @@ function refreshGame(){
         
         if (money >= 100){
             upgradesDivVisible = true // show upgrades
+            marketing2upgrade = true // show the 1st upgrade
         }
 
         if (money < vendingMachineCost){
@@ -298,6 +297,15 @@ function refreshGame(){
         if (cornerStores >= 5){
             sellEverythingUpgrade = true // enable the sell everything upgrade if you got at least 5 corner stores
         }
+
+
+        // VISIBILITY UPDATES
+
+        updateVisibility('eatDiv', eatDivVisible)
+        updateVisibility('cornerStoreDiv', cornerStoreDivVisible)
+        updateVisibility('vendingMachineDiv', vendingMachineDivVisible)
+        updateVisibility('energyDiv', energyDivVisible)
+
     }else{
         document.getElementById('foodPerSec').textContent  = restaurants * restaurantFoodPerSec
 
@@ -320,12 +328,6 @@ function refreshGame(){
         }
     }
 
-    // VISIBILITY UPDATES
-
-    updateVisibility('eatDiv', eatDivVisible)
-    updateVisibility('energyDiv', energyDivVisible)
-    updateVisibility('cornerStoreDiv', cornerStoreDivVisible)
-    updateVisibility('vendingMachineDiv', vendingMachineDivVisible)
     updateVisibility('automationDiv', automationDivVisible)
     updateVisibility('actionsDiv', actionsDivVisible)
     updateVisibility('upgradesDiv', upgradesDivVisible)
@@ -345,7 +347,7 @@ function refreshGame(){
         document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // else turn it off
     }
     
-    if (Math.abs(document.getElementById('betAmount').value) != document.getElementById('betAmount').value){
+    if (Math.floor(document.getElementById('betAmount').value) == document.getElementById('betAmount').value){
         document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // disable the gambling button
     }
 
@@ -506,13 +508,9 @@ function upgrade(identifier){
         case 1:
             money -= 100
             vendingMachineProfitPerSec *= 2
-            console.log('bought case 1 probably ' + marketing2upgrade)
             marketing2upgrade = false
-            console.log('bought case 1 I think ' + marketing2upgrade)
             marketing3upgrade = true
-            console.log('bought case 1' + marketing2upgrade)
             gamblingUpgrade = true
-            console.log('bought case 1 for sure' + marketing2upgrade)
             break
         case 2:
             money -= 500
@@ -591,20 +589,6 @@ function upgrade(identifier){
 
             restaurantUpgrade = true
             workerUpgrade = true
-
-
-            var cornerStoreUpgrade = false
-
-            var marketing2upgrade = false
-            var marketing3upgrade = false
-            var marketing4upgrade = false
-            var marketing5upgrade = false
-
-            var storeMarketing2upgrade = false
-            var storeMarketing3upgrade = false
-            var storeMarketing4upgrade = false
-            var storeMarketing5upgrade = false
-
             break
         case 12:
             automationDivVisible = true
@@ -803,5 +787,6 @@ function resetCustomCss(){
 
 .text{
     /* not all textboxes work (working on adding more) */
-}`
+}
+    `
 }
