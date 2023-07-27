@@ -1,4 +1,4 @@
-// V0.4.18
+// V0.4.19
 
 var money = 0
 var energy = 100
@@ -39,7 +39,7 @@ var cornerStoreUpgrade    = false
 var sellEverythingUpgrade = false
 
 // marketing for vending machines
-var marketing2upgrade = false
+var marketing2upgrade = true
 var marketing3upgrade = false
 var marketing4upgrade = false
 var marketing5upgrade = false
@@ -117,7 +117,7 @@ function gameReset(){
     sellEverythingUpgrade = false
 
     // marketing for vending machines
-    marketing2upgrade = false
+    marketing2upgrade = true
     marketing3upgrade = false
     marketing4upgrade = false
     marketing5upgrade = false
@@ -279,7 +279,6 @@ function refreshGame(){
         
         if (money >= 100){
             upgradesDivVisible = true // show upgrades
-            marketing2upgrade = true // show the 1st upgrade
         }
 
         if (money < vendingMachineCost){
@@ -299,12 +298,7 @@ function refreshGame(){
         }
 
 
-        // VISIBILITY UPDATES
-
-        updateVisibility('eatDiv', eatDivVisible)
-        updateVisibility('cornerStoreDiv', cornerStoreDivVisible)
-        updateVisibility('vendingMachineDiv', vendingMachineDivVisible)
-        updateVisibility('energyDiv', energyDivVisible)
+        
 
     }else{
         document.getElementById('foodPerSec').textContent  = restaurants * restaurantFoodPerSec
@@ -328,6 +322,12 @@ function refreshGame(){
         }
     }
 
+    // VISIBILITY UPDATES
+
+    updateVisibility('eatDiv', eatDivVisible)
+    updateVisibility('cornerStoreDiv', cornerStoreDivVisible)
+    updateVisibility('vendingMachineDiv', vendingMachineDivVisible)
+    updateVisibility('energyDiv', energyDivVisible)
     updateVisibility('automationDiv', automationDivVisible)
     updateVisibility('actionsDiv', actionsDivVisible)
     updateVisibility('upgradesDiv', upgradesDivVisible)
@@ -347,7 +347,7 @@ function refreshGame(){
         document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // else turn it off
     }
     
-    if (Math.floor(document.getElementById('betAmount').value) == document.getElementById('betAmount').value){
+    if (Math.abs(document.getElementById('betAmount').value) != document.getElementById('betAmount').value){
         document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // disable the gambling button
     }
 
@@ -587,6 +587,18 @@ function upgrade(identifier){
             statsDivVisible = false
             energyDivVisible = false
 
+            cornerStoreUpgrade = false
+
+            marketing2upgrade = false
+            marketing3upgrade = false
+            marketing4upgrade = false
+            marketing5upgrade = false
+
+            storeMarketing2upgrade = false
+            storeMarketing3upgrade = false
+            storeMarketing4upgrade = false
+            storeMarketing5upgrade = false
+
             restaurantUpgrade = true
             workerUpgrade = true
             break
@@ -790,3 +802,5 @@ function resetCustomCss(){
 }
     `
 }
+
+resetCustomCss()
