@@ -1,4 +1,4 @@
-// V0.4.19
+// V0.5
 
 var money = 0
 var energy = 100
@@ -802,5 +802,3 @@ function resetCustomCss(){
 }
     `
 }
-
-resetCustomCss()
