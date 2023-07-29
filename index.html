@@ -33,47 +33,47 @@
                 <div id="statsDiv">
                     <b>stats</b> <br> <hr>
                     <div id="energyDiv">energy : <span class="text" id="energy">100</span></div>
-                    <div id="foodDiv" style="display: none;">food : <span id="food">5</span></div>
-                    <div id="foodPerSecDiv" style="display: none;">food per second : <span id="foodPerSec">0</span></div>
-                    <div id="moneyPerSecDiv" style="display: none;">money per second : <span id="moneyPerSec"></span>$</div>
+                    <div id="foodDiv">food : <span id="food">5</span></div>
+                    <div id="foodMadePerSecDiv">food per second : <span id="foodPerSec">0</span></div>
+                    <div id="moneyPerSecDiv">money per second : <span id="moneyPerSec"></span>$</div>
                 </div>
         
                 <br> <br> <br> <br> <br> <br>
-                <div id="actionsDiv" style="display: none;">
+                <div id="actionsDiv">
                 <b>actions</b> <br> <hr>
-                <div id="eatDiv" style="display: none;">
+                <div id="eatDiv">
                 <button class="button" id="eat" onclick="eat()">eat</button> <br>
-                cost : <span class="text" id="eatCost">20</span>$
+                cost : <span class="text" id="eatPrice">20</span>$
                 </div>
                 </div>
         
                 <br> <br> <br> <br> <br> <br>
         
-                <div id="automationDiv" style="display: none;">
-                    <b>automation</b> <br> <hr>
-                    <div id="vendingMachineDiv" style="display: none;">
+                <div id="buyDiv">
+                    <b>buy</b> <br> <hr>
+                    <div id="vendingMachineDiv">
                     <span class="text" id="vendingMachines"></span> <button class="button" id="vendingMachine" onclick="vendingMachine()">vending machine</button><br>
-                    cost : <span class="text" id="vendingMachineCost">50</span>$
+                    cost : <span class="text" id="vendingMachinePrice">50</span>$
                     </div>
 
-                    <div id="cornerStoreDiv" style="display: none;">
+                    <div id="cornerStoreDiv">
                     <span class="text" id="cornerStores"></span> <button class="button" id="cornerStore" onclick="cornerStore()">corner store</button> <br>
-                    cost : <span class="text" id="cornerStoreCost">2000</span>$
+                    cost : <span class="text" id="cornerStorePrice">2000</span>$
                     </div>
 
-                    <div id="restaurantDiv" style="display: none;">
+                    <div id="restaurantDiv">
                     <span id="restaurants"></span> <button class="button" id="restaurantButton" onclick="restaurant()">restaurant</button> <br>
                     cost : <span id="restaurantPrice">100</span>$
                     </div>
 
-                    <div id="workerDiv" style="display: none;">
+                    <div id="workerDiv">
                     <span id="workers"></span> <button class="button" id="workerButton" onclick="worker()">worker</button> <br>
                     cost : <span id="workerPrice">100</span>$
                     </div>
                 </div>
             </div>
             <div class="column">
-                <div id="upgradesDiv" style="display: none;">
+                <div id="upgradesDiv">
                     <b>upgrades</b> <br> <hr>
                     <button class="button" id="marketing2" onclick="upgrade(1)" ><span align="center"><b>vending machine marketing level 2</b> (100$)<br>Improves profits from vending machines by 2 times</span></button>
                     <button class="button" id="marketing3" onclick="upgrade(2)" ><span align="center"><b>vending machine marketing level 3</b> (500$)<br>Improves profits from vending machines by another 2 times</span></button>
@@ -91,7 +91,7 @@
                 </div>
             </div>
             <div class="column">
-                <div id="gamblingDiv" style="display: none;">
+                <div id="gamblingDiv">
                     <b>gambling</b> <br> <hr>
                     btw DO NOT gamble in real life you're gonna loose all your money (I think I have to legally say that) <br> <br>
                     bet <input type="number" id="betAmount">$ on 
