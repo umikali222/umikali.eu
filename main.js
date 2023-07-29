@@ -13,11 +13,11 @@ var workers = 0
 
 
 
-// costs
-var vendingMachineCost = 50
-var cornerStoreCost = 20000
-var restaurantCost = 100
-var workerCost = 100
+// Prices
+var vendingMachinePrice = 50
+var cornerStorePrice = 20000
+var restaurantPrice = 100
+var workerPrice = 100
 
 
 
@@ -28,7 +28,7 @@ var cornerStoreProfitPerSec = 25
 
 
 // second company
-var restaurantFoodPerSec = 5
+var restaurantFoodMadePerSec = 5
 var workerProfitPerSec = 100
 
 
@@ -59,7 +59,7 @@ var restaurantUpgrade = false
 // visibility variables
 var energyDivVisible         = false
 var statsDivVisible          = false
-var automationDivVisible     = false
+var buyDivVisible            = false
 var vendingMachineDivVisible = false
 var eatDivVisible            = false
 var actionsDivVisible        = false
@@ -67,7 +67,7 @@ var upgradesDivVisible       = false
 var cornerStoreDivVisible    = false
 var gamblingDivVisible       = false
 var restaurantDivVisible     = false
-var foodPerSecondDivVisible  = false
+var foodMadePerSecDivVisible = false
 var foodDivVisible           = false
 var workerDivVisible         = false
 var moneyPerSecondDivVisible = false
@@ -91,11 +91,11 @@ function gameReset(){
 
 
 
-    // costs
-    vendingMachineCost = 50
-    cornerStoreCost = 20000
-    restaurantCost = 100
-    workerCost = 100
+    // Prices
+    vendingMachinePrice = 50
+    cornerStorePrice = 20000
+    restaurantPrice = 100
+    workerPrice = 100
 
 
 
@@ -106,7 +106,7 @@ function gameReset(){
 
 
     // second company
-    restaurantFoodPerSec = 5
+    restaurantFoodMadePerSec = 5
     workerProfitPerSec = 100
 
 
@@ -137,7 +137,7 @@ function gameReset(){
     // visibility variables
     energyDivVisible         = false
     statsDivVisible          = false
-    automationDivVisible     = false
+    buyDivVisible     = false
     vendingMachineDivVisible = false
     eatDivVisible            = false
     actionsDivVisible        = false
@@ -145,7 +145,7 @@ function gameReset(){
     cornerStoreDivVisible    = false
     gamblingDivVisible       = false
     restaurantDivVisible     = false
-    foodPerSecondDivVisible  = false
+    foodMadePerSecDivVisible  = false
     foodDivVisible           = false
     workerDivVisible         = false
     moneyPerSecondDivVisible = false
@@ -189,13 +189,13 @@ function load(saveName){
     cornerStores               = save[4]
     restaurants                = save[5]
     workers                    = save[6]
-    vendingMachineCost         = save[7]
-    cornerStoreCost            = save[8]
-    restaurantCost             = save[9]
-    workerCost                 = save[10]
+    vendingMachinePrice         = save[7]
+    cornerStorePrice            = save[8]
+    restaurantPrice             = save[9]
+    workerPrice                 = save[10]
     vendingMachineProfitPerSec = save[11]
     cornerStoreProfitPerSec    = save[12]
-    restaurantFoodPerSec       = save[13]
+    restaurantFoodMadePerSec   = save[13]
     workerProfitPerSec         = save[14]
     gamblingUpgrade            = save[15]
     cornerStoreUpgrade         = save[16]
@@ -210,7 +210,7 @@ function load(saveName){
     storeMarketing5upgrade     = save[25]
     workerUpgrade              = save[26]
     restaurantUpgrade          = save[27]
-    automationDivVisible       = save[28]
+    buyDivVisible              = save[28]
     vendingMachineDivVisible   = save[29]
     eatDivVisible              = save[30]
     actionsDivVisible          = save[31]
@@ -220,7 +220,7 @@ function load(saveName){
     statsDivVisible            = save[35]
     energyDivVisible           = save[36]
     restaurantDivVisible       = save[37]
-    foodPerSecondDivVisible    = save[38]
+    foodMadePerSecondDivVisible = save[38]
     foodDivVisible             = save[39]
     workerDivVisible           = save[40]
     moneyPerSecondDivVisible   = save[41]
@@ -242,8 +242,8 @@ function refreshGame(){
 
     if (!secondCompany){
         document.getElementById('energy').textContent = energy // update energy
-        document.getElementById('vendingMachineCost').textContent = vendingMachineCost // update vending machine cost
-        document.getElementById('cornerStoreCost').textContent = cornerStoreCost // update corner store cost
+        document.getElementById('vendingMachinePrice').textContent = vendingMachinePrice // update vending machine Price
+        document.getElementById('cornerStorePrice').textContent = cornerStorePrice // update corner store Price
         
         if (vendingMachines != 0) {document.getElementById('vendingMachines').textContent = vendingMachines} // update amount of vending machines
         else {document.getElementById('vendingMachines').textContent = ''}// or set it to nothing
@@ -268,12 +268,12 @@ function refreshGame(){
         }
 
         if (money > 20){
-            eatDivVisible = true // show eating button and cost
+            eatDivVisible = true // show eating button and Price
             actionsDivVisible = true // show actions div 
         }
 
         if (money >= 50){
-            automationDivVisible = true // show automation div
+            buyDivVisible = true // show buy div
             vendingMachineDivVisible = true // show vending machine buy
         }
         
@@ -281,13 +281,13 @@ function refreshGame(){
             upgradesDivVisible = true // show upgrades
         }
 
-        if (money < vendingMachineCost){
+        if (money < vendingMachinePrice){
             document.getElementById('vendingMachine').setAttribute("disabled", "disabled") // disable vending machine button
         }else{
             document.getElementById('vendingMachine').removeAttribute('disabled') // enable it
         }
 
-        if (money < cornerStoreCost){
+        if (money < cornerStorePrice){
             document.getElementById('cornerStore').setAttribute("disabled", "disabled") // disable corner store button
         }else{
             document.getElementById('cornerStore').removeAttribute('disabled') // enable it
@@ -301,7 +301,7 @@ function refreshGame(){
         
 
     }else{
-        document.getElementById('foodPerSec').textContent  = restaurants * restaurantFoodPerSec
+        document.getElementById('foodMadePerSec').textContent  = restaurants * restaurantFoodMadePerSec
 
         if (restaurants != 0){document.getElementById('restaurants').textContent = restaurants}
         else{document.getElementById('restaurants').textContent = ''}
@@ -309,13 +309,13 @@ function refreshGame(){
         if (workers != 0){document.getElementById('workers').textContent = workers}
         else{document.getElementById('workers').textContent = ''}
 
-        if (money >= restaurantCost){
+        if (money >= restaurantPrice){
             document.getElementById('restaurantButton').removeAttribute('disabled')
         }else{
             document.getElementById('restaurantButton').setAttribute('disabled', 'disabled')
         }
 
-        if (money >= workerCost){
+        if (money >= workerPrice){
             document.getElementById('workerButton').removeAttribute('disabled')
         }else{
             document.getElementById('workerButton').setAttribute('disabled', 'disabled')
@@ -328,13 +328,13 @@ function refreshGame(){
     updateVisibility('cornerStoreDiv', cornerStoreDivVisible)
     updateVisibility('vendingMachineDiv', vendingMachineDivVisible)
     updateVisibility('energyDiv', energyDivVisible)
-    updateVisibility('automationDiv', automationDivVisible)
+    updateVisibility('buyDiv', buyDivVisible)
     updateVisibility('actionsDiv', actionsDivVisible)
     updateVisibility('upgradesDiv', upgradesDivVisible)
     updateVisibility('gamblingDiv', gamblingDivVisible)
     updateVisibility('statsDiv', statsDivVisible)
     updateVisibility('restaurantDiv', restaurantDivVisible)
-    updateVisibility('foodPerSecDiv', foodPerSecondDivVisible)
+    updateVisibility('foodMadePerSecDiv', foodMadePerSecDivVisible)
     updateVisibility('foodDiv', foodDivVisible)
     updateVisibility('workerDiv', workerDivVisible)
     updateVisibility('moneyPerSecDiv', moneyPerSecondDivVisible)
@@ -566,8 +566,8 @@ function upgrade(identifier){
         case 11:
             money -= 1000000
 
-            money += cornerStores * cornerStoreCost
-            money += vendingMachines * vendingMachineCost
+            money += cornerStores * cornerStorePrice
+            money += vendingMachines * vendingMachinePrice
 
             vendingMachines = 0
             cornerStores = 0
@@ -580,7 +580,7 @@ function upgrade(identifier){
             eatDivVisible = false
             actionsDivVisible = false
 
-            automationDivVisible = false
+            buyDivVisible = false
             cornerStoreDivVisible = false
             vendingMachineDivVisible = false
 
@@ -603,16 +603,16 @@ function upgrade(identifier){
             workerUpgrade = true
             break
         case 12:
-            automationDivVisible = true
+            buyDivVisible = true
             restaurantDivVisible = true
             statsDivVisible = true
-            foodPerSecondDivVisible = true
+            foodMadePerSecDivVisible = true
             foodDivVisible = true
             restaurantDivVisible = true
             restaurantUpgrade = false
             break
         case 13:
-            automationDivVisible = true
+            buyDivVisible = true
             workerDivVisible = true
             statsDivVisible = true
             moneyPerSecondDivVisible = true
@@ -640,16 +640,16 @@ function gamble(){
 }
 
 function vendingMachine(){
-    money -= vendingMachineCost
+    money -= vendingMachinePrice
     vendingMachines += 1
-    vendingMachineCost = Math.round(vendingMachineCost * 2)
+    vendingMachinePrice = Math.round(vendingMachinePrice * 2)
     refreshGame()
 }
 
 function cornerStore(){
-    money -= cornerStoreCost
+    money -= cornerStorePrice
     cornerStores += 1
-    cornerStoreCost = Math.round(cornerStoreCost * 2)
+    cornerStorePrice = Math.round(cornerStorePrice * 2)
     refreshGame()
 }
 
@@ -667,17 +667,17 @@ function eat(){
 
 function restaurant(){
     restaurants += 1
-    money = money - restaurantCost
-    restaurantCost *= 2
-    document.getElementById('restaurantCost').textContent = restaurantCost
+    money = money - restaurantPrice
+    restaurantPrice *= 2
+    document.getElementById('restaurantPrice').textContent = restaurantPrice
     refreshGame()
 }
 
 function worker(){
     workers += 1
-    money = money - restaurantCost
-    workerCost *= 2
-    document.getElementById('workerCost').textContent = workerCost
+    money = money - restaurantPrice
+    workerPrice *= 2
+    document.getElementById('workerPrice').textContent = workerPrice
     refreshGame()
 }
 
@@ -694,7 +694,7 @@ function secondUpdate(){
             energy = energy - cornerStores
         }
     }else{
-        food += restaurants * restaurantFoodPerSec
+        food += restaurants * restaurantFoodMadePerSec
         if (food > workers){
             food = food - workers
             money += workers * workerProfitPerSec
@@ -719,9 +719,6 @@ function saveListToCookie(list, cookieName) {
 }
 
 function saveGame(saveName){
-    if (document.cookie == ''){
-        document.cookie = 'SameSite = None'
-    }
     valuesToSave = [
         money,
         energy,
@@ -730,13 +727,13 @@ function saveGame(saveName){
         cornerStores,
         restaurants,
         workers,
-        vendingMachineCost,
-        cornerStoreCost,
-        restaurantCost,
-        workerCost,
+        vendingMachinePrice,
+        cornerStorePrice,
+        restaurantPrice,
+        workerPrice,
         vendingMachineProfitPerSec,
         cornerStoreProfitPerSec,
-        restaurantFoodPerSec,
+        restaurantFoodMadePerSec,
         workerProfitPerSec,
         gamblingUpgrade,
         cornerStoreUpgrade,
@@ -751,7 +748,7 @@ function saveGame(saveName){
         storeMarketing5upgrade,
         workerUpgrade,
         restaurantUpgrade,
-        automationDivVisible,
+        buyDivVisible,
         vendingMachineDivVisible,
         eatDivVisible,
         actionsDivVisible,
@@ -761,7 +758,7 @@ function saveGame(saveName){
         statsDivVisible,
         energyDivVisible,
         restaurantDivVisible,
-        foodPerSecondDivVisible,
+        foodMadePerSecDivVisible,
         foodDivVisible,
         workerDivVisible,
         moneyPerSecondDivVisible,
