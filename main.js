@@ -1,4 +1,4 @@
-// V0.5
+// V0.5.1
 
 var money = 0
 var energy = 100
