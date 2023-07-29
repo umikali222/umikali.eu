@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!--V0.5.2-->
+<!--V0.5-->
 
 <style></style>
 
@@ -26,56 +26,55 @@
     <body>
         <button class="button" id="gameButton" onclick="gameTab()">game</button> <button class="button" id="settingsButton" onclick="settingsTab()">settings</button> <br>
         <div id="game">
-        <h3 class="text">money : <span class="text" id="money">0</span>$</h3> <br>
+        <h3>money : <span class="text" id="money">0</span>$</h3> <br>
         <button class="button" id="makeMoneyButton" onclick="makeMoney()">make money</button> <br> <br> <br>
         <div class="container">
             <div class="column">
                 <div id="statsDiv">
                     <b>stats</b> <br> <hr>
-                    <div id="energyDiv"><p class="text">energy : <span class="text" id="energy">100</span></p></div>
-                    <div id="foodDiv"><p class="text">food : <span id="food">5</span></p></div>
-                    <div id="foodPerSecDiv"><p class="text">food per second : <span id="foodPerSec">0</span></p></div>
-                    <div id="moneyPerSecDiv"><p class="text">money per second : <span id="moneyPerSec"></span></p></div>
-                    
-                    <br> <br> <br> <br> <br> <br>
-                </div>
-
-                <div id="actionsDiv">
-                    <p class="text"><b>actions</b></p> <hr>
-                    <div id="eatDiv">
-                    <button class="button" id="eat" onclick="eat()">eat</button>
-                    <p class="text">cost : <span class="text" id="eatCost">20</span>$</p>
-                    </div>
-
-                    <br> <br> <br> <br> <br> <br>
+                    <div id="energyDiv">energy : <span class="text" id="energy">100</span></div>
+                    <div id="foodDiv" style="display: none;">food : <span id="food">5</span></div>
+                    <div id="foodPerSecDiv" style="display: none;">food per second : <span id="foodPerSec">0</span></div>
+                    <div id="moneyPerSecDiv" style="display: none;">money per second : <span id="moneyPerSec"></span>$</div>
                 </div>
         
-                <div id="automationDiv">
-                    <p class="text"><b>automation</b></p> <hr>
-                    <div id="vendingMachineDiv">
-                    <span class="text" id="vendingMachines"></span> <button class="button" id="vendingMachine" onclick="vendingMachine()">vending machine</button>
-                    <p class="text">cost : <span class="text" id="vendingMachineCost">50</span>$</p>
+                <br> <br> <br> <br> <br> <br>
+                <div id="actionsDiv" style="display: none;">
+                <b>actions</b> <br> <hr>
+                <div id="eatDiv" style="display: none;">
+                <button class="button" id="eat" onclick="eat()">eat</button> <br>
+                cost : <span class="text" id="eatCost">20</span>$
+                </div>
+                </div>
+        
+                <br> <br> <br> <br> <br> <br>
+        
+                <div id="automationDiv" style="display: none;">
+                    <b>automation</b> <br> <hr>
+                    <div id="vendingMachineDiv" style="display: none;">
+                    <span class="text" id="vendingMachines"></span> <button class="button" id="vendingMachine" onclick="vendingMachine()">vending machine</button><br>
+                    cost : <span class="text" id="vendingMachineCost">50</span>$
                     </div>
 
                     <div id="cornerStoreDiv" style="display: none;">
-                    <span class="text" id="cornerStores"></span> <button class="button" id="cornerStore" onclick="cornerStore()">corner store</button>
-                    <p class="text">cost : <span class="text" id="cornerStoreCost">2000</span>$</p>
+                    <span class="text" id="cornerStores"></span> <button class="button" id="cornerStore" onclick="cornerStore()">corner store</button> <br>
+                    cost : <span class="text" id="cornerStoreCost">2000</span>$
                     </div>
 
                     <div id="restaurantDiv" style="display: none;">
-                    <span id="restaurants"></span> <button class="button" id="restaurantButton" onclick="restaurant()">restaurant</button>
-                    <p class="text">cost : <span id="restaurantPrice">100</span>$</p>
+                    <span id="restaurants"></span> <button class="button" id="restaurantButton" onclick="restaurant()">restaurant</button> <br>
+                    cost : <span id="restaurantPrice">100</span>$
                     </div>
 
                     <div id="workerDiv" style="display: none;">
-                    <span id="workers"></span> <button class="button" id="workerButton" onclick="worker()">worker</button>
-                    <p class="text">cost : <span id="workerPrice">100</span>$</p>
+                    <span id="workers"></span> <button class="button" id="workerButton" onclick="worker()">worker</button> <br>
+                    cost : <span id="workerPrice">100</span>$
                     </div>
                 </div>
             </div>
             <div class="column">
                 <div id="upgradesDiv" style="display: none;">
-                    <b>upgrades</b> <hr>
+                    <b>upgrades</b> <br> <hr>
                     <button class="button" id="marketing2" onclick="upgrade(1)" ><span align="center"><b>vending machine marketing level 2</b> (100$)<br>Improves profits from vending machines by 2 times</span></button>
                     <button class="button" id="marketing3" onclick="upgrade(2)" ><span align="center"><b>vending machine marketing level 3</b> (500$)<br>Improves profits from vending machines by another 2 times</span></button>
                     <button class="button" id="marketing4" onclick="upgrade(3)" ><span align="center"><b>vending machine marketing level 4</b> (2`000$)<br>Improves profits from vending machines by 5 times</span></button>
@@ -92,10 +91,10 @@
                 </div>
             </div>
             <div class="column">
-                <div id="gamblingDiv">
-                    <p class="text"><b>gambling</b></p> <hr>
-                    <p class="text">btw DO NOT gamble in real life you're gonna loose all your money (I think I have to legally say that)</p> <br> <br>
-                    <p class="text">bet <input type="number" id="betAmount">$ on</p>
+                <div id="gamblingDiv" style="display: none;">
+                    <b>gambling</b> <br> <hr>
+                    btw DO NOT gamble in real life you're gonna loose all your money (I think I have to legally say that) <br> <br>
+                    bet <input type="number" id="betAmount">$ on 
                     <select name="number" id="bet">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -141,16 +140,16 @@
         </div>
         </div>
         <div id="settings">
-            <h2 class="text">saves</h2>
-            <p class="text">the default save is always slot 1, it gets loaded by default, and auto-saves every minute</p> <br> <br>
+            <h2>saves</h2>
+            the default save is always slot 1, it gets loaded by default, and auto-saves every minute <br> <br>
 
-            <p class="text">save to slot #</p>
+            save to slot #
             <button class="button" onclick="saveGame('save1')">1</button> <button class="button" onclick="saveGame('save2')">2</button>
             <button class="button" onclick="saveGame('save3')">3</button> <button class="button" onclick="saveGame('save4')">4</button>
 
             <br> <br> <br>
 
-            <p class="text">load from slot #</p>
+            load from slot #
             <button class="button" onclick="load('save1')">1</button> <button class="button" onclick="load('save2')">2</button>
             <button class="button" onclick="load('save3')">3</button> <button class="button" onclick="load('save4')">4</button>
 
@@ -160,8 +159,8 @@
             
             <br> <br>
 
-            <h2 class="text">css</h2>
-            <p class="text">add custom css code</p> <br> <br>
+            <h2>css</h2>
+            add custom css code <br> <br>
 
             <textarea rows="20" cols="100" id="cssCode"></textarea> <br>
             <button class="button" onclick="applyCss()">apply!</button>
