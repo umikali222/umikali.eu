@@ -1,4 +1,4 @@
-// V0.5
+// V0.5.1
 
 var money = 0
 var energy = 100
@@ -16,8 +16,8 @@ var workers = 0
 // Prices
 var vendingMachinePrice = 50
 var cornerStorePrice = 20000
-var restaurantPrice = 100
-var workerPrice = 100
+var restaurantPrice = 10000
+var workerPrice = 10000
 
 
 
@@ -30,6 +30,9 @@ var cornerStoreProfitPerSec = 25
 // second company
 var restaurantFoodMadePerSec = 5
 var workerProfitPerSec = 100
+
+var clocks = 1
+var secondUpdatesPerSec = 1
 
 
 
@@ -71,6 +74,7 @@ var foodMadePerSecDivVisible = false
 var foodDivVisible           = false
 var workerDivVisible         = false
 var moneyPerSecondDivVisible = false
+var clockDivVisible          = false
 
 
 
@@ -137,7 +141,7 @@ function gameReset(){
     // visibility variables
     energyDivVisible         = false
     statsDivVisible          = false
-    buyDivVisible     = false
+    buyDivVisible            = false
     vendingMachineDivVisible = false
     eatDivVisible            = false
     actionsDivVisible        = false
@@ -145,7 +149,7 @@ function gameReset(){
     cornerStoreDivVisible    = false
     gamblingDivVisible       = false
     restaurantDivVisible     = false
-    foodMadePerSecDivVisible  = false
+    foodMadePerSecDivVisible = false
     foodDivVisible           = false
     workerDivVisible         = false
     moneyPerSecondDivVisible = false
@@ -182,49 +186,49 @@ function load(saveName){
         gameReset()
         return
     }
-    money                      = save[0]
-    energy                     = save[1]
-    food                       = save[2]
-    vendingMachines            = save[3]
-    cornerStores               = save[4]
-    restaurants                = save[5]
-    workers                    = save[6]
+    money                       = save[0]
+    energy                      = save[1]
+    food                        = save[2]
+    vendingMachines             = save[3]
+    cornerStores                = save[4]
+    restaurants                 = save[5]
+    workers                     = save[6]
     vendingMachinePrice         = save[7]
     cornerStorePrice            = save[8]
     restaurantPrice             = save[9]
     workerPrice                 = save[10]
-    vendingMachineProfitPerSec = save[11]
-    cornerStoreProfitPerSec    = save[12]
-    restaurantFoodMadePerSec   = save[13]
-    workerProfitPerSec         = save[14]
-    gamblingUpgrade            = save[15]
-    cornerStoreUpgrade         = save[16]
-    sellEverythingUpgrade      = save[17]
-    marketing2upgrade          = save[18]
-    marketing3upgrade          = save[19]
-    marketing4upgrade          = save[20]
-    marketing5upgrade          = save[21]
-    storeMarketing2upgrade     = save[22]
-    storeMarketing3upgrade     = save[23]
-    storeMarketing4upgrade     = save[24]
-    storeMarketing5upgrade     = save[25]
-    workerUpgrade              = save[26]
-    restaurantUpgrade          = save[27]
-    buyDivVisible              = save[28]
-    vendingMachineDivVisible   = save[29]
-    eatDivVisible              = save[30]
-    actionsDivVisible          = save[31]
-    upgradesDivVisible         = save[32]
-    cornerStoreDivVisible      = save[33]
-    gamblingDivVisible         = save[34]
-    statsDivVisible            = save[35]
-    energyDivVisible           = save[36]
-    restaurantDivVisible       = save[37]
+    vendingMachineProfitPerSec  = save[11]
+    cornerStoreProfitPerSec     = save[12]
+    restaurantFoodMadePerSec    = save[13]
+    workerProfitPerSec          = save[14]
+    gamblingUpgrade             = save[15]
+    cornerStoreUpgrade          = save[16]
+    sellEverythingUpgrade       = save[17]
+    marketing2upgrade           = save[18]
+    marketing3upgrade           = save[19]
+    marketing4upgrade           = save[20]
+    marketing5upgrade           = save[21]
+    storeMarketing2upgrade      = save[22]
+    storeMarketing3upgrade      = save[23]
+    storeMarketing4upgrade      = save[24]
+    storeMarketing5upgrade      = save[25]
+    workerUpgrade               = save[26]
+    restaurantUpgrade           = save[27]
+    buyDivVisible               = save[28]
+    vendingMachineDivVisible    = save[29]
+    eatDivVisible               = save[30]
+    actionsDivVisible           = save[31]
+    upgradesDivVisible          = save[32]
+    cornerStoreDivVisible       = save[33]
+    gamblingDivVisible          = save[34]
+    statsDivVisible             = save[35]
+    energyDivVisible            = save[36]
+    restaurantDivVisible        = save[37]
     foodMadePerSecondDivVisible = save[38]
-    foodDivVisible             = save[39]
-    workerDivVisible           = save[40]
-    moneyPerSecondDivVisible   = save[41]
-    secondCompany              = save[42]
+    foodDivVisible              = save[39]
+    workerDivVisible            = save[40]
+    moneyPerSecondDivVisible    = save[41]
+    secondCompany               = save[42]
 }
 
 load('save1')
@@ -237,20 +241,25 @@ function updateVisibility(id, visibilityStatus){
     }
 }
 
+function updateTextContent(id, value){
+    document.getElementById(id).textContent = value
+}
+
 function refreshGame(){
     document.getElementById('money').textContent = money // update money
 
     if (!secondCompany){
-        document.getElementById('energy').textContent = energy // update energy
-        document.getElementById('vendingMachinePrice').textContent = vendingMachinePrice // update vending machine Price
-        document.getElementById('cornerStorePrice').textContent = cornerStorePrice // update corner store Price
+        updateTextContent('energy', energy)
+        updateTextContent('vendingMachinePrice', vendingMachinePrice)
+        updateTextContent('cornerStorePrice', cornerStorePrice)
         
         if (vendingMachines != 0) {document.getElementById('vendingMachines').textContent = vendingMachines} // update amount of vending machines
         else {document.getElementById('vendingMachines').textContent = ''}// or set it to nothing
+
         if (cornerStores != 0) {document.getElementById('cornerStores').textContent = cornerStores} // update amount of corner stores
         else {document.getElementById('cornerStores').textContent = ''}// or set it to nothing
         
-        if (energy < 1){
+        if (energy <= 0){
             document.getElementById('makeMoneyButton').setAttribute("disabled", "disabled") // disable making money
         }else{
             document.getElementById('makeMoneyButton').removeAttribute("disabled") // enable it
@@ -301,7 +310,8 @@ function refreshGame(){
         
 
     }else{
-        document.getElementById('foodMadePerSec').textContent  = restaurants * restaurantFoodMadePerSec
+        updateTextContent('foodMadePerSec', restaurants * restaurantFoodMadePerSec)
+        updateTextContent('clocks', clocks)
 
         if (restaurants != 0){document.getElementById('restaurants').textContent = restaurants}
         else{document.getElementById('restaurants').textContent = ''}
@@ -338,6 +348,7 @@ function refreshGame(){
     updateVisibility('foodDiv', foodDivVisible)
     updateVisibility('workerDiv', workerDivVisible)
     updateVisibility('moneyPerSecDiv', moneyPerSecondDivVisible)
+    updateVisibility('clockDiv', clockDivVisible)
 
     // GAMBLING 
 
@@ -619,6 +630,8 @@ function upgrade(identifier){
             workerDivVisible = true
             workerUpgrade = false
             break
+        case 14:
+            clockDivVisible = true
     }
     refreshGame()
 }
@@ -706,6 +719,11 @@ function secondUpdate(){
 
     if (updatesBeforeGambleMesssageReset == 0){document.getElementById('gambleMessage').textContent = ''}
     else{updatesBeforeGambleMesssageReset--}
+
+    for (i=secondUpdatesPerSec;i == clocks; i++){
+        secondUpdatesPerSec++
+        setInterval(secondUpdate, 1000)
+    }
 
     refreshGame()
 }
@@ -798,4 +816,8 @@ function resetCustomCss(){
     /* not all textboxes work (working on adding more) */
 }
     `
+}
+
+function clock(){
+    clocks++
 }
