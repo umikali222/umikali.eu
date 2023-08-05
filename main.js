@@ -270,9 +270,9 @@ function disableEnableButton(id, enabled){
 
 function updateTextContentOrPutNothing(id, number){
     if (number != 0){
-        document.getElementById(id).textContext = number
+        document.getElementById(id).textContent = number
     }else{
-        document.getElementById(id).textContext = ''
+        document.getElementById(id).textContent = ''
     }
 }
 
