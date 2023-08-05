@@ -1,4 +1,4 @@
-// V0.5.3
+// V0.5.4
 
 var money = 0
 var energy = 100
@@ -87,59 +87,35 @@ function gameReset(){
     money = 0
     energy = 100
     food = 5
-
-    // amounts
     vendingMachines = 0
     cornerStores = 0
     restaurants = 0
     workers = 0
-
-
-
-    // Prices
     vendingMachinePrice = 50
     cornerStorePrice = 20000
-    restaurantPrice = 100
-    workerPrice = 100
-
-
-
-    // per second values
-    vendingMachineProfitP1erSec = 1
+    restaurantPrice = 10000
+    workerPrice = 10000
+    clockPrice = 10000000
+    vendingMachineProfitPerSec = 1
     cornerStoreProfitPerSec = 25
-
-
-
-    // second company
     restaurantFoodMadePerSec = 5
     workerProfitPerSec = 100
-
-
-
-    // upgrades
+    clocks = 1
+    secondUpdatesPerSec = 1
     gamblingUpgrade       = false
     cornerStoreUpgrade    = false
     sellEverythingUpgrade = false
-
-    // marketing for vending machines
     marketing2upgrade = true
     marketing3upgrade = false
     marketing4upgrade = false
     marketing5upgrade = false
-
-    // marketing for corner stores
     storeMarketing2upgrade = false
     storeMarketing3upgrade = false
     storeMarketing4upgrade = false
     storeMarketing5upgrade = false
-
-    // second company upgrades
     workerUpgrade     = false
     restaurantUpgrade = false
-
-
-
-    // visibility variables
+    clockUpgrade      = false
     energyDivVisible         = false
     statsDivVisible          = false
     buyDivVisible            = false
@@ -154,10 +130,7 @@ function gameReset(){
     foodDivVisible           = false
     workerDivVisible         = false
     moneyPerSecondDivVisible = false
-
-
-
-    // bought upgrades variables
+    clockDivVisible          = false
     secondCompany = false
 }
 
