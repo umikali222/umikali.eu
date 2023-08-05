@@ -1,6 +1,4 @@
-// V0.5.2
-    
-console.log('running')
+// V0.5.3
 
 var money = 0
 var energy = 100
@@ -270,9 +268,9 @@ function disableEnableButton(id, enabled){
     }
 }
 
-function updateTextContentOrPutNothing(id, value){
-    if (value != 0){
-        document.getElementById(id).textContext = value
+function updateTextContentOrPutNothing(id, number){
+    if (number != 0){
+        document.getElementById(id).textContext = number
     }else{
         document.getElementById(id).textContext = ''
     }
@@ -720,3 +718,5 @@ function clock(){
 
     refreshGame()
 }
+
+console.log('finished config')
