@@ -1,4 +1,4 @@
-// V0.5.8
+// V0.5.9
 
 var money = 0
 var energy = 100
@@ -196,7 +196,7 @@ function load(saveName){
     statsDivVisible             = save[35]
     energyDivVisible            = save[36]
     restaurantDivVisible        = save[37]
-    foodMadePerSecondDivVisible = save[38]
+    foodMadePerSecDivVisible    = save[38]
     foodDivVisible              = save[39]
     workerDivVisible            = save[40]
     moneyPerSecondDivVisible    = save[41]
