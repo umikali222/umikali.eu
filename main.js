@@ -1,4 +1,4 @@
-// V0.5.5
+// V0.5.6
 
 var money = 0
 var energy = 100
@@ -16,7 +16,7 @@ var workers = 0
 // Prices
 var vendingMachinePrice = 50
 var cornerStorePrice = 20000
-var restaurantPrice = 10000
+var restaurantPrice = 50000
 var workerPrice = 10000
 var clockPrice = 10000000
 
@@ -518,28 +518,29 @@ function makeMoney(){
     money++
     if (!secondCompany){
         energy--
+
+        if (money > 0){
+            energyDivVisible = true
+            statsDivVisible = true
+        }
+
+        if (money > 20){
+            eatDivVisible = true // show eating button and Price
+            actionsDivVisible = true // show actions div 
+        }
+
+        if (money >= 50){
+            buyDivVisible = true // show buy div
+            vendingMachineDivVisible = true // show vending machine buy
+        }
+
+        if (money >= 100){
+            upgradesDivVisible = true // show upgrades
+        }
     }else{
         food--
     }
 
-    if (money > 0){
-        energyDivVisible = true
-        statsDivVisible = true
-    }
-
-    if (money > 20){
-        eatDivVisible = true // show eating button and Price
-        actionsDivVisible = true // show actions div 
-    }
-
-    if (money >= 50){
-        buyDivVisible = true // show buy div
-        vendingMachineDivVisible = true // show vending machine buy
-    }
-
-    if (money >= 100){
-        upgradesDivVisible = true // show upgrades
-    }
 
     refreshGame()
 }
