@@ -201,6 +201,10 @@ function load(saveName){
     workerDivVisible            = save[40]
     moneyPerSecondDivVisible    = save[41]
     secondCompany               = save[42]
+    clocks                      = save[43]
+    clockDivVisible             = save[44]
+    clockPrice                  = save[45]
+    clockUpgrade                = save[46]
 }
 
 load('save1')
@@ -647,7 +651,11 @@ function saveGame(saveName){
         foodDivVisible,
         workerDivVisible,
         moneyPerSecondDivVisible,
-        secondCompany
+        secondCompany,
+        clocks,
+        clockDivVisible,
+        clockPrice,
+        clockUpgrade
     ]
     saveListToCookie(valuesToSave, saveName)
 }
