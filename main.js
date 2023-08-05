@@ -1,4 +1,4 @@
-// V0.5.6
+// V0.5.7
 
 var money = 0
 var energy = 100
@@ -273,7 +273,24 @@ function refreshGame(){
             cornerStoreUpgrade = true
         }
 
+        if (money > 0){
+            energyDivVisible = true
+            statsDivVisible = true
+        }
 
+        if (money > 20){
+            eatDivVisible = true // show eating button and Price
+            actionsDivVisible = true // show actions div 
+        }
+
+        if (money >= 50){
+            buyDivVisible = true // show buy div
+            vendingMachineDivVisible = true // show vending machine buy
+        }
+
+        if (money >= 100){
+            upgradesDivVisible = true // show upgrades
+        }
     }else{
         disableEnableButton('makeMoneyButton', food > 0)
         disableEnableButton('restaurantButton', money >= restaurantPrice)
@@ -340,7 +357,7 @@ function refreshGame(){
 
     updateVisibility('worker', workerUpgrade)
     updateVisibility('restaurant', restaurantUpgrade)
-    updateVisibilityAndButton('clockUpgrade', clockUpgrade)
+    updateVisibilityAndButton('clockUpgrade', clockUpgrade, money >= 1000000)
 
 
     // updating the tab opened
@@ -518,25 +535,6 @@ function makeMoney(){
     money++
     if (!secondCompany){
         energy--
-
-        if (money > 0){
-            energyDivVisible = true
-            statsDivVisible = true
-        }
-
-        if (money > 20){
-            eatDivVisible = true // show eating button and Price
-            actionsDivVisible = true // show actions div 
-        }
-
-        if (money >= 50){
-            buyDivVisible = true // show buy div
-            vendingMachineDivVisible = true // show vending machine buy
-        }
-
-        if (money >= 100){
-            upgradesDivVisible = true // show upgrades
-        }
     }else{
         food--
     }
