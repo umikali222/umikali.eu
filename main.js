@@ -32,7 +32,6 @@ var restaurantFoodMadePerSec = 5
 var workerProfitPerSec = 100
 
 var clocks = 1
-var secondUpdatesPerSec = 1
 
 
 
@@ -101,7 +100,6 @@ function gameReset(){
     restaurantFoodMadePerSec = 5
     workerProfitPerSec = 100
     clocks = 1
-    secondUpdatesPerSec = 1
     gamblingUpgrade       = false
     cornerStoreUpgrade    = false
     sellEverythingUpgrade = false
@@ -295,6 +293,7 @@ function refreshGame(){
         disableEnableButton('makeMoneyButton', food > 0)
         disableEnableButton('restaurantButton', money >= restaurantPrice)
         disableEnableButton('workerButton', money >= workerPrice)
+        disableEnableButton('clockButton', money >= clockPrice)
 
         updateTextContent('foodMadePerSec', restaurants * restaurantFoodMadePerSec)
         updateTextContent('clocks', clocks)
@@ -594,7 +593,9 @@ function secondUpdate(){
     refreshGame()
 }
 
-setInterval(secondUpdate, 1000)
+for (i=0;i==clocks;i++){
+    setInterval(secondUpdate, 1000)
+}
 
 function saveListToCookie(list, cookieName) {
     const jsonString = JSON.stringify(list)
@@ -686,8 +687,8 @@ function resetCustomCss(){
 
 function clock(){
     clocks++
-    money -= clockPrice
-
+    money = money - clockPrice
+    setInterval(secondUpdate,  1000)
     refreshGame()
 }
 
