@@ -1,4 +1,4 @@
-// V0.5.4
+// V0.5.5
 
 var money = 0
 var energy = 100
@@ -282,6 +282,8 @@ function refreshGame(){
         updateTextContent('foodMadePerSec', restaurants * restaurantFoodMadePerSec)
         updateTextContent('clocks', clocks)
         updateTextContent('clockPrice', clockPrice)
+        updateTextContent('restaurantPrice', restaurantPrice)
+        updateTextContent('workerPrice', workerPrice)
 
         updateTextContentOrPutNothing('restaurants', restaurants)
         updateTextContentOrPutNothing('workers', workers)
@@ -552,15 +554,13 @@ function restaurant(){
     restaurants += 1
     money = money - restaurantPrice
     restaurantPrice *= 2
-    document.getElementById('restaurantPrice').textContent = restaurantPrice
     refreshGame()
 }
 
 function worker(){
     workers += 1
-    money = money - restaurantPrice
+    money = money - workerPrice
     workerPrice *= 2
-    document.getElementById('workerPrice').textContent = workerPrice
     refreshGame()
 }
 
