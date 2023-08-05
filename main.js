@@ -1,4 +1,4 @@
-// V0.5.7
+// V0.5.8
 
 var money = 0
 var energy = 100
@@ -597,9 +597,7 @@ function secondUpdate(){
     refreshGame()
 }
 
-for (i=0;i==clocks;i++){
-    setInterval(secondUpdate, 1000)
-}
+setInterval(secondUpdate, 1000 / clocks)
 
 function saveListToCookie(list, cookieName) {
     const jsonString = JSON.stringify(list)
