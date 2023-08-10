@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!--V0.5-->
+<!--V0.5 fix-->
 
 <style></style>
 
@@ -19,7 +19,6 @@
 
 <html>
     <head>
-        <title>universal money</title>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7428285898460183"
         crossorigin="anonymous"></script>
     </head>
@@ -34,7 +33,7 @@
                     <b>stats</b> <br> <hr>
                     <div id="energyDiv">energy : <span class="text" id="energy">100</span></div>
                     <div id="foodDiv">food : <span id="food">5</span></div>
-                    <div id="foodMadePerSecDiv">food per second : <span id="foodPerSec">0</span></div>
+                    <div id="foodMadePerSecDiv">food made per second : <span id="foodMadePerSec">0</span></div>
                     <div id="moneyPerSecDiv">money per second : <span id="moneyPerSec"></span>$</div>
                 </div>
         
@@ -63,12 +62,17 @@
 
                     <div id="restaurantDiv">
                     <span id="restaurants"></span> <button class="button" id="restaurantButton" onclick="restaurant()">restaurant</button> <br>
-                    cost : <span id="restaurantPrice">100</span>$
+                    cost : <span id="restaurantPrice">10`000</span>$
                     </div>
 
                     <div id="workerDiv">
                     <span id="workers"></span> <button class="button" id="workerButton" onclick="worker()">worker</button> <br>
-                    cost : <span id="workerPrice">100</span>$
+                    cost : <span id="workerPrice">10`000</span>$
+                    </div>
+
+                    <div id="clockDiv">
+                    <span id="clocks"></span> <button class="button" id="clockButton" onclick="clock()">clock</button> <br>
+                    cost : <span id="clockPrice">1`000`000</span>$
                     </div>
                 </div>
             </div>
@@ -87,7 +91,8 @@
                     <button class="button" id="storeMarketing5" onclick="upgrade(10)" ><span align="center"><b>corner store marketing level 5</b> (500`000$)<br>Improves profits from corner stores still by 2 times</span></button>
                     <button class="button" id="sellEverything" onclick="upgrade(11)" ><span align="center"><b>sell everything</b> (1`000`000$)<br>sells your entire company, and starts a new one.</span></button>
                     <button class="button" id="restaurant" onclick="upgrade(12)" ><span align="center"><b>restaurants</b><br>start making restaurants for your workers</span></button>
-                    <button class="button" id="worker" onclick="upgrade(13)" ><span align="center"><b>slave- I mean workers</b><br>start getting <small>unpaid</small> workers</span></button>
+                    <button class="button" id="worker" onclick="upgrade(13)"><span align="center"><b>slave- I mean workers</b><br>start getting <small>unpaid</small> workers</span></button>
+                    <button class="button" id="clockUpgrade" onclick="upgrade(14)"><span align="center"><b>clocks</b><br>(10`000`000)<br>allows you to buy clocks, which speed up time</span></button>
                 </div>
             </div>
             <div class="column">
