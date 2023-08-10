@@ -1,4 +1,4 @@
-// V0.5.9
+// V0.5 fix
 
 var money = 0
 var energy = 100
@@ -92,7 +92,7 @@ function gameReset(){
     workers = 0
     vendingMachinePrice = 50
     cornerStorePrice = 20000
-    restaurantPrice = 10000
+    restaurantPrice = 50000
     workerPrice = 10000
     clockPrice = 10000000
     vendingMachineProfitPerSec = 1
