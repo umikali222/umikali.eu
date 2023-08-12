@@ -32,6 +32,7 @@ var restaurantFoodMadePerSec = 5
 var workerProfitPerSec = 100
 
 var clocks = 1
+var gold = 0
 
 
 
@@ -56,6 +57,7 @@ var storeMarketing5upgrade = false
 var workerUpgrade     = false
 var restaurantUpgrade = false
 var clockUpgrade      = false
+var goldUpgrade       = false
 
 
 
@@ -80,6 +82,7 @@ var clockDivVisible          = false
 
 // bought upgrades variables
 var secondCompany = false
+var goldUpgradeBought = false
 
 
 function gameReset(){
@@ -209,45 +212,84 @@ function load(saveName){
 
 load('save1')
 
+function enableButton(id){
+    document.getElementById(id).removeAttribute('disabled')
+}
+
+function disableButton(id){
+    document.getElementById(id).setAttribute('disabled', 'disabled')
+}
+
+function show(id){
+    document.getElementById(id).style.display = 'block'
+}
+
+function hide(id){
+    document.getElementById(id).style.display = 'none'
+}
+
+function valueOf(id){
+    return document.getElementById(id).value
+}
+
+function makeNumberReadable(number) {
+    if (typeof number != 'number') {
+        return number
+    }
+    
+    var numStr = String(number)
+    var result = ''
+
+    for (var i = numStr.length - 1, count = 0; i >= 0; i--, count++) {
+        if (count === 3) {
+            result = "`" + result
+            count = 0
+        }
+        result = numStr[i] + result
+    }
+  
+    return result
+}
+
 function updateVisibility(id, visibilityStatus){
     if (visibilityStatus){
-        document.getElementById(id).style.display = 'block'
-    } else{
-        document.getElementById(id).style.display = 'none'
+        show(id)
+    }else{
+        hide(id)
     }
 }
 
 function updateTextContent(id, value){
-    document.getElementById(id).textContent = value
+    document.getElementById(id).textContent = makeNumberReadable(value)
 }
 
 function updateVisibilityAndButton(id, visibility, buttonCondition){
     if (visibility){
-        document.getElementById(id).style.display = 'block'
+        show(id)
 
         if (buttonCondition){
-            document.getElementById(id).removeAttribute('disabled')
+            enableButton(id)
         }else{
-            document.getElementById(id).setAttribute('disabled', 'disabled')
+            disableButton(id)
         }
     }else{
-        document.getElementById(id).style.display = 'none'
+        hide(id)
     }
 }
 
 function disableEnableButton(id, enabled){
     if (enabled){
-        document.getElementById(id).removeAttribute('disabled')
+        enableButton(id)
     }else{
-        document.getElementById(id).setAttribute('disabled', 'disabled')
+        disableButton(id)
     }
 }
 
 function updateTextContentOrPutNothing(id, number){
     if (number != 0){
-        document.getElementById(id).textContent = number
+        updateTextContent(id, number)
     }else{
-        document.getElementById(id).textContent = ''
+        updateTextContent(id, '')
     }
 }
 
@@ -304,6 +346,7 @@ function refreshGame(){
         updateTextContent('clockPrice', clockPrice)
         updateTextContent('restaurantPrice', restaurantPrice)
         updateTextContent('workerPrice', workerPrice)
+        updateTextContent('gold', gold)
 
         updateTextContentOrPutNothing('restaurants', restaurants)
         updateTextContentOrPutNothing('workers', workers)
@@ -329,10 +372,10 @@ function refreshGame(){
 
     // GAMBLING
 
-    disableEnableButton('gambleButton', document.getElementById('betAmount').value <= money)
+    disableEnableButton('gambleButton', valueOf('betAmount') <= money)
 
-    if (Math.abs(document.getElementById('betAmount').value) != document.getElementById('betAmount').value){
-        document.getElementById('gambleButton').setAttribute('disabled', 'disabled') // disable the gambling button
+    if (Math.abs(valueOf('betAmount')) != valueOf('betAmount')){
+        disableButton('gambleButton')
     }
 
 
@@ -361,22 +404,22 @@ function refreshGame(){
     updateVisibility('worker', workerUpgrade)
     updateVisibility('restaurant', restaurantUpgrade)
     updateVisibilityAndButton('clockUpgrade', clockUpgrade, money >= 1000000)
-
+    updateVisibilityAndButton('goldUpgrade', goldUpgrade, money > 100000)
 
     // updating the tab opened
 
     if (state == 'game'){
-        document.getElementById('game').style.display = 'block'
-        document.getElementById('settings').style.display = 'none'
+        show('game')
+        hide('settings')
 
-        document.getElementById('gameButton').setAttribute('disabled', 'disabled')
-        document.getElementById('settingsButton').removeAttribute('disabled')
+        enableButton('settingsButton')
+        disableButton('gameButton')
     }else{
-        document.getElementById('game').style.display = 'none'
-        document.getElementById('settings').style.display = 'block'
+        show('settings')
+        hide('game')
 
-        document.getElementById('gameButton').removeAttribute('disabled')
-        document.getElementById('settingsButton').setAttribute('disabled', 'disabled')
+        enableButton('gameButton')
+        disableButton('settingsButton')
     }
 }
 
@@ -461,7 +504,7 @@ function upgrade(identifier){
             cornerStoreDivVisible = false
             vendingMachineDivVisible = false
 
-            statsDivVisible = false
+            statsDivVisible  = false
             energyDivVisible = false
 
             cornerStoreUpgrade = false
@@ -479,6 +522,7 @@ function upgrade(identifier){
             restaurantUpgrade = true
             workerUpgrade     = true
             clockUpgrade      = true
+            goldUpgrade       = true
             break
         case 12:
             buyDivVisible = true
@@ -498,24 +542,31 @@ function upgrade(identifier){
             workerUpgrade = false
             break
         case 14:
+            money -= 10000000
             clockDivVisible = true
             clockUpgrade = false
+            break
+        case 15:
+            money -= 100000
+            goldUpgradeBought = true
+            goldUpgrade = false
+            break
     }
     refreshGame()
 }
 
 function gamble(){
-    money -= Math.abs(document.getElementById('betAmount').value)
+    money -= Math.abs(valueOf('betAmount'))
 
     var valueRolled = Math.floor(Math.random() * 24) + 1
 
-    if (valueRolled == document.getElementById('bet').value){
-        money += document.getElementById('betAmount').value * 24
+    if (valueRolled == valueOf('bet')){
+        money += valueOf('betAmount') * 24
         secondsBeforeGambleMesssageReset = 10
-        document.getElementById('gambleMessage').textContent = 'Your Bet Was Right!!! you made ' + (document.getElementById('betAmount').value) * 23 + '$'
+        updateTextContent('gambleMessage', 'Your Bet Was Right!!! you made ' + (valueOf('betAmount') * 23) + '$')
     }else{
         secondsBeforeGambleMesssageReset = 10
-        document.getElementById('gambleMessage').textContent = 'Your bet was not right. You lost ' + (document.getElementById('betAmount').value) + '$. The number rolled was ' + valueRolled
+        updateTextContent('gambleMessage', 'Your bet was not right. You lost ' + valueOf('betAmount') + '$. The number rolled was ' + valueRolled)
     }
     refreshGame()
 }
@@ -542,7 +593,6 @@ function makeMoney(){
         food--
     }
 
-
     refreshGame()
 }
 
@@ -568,7 +618,7 @@ function worker(){
 
 refreshGame()
 
-function secondUpdate(){
+function clockUpdate(){
     if (!secondCompany){
         if (energy > vendingMachines){
             money += vendingMachines * vendingMachineProfitPerSec
@@ -583,21 +633,22 @@ function secondUpdate(){
         if (food > workers){
             food = food - workers
             money += workers * workerProfitPerSec
-            document.getElementById('moneyPerSec').textContent = workers * workerProfitPerSec
+            updateTextContent('moneyPerSec', workers * workerProfitPerSec)
         }
         updateTextContent('food', food)
     }
+    refreshGame()
+}
 
+setInterval(clockUpdate, 1000 / clocks)
+
+function secondUpdate(){
     if (secondsBeforeGambleMesssageReset == 0){
         updateTextContent('gambleMessage', '')
     }else{
         secondsBeforeGambleMesssageReset--
     }
-
-    refreshGame()
 }
-
-setInterval(secondUpdate, 1000 / clocks)
 
 function saveListToCookie(list, cookieName) {
     const jsonString = JSON.stringify(list)
@@ -660,6 +711,7 @@ function saveGame(saveName){
 
 function minuteUpdate(){
     saveGame('save1')
+    gold += workers
 }
 
 setInterval(minuteUpdate, 60000)
@@ -675,7 +727,7 @@ function settingsTab(){
 }
 
 function applyCss(){
-    document.querySelector('style').innerHTML = document.getElementById('cssCode').value
+    document.querySelector('style').innerHTML = valueOf('cssCode')
 }
 
 applyCss()
@@ -694,7 +746,7 @@ function resetCustomCss(){
 function clock(){
     clocks++
     money = money - clockPrice
-    setInterval(secondUpdate,  1000)
+    setInterval(clockUpdate,  1000)
     refreshGame()
 }
 
