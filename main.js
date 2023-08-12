@@ -1,5 +1,3 @@
-// V0.5 fix
-
 var money = 0
 var energy = 100
 var food = 5
@@ -103,6 +101,7 @@ function gameReset(){
     restaurantFoodMadePerSec = 5
     workerProfitPerSec = 100
     clocks = 1
+    gold = 0
     gamblingUpgrade       = false
     cornerStoreUpgrade    = false
     sellEverythingUpgrade = false
@@ -117,6 +116,7 @@ function gameReset(){
     workerUpgrade     = false
     restaurantUpgrade = false
     clockUpgrade      = false
+    goldUpgrade       = false
     energyDivVisible         = false
     statsDivVisible          = false
     buyDivVisible            = false
@@ -133,6 +133,7 @@ function gameReset(){
     moneyPerSecondDivVisible = false
     clockDivVisible          = false
     secondCompany = false
+    goldUpgradeBought = false
 }
 
 // variables, that don't need to be in the save
@@ -208,6 +209,9 @@ function load(saveName){
     clockDivVisible             = save[44]
     clockPrice                  = save[45]
     clockUpgrade                = save[46]
+    gold                        = save[47]
+    goldUpgrade                 = save[48]
+    goldUpgradeBought           = save[49]
 }
 
 load('save1')
@@ -704,7 +708,10 @@ function saveGame(saveName){
         clocks,
         clockDivVisible,
         clockPrice,
-        clockUpgrade
+        clockUpgrade,
+        gold,
+        goldUpgrade,
+        goldUpgradeBought
     ]
     saveListToCookie(valuesToSave, saveName)
 }
