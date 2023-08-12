@@ -373,6 +373,7 @@ function refreshGame(){
     updateVisibility('workerDiv', workerDivVisible)
     updateVisibility('moneyPerSecDiv', moneyPerSecondDivVisible)
     updateVisibility('clockDiv', clockDivVisible)
+    updateVisibility('goldDiv', goldUpgradeBought)
 
     // GAMBLING
 
