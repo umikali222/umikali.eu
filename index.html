@@ -31,18 +31,21 @@
                     <b>stats</b> <br> <hr>
                     <div id="energyDiv">energy : <span class="text" id="energy"></span></div>
                     <div id="foodDiv">food : <span id="food"></span></div>
-                    <div id="foodMadePerSecDiv">food made per second : <span id="foodMadePerSec"></span></div>
-                    <div id="moneyPerSecDiv">money per second : <span id="moneyPerSec"></span>$</div>
+                    <div id="foodMadePerSecDiv">food made per (clock) second : <span id="foodMadePerSec"></span></div>
+                    <div id="moneyPerSecDiv">money per (clock) second : <span id="moneyPerSec"></span>$</div>
                     <div id="goldDiv">gold : <span id="gold"></span></div>
+                    <div id="copperDiv">copper : <span id="copper"></span></div>
                 </div>
         
                 <br> <br> <br> <br> <br> <br>
                 <div id="actionsDiv">
-                <b>actions</b> <br> <hr>
-                <div id="eatDiv">
-                <button class="button" id="eat" onclick="eat()">eat</button> <br>
-                cost : 20$
-                </div>
+                    <b>actions</b> <br> <hr>
+                    <div id="eatDiv">
+                    <button class="button" id="eat" onclick="eat()">eat</button> <br>
+                    cost : 20$
+                    </div>
+
+                    <button class="button" id="makeCopperButton" onclick="makeCopper()">make copper</button>
                 </div>
         
                 <br> <br> <br> <br> <br> <br>
@@ -51,12 +54,14 @@
                     <b>buy</b> <br> <hr>
                     <div id="vendingMachineDiv">
                     <span class="text" id="vendingMachines"></span> <button class="button" id="vendingMachine" onclick="vendingMachine()">vending machine</button><br>
-                    cost : <span class="text" id="vendingMachinePrice"></span>$
+                    cost : <span class="text" id="vendingMachinePrice"></span>$ <br>
+                    makes <span class="text" id="vendingMachineProfitPerSec"></span>$ per second
                     </div>
 
                     <div id="cornerStoreDiv">
                     <span class="text" id="cornerStores"></span> <button class="button" id="cornerStore" onclick="cornerStore()">corner store</button> <br>
-                    cost : <span class="text" id="cornerStorePrice"></span>$
+                    cost : <span class="text" id="cornerStorePrice"></span>$ <br>
+                    makes <span class="text" id="cornerStoreProfitPerSec"></span>$ per second
                     </div>
 
                     <div id="restaurantDiv">
@@ -91,8 +96,9 @@
                     <button class="button" id="sellEverything" onclick="upgrade(11)" ><span align="center"><b>sell everything</b> (1`000`000$)<br>sells your entire company, and starts a new one.</span></button>
                     <button class="button" id="restaurant" onclick="upgrade(12)" ><span align="center"><b>restaurants</b><br>start making restaurants for your workers</span></button>
                     <button class="button" id="worker" onclick="upgrade(13)"><span align="center"><b>slave- I mean workers</b><br>start getting <small>unpaid</small> workers</span></button>
-                    <button class="button" id="clockUpgrade" onclick="upgrade(14)"><span align="center"><b>clocks</b> (10`000`000)<br>allows you to buy clocks, which speed up time</span></button>
-                    <button class="button" id="goldUpgrade" onclick="upgrade(15)"><span align="center"><b>gold</b> (1`000`000)<br>you gain 1 gold every minute per worker</span></button>
+                    <button class="button" id="clockUpgrade" onclick="upgrade(14)"><span align="center"><b>clocks</b> (10`000`000$)<br>allows you to buy clocks, which speed up time</span></button>
+                    <button class="button" id="goldUpgrade" onclick="upgrade(15)"><span align="center"><b>gold</b> (1`000`000$)<br>you gain 1 gold every minute per worker</span></button>
+                    <button class="button" id="copperUpgrade" onclick="upgrade(16)"><span align="center"><b>copper</b> (100 gold)<br>you gain copper by clicking the make copper button</span></button>
                 </div>
             </div>
             <div class="column">
@@ -170,6 +176,7 @@
             <textarea rows="20" cols="100" id="cssCode"></textarea> <br>
             <button class="button" onclick="applyCss()">apply!</button>
             <button class="button" onclick="resetCustomCss()">reset to default</button>
+            <button class="button" onclick="setSimpleCss()">use simple.css</button>
         </div>
     </body>    
 </html>
