@@ -1,184 +1,81 @@
 <!DOCTYPE html>
 
-<style></style>
-
 <style>
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-    }
+.top-bar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
 
-    .column {
-      width: 33%;
-      box-sizing: border-box;
-      margin-bottom: 20px;
-    }
+.top-bar ul {
+    list-style: none;
+    text-align: center; 
+}
+
+.top-bar ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.top-bar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.top-bar ul li a:hover {
+    text-decoration: underline;
+}
 </style>
 
 <html>
     <head>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7428285898460183"
-        crossorigin="anonymous"></script>
+        <title>foss games</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                color: rgb(0, 0, 0);
+                font-size: 16px;
+            }
+
+            .container {
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            .outline {
+                border: 1px solid #000;
+                padding: 10px;
+                width: 40%;
+                float: left;
+            }
+        </style>
     </head>
-    <body>
-        <button class="button" id="gameButton" onclick="gameTab()">game</button> <button class="button" id="settingsButton" onclick="settingsTab()">settings</button> <br>
-        <div id="game">
-        <h3>money : <span class="text" id="money"></span>$</h3> <br>
-        <button class="button" id="makeMoneyButton" onclick="makeMoney()">make money</button> <br> <br> <br>
+    <body> <!--bgcolor=#444654-->
+        <div class="top-bar">
+            <ul>
+                <li><div class="name">foss games</div></li>
+                <a style="color: #333;">I know this is sketchy but it'm stupid af and I can't figure out how to move the name to the left, if you know how to, pr me the fix</a>
+                <li><a href="index.html">games</a></li>
+                <li><a href="https://github.com/umikali222/umikali.eu">github</a></li>
+                <li><a href="about.html">about</a></li>
+            </ul>
+        </div>
+
+        <br>
         <div class="container">
-            <div class="column">
-                <div id="statsDiv">
-                    <b>stats</b> <br> <hr>
-                    <div id="energyDiv">energy : <span class="text" id="energy"></span></div>
-                    <div id="foodDiv">food : <span id="food"></span></div>
-                    <div id="foodMadePerSecDiv">food made per (clock) second : <span id="foodMadePerSec"></span></div>
-                    <div id="moneyPerSecDiv">money per (clock) second : <span id="moneyPerSec"></span>$</div>
-                    <div id="goldDiv">gold : <span id="gold"></span></div>
-                    <div id="copperDiv">copper : <span id="copper"></span></div>
-                </div>
-        
-                <br> <br> <br> <br> <br> <br>
-                <div id="actionsDiv">
-                    <b>actions</b> <br> <hr>
-                    <div id="eatDiv">
-                    <button class="button" id="eat" onclick="eat()">eat</button> <br>
-                    cost : 20$
-                    </div>
-
-                    <button class="button" id="makeCopperButton" onclick="makeCopper()">make copper</button>
-                </div>
-        
-                <br> <br> <br> <br> <br> <br>
-        
-                <div id="buyDiv">
-                    <b>buy</b> <br> <hr>
-                    <div id="vendingMachineDiv">
-                    <span class="text" id="vendingMachines"></span> <button class="button" id="vendingMachine" onclick="vendingMachine()">vending machine</button><br>
-                    cost : <span class="text" id="vendingMachinePrice"></span>$ <br>
-                    makes <span class="text" id="vendingMachineProfitPerSec"></span>$ per second
-                    </div>
-
-                    <div id="cornerStoreDiv">
-                    <span class="text" id="cornerStores"></span> <button class="button" id="cornerStore" onclick="cornerStore()">corner store</button> <br>
-                    cost : <span class="text" id="cornerStorePrice"></span>$ <br>
-                    makes <span class="text" id="cornerStoreProfitPerSec"></span>$ per second
-                    </div>
-
-                    <div id="restaurantDiv">
-                    <span id="restaurants"></span> <button class="button" id="restaurantButton" onclick="restaurant()">restaurant</button> <br>
-                    cost : <span id="restaurantPrice"></span>$
-                    </div>
-
-                    <div id="workerDiv">
-                    <span id="workers"></span> <button class="button" id="workerButton" onclick="worker()">worker</button> <br>
-                    cost : <span id="workerPrice"></span>$
-                    </div>
-
-                    <div id="clockDiv">
-                    <span id="clocks"></span> <button class="button" id="clockButton" onclick="clock()">clock</button> <br>
-                    cost : <span id="clockPrice"></span>$
-                    </div>
-                </div>
+            <div class="outline">
+                <a href="games/clicker.html">
+                    <img src="clicker.png" alt="clicker game">
+                    <h3 align="center">clicker</h3>
+                </a>
             </div>
-            <div class="column">
-                <div id="upgradesDiv">
-                    <b>upgrades</b> <br> <hr>
-                    <button class="button" id="marketing2" onclick="upgrade(1)" ><span align="center"><b>vending machine marketing level 2</b> (100$)<br>Improves profits from vending machines by 2 times</span></button>
-                    <button class="button" id="marketing3" onclick="upgrade(2)" ><span align="center"><b>vending machine marketing level 3</b> (500$)<br>Improves profits from vending machines by another 2 times</span></button>
-                    <button class="button" id="marketing4" onclick="upgrade(3)" ><span align="center"><b>vending machine marketing level 4</b> (2`000$)<br>Improves profits from vending machines by 5 times</span></button>
-                    <button class="button" id="marketing5" onclick="upgrade(4)" ><span align="center"><b>vending machine marketing level 5</b> (15`000$)<br>Improves profits from vending machines by 5 times</span></button>
-                    <button class="button" id="gambling" onclick="upgrade(5)" ><span align="center"><b>gambl- I mean an engine for multiplying money</b> (2`500$)<br>gives you a way to be- I mean make money way faster</span></button>
-                    <button class="button" id="cornerStoreUpgrade" onclick="upgrade(6)" ><span align="center"><b>corner store</b> (20`000$)<br>allows you to buy a corner store, which makes 25$ per sec</span></button>
-                    <button class="button" id="storeMarketing2" onclick="upgrade(7)" ><span align="center"><b>corner store marketing level 2</b> (50`000$)<br>Improves profits from corner stores by 5 times</span></button>
-                    <button class="button" id="storeMarketing3" onclick="upgrade(8)" ><span align="center"><b>corner store marketing level 3</b> (100`000$)<br>Improves profits from corner stores by another 2 times</span></button>
-                    <button class="button" id="storeMarketing4" onclick="upgrade(9)" ><span align="center"><b>corner store marketing level 4</b> (200`000$)<br>Improves profits from corner stores by yet another 2 times</span></button>
-                    <button class="button" id="storeMarketing5" onclick="upgrade(10)" ><span align="center"><b>corner store marketing level 5</b> (500`000$)<br>Improves profits from corner stores still by 2 times</span></button>
-                    <button class="button" id="sellEverything" onclick="upgrade(11)" ><span align="center"><b>sell everything</b> (1`000`000$)<br>sells your entire company, and starts a new one.</span></button>
-                    <button class="button" id="restaurant" onclick="upgrade(12)" ><span align="center"><b>restaurants</b><br>start making restaurants for your workers</span></button>
-                    <button class="button" id="worker" onclick="upgrade(13)"><span align="center"><b>slave- I mean workers</b><br>start getting <small>unpaid</small> workers</span></button>
-                    <button class="button" id="clockUpgrade" onclick="upgrade(14)"><span align="center"><b>clocks</b> (10`000`000$)<br>allows you to buy clocks, which speed up time</span></button>
-                    <button class="button" id="goldUpgrade" onclick="upgrade(15)"><span align="center"><b>gold</b> (1`000`000$)<br>you gain 1 gold every minute per worker</span></button>
-                    <button class="button" id="copperUpgrade" onclick="upgrade(16)"><span align="center"><b>copper</b> (100 gold)<br>you gain copper by clicking the make copper button</span></button>
-                </div>
-            </div>
-            <div class="column">
-                <div id="gamblingDiv">
-                    <b>gambling</b> <br> <hr>
-                    btw DO NOT gamble in real life you're gonna loose all your money (I think I have to legally say that) <br> <br>
-                    bet <input type="number" id="betAmount">$ on 
-                    <select name="number" id="bet">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                    </select> <br>
-                    <button class="button" id="gambleButton" onclick="gamble()">Gamble!</button> <br>
-                    <span id="gambleMessage"></span>
 
-                    <br><br><br><br><br><br><br><br><br>
-
-                </div>
-                <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-7428285898460183"
-                data-ad-slot="7207103530"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+            <div class="outline">
+                <h3 align="center">Your game goes here! Add your own game on github!</h3>
             </div>
         </div>
-        </div>
-        <div id="settings">
-            <h2>saves</h2>
-            the default save is always slot 1, it gets loaded by default, and auto-saves every minute <br> <br>
 
-            save to slot #
-            <button class="button" onclick="saveGame('save1')">1</button> <button class="button" onclick="saveGame('save2')">2</button>
-            <button class="button" onclick="saveGame('save3')">3</button> <button class="button" onclick="saveGame('save4')">4</button>
 
-            <br> <br> <br>
-
-            load from slot #
-            <button class="button" onclick="load('save1')">1</button> <button class="button" onclick="load('save2')">2</button>
-            <button class="button" onclick="load('save3')">3</button> <button class="button" onclick="load('save4')">4</button>
-
-            <br> <br> <br>
-
-            <button class="button" onclick="gameReset()">reset the game</button> 
-            
-            <br> <br>
-
-            <h2>css</h2>
-            add custom css code <br> <br>
-
-            <textarea rows="20" cols="100" id="cssCode"></textarea> <br>
-            <button class="button" onclick="applyCss()">apply!</button>
-            <button class="button" onclick="resetCustomCss()">reset to default</button>
-            <button class="button" onclick="setSimpleCss()">use simple.css</button>
-        </div>
-    </body>    
+    </body>
 </html>
-
-<script src="main.js"></script>
