@@ -330,7 +330,7 @@ function refreshGame(){
         disableEnableButton('vendingMachine', money >= vendingMachinePrice)
         disableEnableButton('cornerStore', money >= cornerStorePrice)
 
-        if (cornerStores >= 5){
+        if (cornerStores >= 20){
             sellEverythingUpgrade = true
         }
 

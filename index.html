@@ -40,6 +40,7 @@
 
             .container {
                 display: flex;
+                flex-wrap: wrap;
                 justify-content: space-evenly;
             }
 
@@ -47,23 +48,31 @@
                 border: 1px solid #000;
                 padding: 10px;
                 width: 40%;
-                float: left;
+                box-sizing: border-box;
+                margin: 5px;
             }
         </style>
     </head>
-    <body> <!--bgcolor=#444654-->
+    <body>
         <div class="top-bar">
             <ul>
                 <li><div class="name">foss games</div></li>
                 <a style="color: #333;">I know this is sketchy but it'm stupid af and I can't figure out how to move the name to the left, if you know how to, pr me the fix</a>
-                <li><a href="index.html">games</a></li>
+                <li><a href="/index.html">games</a></li>
                 <li><a href="https://github.com/umikali222/umikali.eu">github</a></li>
-                <li><a href="about.html">about</a></li>
+                <li><a href="/about.html">about</a></li>
             </ul>
         </div>
 
         <br>
         <div class="container">
+            <div class="outline">
+                <a href="games/sudoku.html">
+                    <img src="sudoku.png" alt="sudoku">
+                    <h3 align="center">sudoku</h3>
+                </a>
+            </div>
+
             <div class="outline">
                 <a href="games/clicker.html">
                     <img src="clicker.png" alt="clicker game">
