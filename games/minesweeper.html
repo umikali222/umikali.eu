@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<style>
+.top-bar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.top-bar ul {
+    list-style: none;
+    text-align: center; 
+}
+
+.top-bar ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.top-bar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.top-bar ul li a:hover {
+    text-decoration: underline;
+}
+</style>
+
+<html>
+    <head>
+        <meta charset="UTF-8"> 
+        <title>foss games</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                color: rgb(0, 0, 0);
+                font-size: 16px;
+            }
+
+            .blackbutton{
+                background: black;
+                width: 25px;
+                height: 25px;
+            }
+
+            .normalbutton { /* I'm not racist */
+                width: 25px;
+                height: 25px;
+            }
+
+            .redbutton {
+                background: orange;
+                width: 25px;
+                height: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top-bar">
+            <ul>
+                <li><div class="name">foss games</div></li>
+                <a style="color: #333;">I know this is sketchy but it'm stupid af and I can't figure out how to move the name to the left, if you know how to, git push me the fix</a>
+                <li><a href="/index.html">games</a></li>
+                <li><a href="https://github.com/umikali222/umikali.eu">github</a></li>
+                <li><a href="/about.html">about</a></li>
+            </ul>
+        </div>
+        <br>
+
+        <div align="center">
+            <div>
+            <input type="number" id="width" name="width">
+            <input type="number" id="height" name="height">
+            <input type="number" id="mines" name="mines">
+            <button onclick="setup()">New game</button>
+            </div>
+
+            <table id="table"></table>
+        </div>
+    </body>
+</html>
+
+<script>
+
+var firstmove = true
+
+var width = 30
+var height = 16
+var mines = 100
+
+
+document.getElementById('width').value = width
+document.getElementById('height').value = height
+document.getElementById('mines').value = mines
+
+
+var table = document.getElementById('table')
+
+var minesweeper = []
+
+setup()
+
+
+function createnumbers(){
+    var cmp = []
+
+    for (i=0;i<width;i++){
+        for (j=0;j<height;j++){
+            if (minesweeper[i][j]['under'] == 'm'){
+                continue
+            }
+
+            neighbourmines = 0
+
+            cmp = [i + 1, j + 1]
+            if (cmp[0] >= 0 & cmp[1] >= 0 & cmp[0] < width & cmp[1] < height){
+                if (minesweeper[cmp[0]][cmp[1]]['under'] == 'm'){
+                    neighbourmines++
+                }
+            }
+            
+            cmp = [i + 1, j]
+            if (cmp[0] >= 0 & cmp[1] >= 0 & cmp[0] < width & cmp[1] < height){
+                if (minesweeper[cmp[0]][cmp[1]]['under'] == 'm'){
+                    neighbourmines++
+                }
+            }
+            
+            cmp = [i + 1, j - 1]
+            if (cmp[0] >= 0 & cmp[1] >= 0 & cmp[0] < width & cmp[1] < height){
+                if (minesweeper[cmp[0]][cmp[1]]['under'] == 'm'){
+                    neighbourmines++
+                }
+            }
+            
+            cmp = [i - 1, j + 1]
+            if (cmp[0] >= 0 & cmp[1] >= 0 & cmp[0] < width & cmp[1] < height){
+                if (minesweeper[cmp[0]][cmp[1]]['under'] == 'm'){
+                    neighbourmines++
+                }
+            }
+            
+            cmp = [i - 1, j]
+            if (cmp[0] >= 0 & cmp[1] >= 0 & cmp[0] < width & cmp[1] < height){
+                if (minesweeper[cmp[0]][cmp[1]]['under'] == 'm'){
+                    neighbourmines++
+                }
+            }
+            
+            cmp = [i - 1, j - 1]
+            if (cmp[0] >= 0 & cmp[1] >= 0 & cmp[0] < width & cmp[1] < height){
+                if (minesweeper[cmp[0]][cmp[1]]['under'] == 'm'){
+                    neighbourmines++
+                }
+            }
+            
+            cmp = [i, j + 1]
+            if (cmp[0] >= 0 & cmp[1] >= 0 & cmp[0] < width & cmp[1] < height){
+                if (minesweeper[cmp[0]][cmp[1]]['under'] == 'm'){
+                    neighbourmines++
+                }
+            }
+            
+            cmp = [i, j - 1]
+            if (cmp[0] >= 0 & cmp[1] >= 0 & cmp[0] < width & cmp[1] < height){
+                if (minesweeper[cmp[0]][cmp[1]]['under'] == 'm'){
+                    neighbourmines++
+                }
+            }
+
+            minesweeper[i][j]['under'] = String(neighbourmines)
+        }
+    }
+}
+
+
+function setup(){
+
+    width = document.getElementById('width').value
+    height = document.getElementById('height').value
+    mines = document.getElementById('mines').value
+
+    firstmove = true
+
+    minesweeper = []
+
+    for (i=0;i<width;i++){
+        minesweeper.push([])
+
+        for (j=0;j<height;j++){
+            minesweeper[i].push({'covered': 'y', 'under': '0'})
+        }
+    }
+
+    addmines()
+
+    createnumbers()
+    
+    draw()
+}
+
+function addmines(){
+    if (width * height <= mines){
+        alert('That crashes the game, BTW')
+    }
+
+    for (i=0;i<mines;i++){
+        x = Math.floor(Math.random() * width)
+        y = Math.floor(Math.random() * height)
+
+        if (minesweeper[x][y]['under'] == 'm'){
+            i--
+            continue
+        }
+
+        minesweeper[x][y]['under'] = 'm'
+    }
+}
+
+function draw(){
+    table.innerHTML = ''
+
+    for (i=0;i<height;i++){
+        var row = table.insertRow(i)
+
+        for (j=0;j<width;j++){
+            var cell = row.insertCell(j)
+
+            var button = document.createElement('button')
+
+            if (minesweeper[j][i]['covered'] != 'n'){
+                button.setAttribute('oncontextmenu', 'return makeflag(event, ' + j + ', ' + i + ')')
+            }
+
+            button.classList = 'normalbutton'
+            
+            if (minesweeper[j][i]['covered'] == 'y'){ // covered
+                button.innerHTML = '_'
+                button.setAttribute('onclick', 'reveal(' + j + ', ' + i + ')')
+                button.classList = 'blackbutton'
+            }
+            
+            if (minesweeper[j][i]['covered'] == 'n'){ // uncovered
+                setto = minesweeper[j][i]['under']
+
+                button.innerHTML = setto
+
+                if (setto == '0'){
+                    continue
+                }
+                
+                if (setto == 'm'){ // it took me 2 days of debugging to realise I put a = instead of a ==
+                    button.innerHTML = '💣'
+                }
+            }
+            
+            if (minesweeper[j][i]['covered'] == 'f'){ // flag
+                button.classList = 'redbutton'
+                button.innerHTML = '🚩'
+            }
+
+            cell.appendChild(button)
+        }
+    }
+}
+
+function isDictionaryInArray(array, dictionary) {
+    for (i=0;i<array.length;i++){
+        if (JSON.stringify(array[i]) == JSON.stringify(dictionary)){ // if you know any better soluton THAT ACTUALLY WORKS do a pr
+            return true
+        }
+    }
+
+    return false
+}
+
+function reveal(x, y){
+    minesweeper[x][y]['covered'] = 'n'
+   
+    if (firstmove & minesweeper[x][y]['under'] != '0'){
+        setup()
+        reveal(x, y)
+        return
+    }
+
+    firstmove = false
+
+    if (minesweeper[x][y]['under'] != '0'){
+        draw()
+        return
+    }
+
+    var toreveal = [{'x': x, 'y': y}]
+
+
+
+    var i = 0
+    var cmp = []
+
+
+    while (i < toreveal.length & i < 1000){
+        cmp = {'x': toreveal[i]['x'] - 1, 'y': toreveal[i]['y']}
+        if (!isDictionaryInArray(toreveal, cmp)){
+            if (cmp['x'] >= 0 & cmp['x'] < width){
+                if (minesweeper[cmp['x']][cmp['y']]['covered'] == 'y'){
+                    if (minesweeper[cmp['x']][cmp['y']]['under'] != 'm'){
+                        if (minesweeper[cmp['x']][cmp['y']]['under'] == '0'){
+                        
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                            toreveal.push(cmp)
+                        }else{
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                        }
+                    }
+                }
+            }
+        }
+            
+
+        cmp = {'x': toreveal[i]['x'] + 1, 'y': toreveal[i]['y']}
+        if (!isDictionaryInArray(toreveal, cmp)){
+            if (cmp['x'] >= 0 & cmp['x'] < width){
+                if (minesweeper[cmp['x']][cmp['y']]['covered'] == 'y'){
+                    if (minesweeper[cmp['x']][cmp['y']]['under'] != 'm'){
+                        if (minesweeper[cmp['x']][cmp['y']]['under'] == '0'){
+                        
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                            toreveal.push(cmp)
+                        }else{
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                        }
+                    }
+                }
+            }
+        }
+
+        cmp = {'x': toreveal[i]['x'], 'y': toreveal[i]['y'] - 1}
+        if (!isDictionaryInArray(toreveal, cmp)){
+            if (cmp['y'] >= 0 & cmp['y'] < height){
+                if (minesweeper[cmp['x']][cmp['y']]['covered'] == 'y'){
+                    if (minesweeper[cmp['x']][cmp['y']]['under'] != 'm'){
+                        if (minesweeper[cmp['x']][cmp['y']]['under'] == '0'){
+                        
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                            toreveal.push(cmp)
+                        }else{
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                        }
+                    }
+                }
+            }
+        }
+
+        cmp = {'x': toreveal[i]['x'], 'y': toreveal[i]['y'] + 1}
+        if (!isDictionaryInArray(toreveal, cmp)){
+            if (cmp['y'] >= 0 & cmp['y'] < height){
+                if (minesweeper[cmp['x']][cmp['y']]['covered'] == 'y'){
+                    if (minesweeper[cmp['x']][cmp['y']]['under'] != 'm'){
+                        if (minesweeper[cmp['x']][cmp['y']]['under'] == '0'){
+                        
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                            toreveal.push(cmp)
+                        }else{
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                        }
+                    }
+                }
+            }
+        }
+
+        cmp = {'x': toreveal[i]['x'] + 1, 'y': toreveal[i]['y'] + 1}
+        if (!isDictionaryInArray(toreveal, cmp)){
+            if (cmp['x'] >= 0 & cmp['x'] < width & cmp['y'] >= 0 & cmp['y'] < height){
+                if (minesweeper[cmp['x']][cmp['y']]['covered'] == 'y'){
+                    if (minesweeper[cmp['x']][cmp['y']]['under'] != 'm'){
+                        if (minesweeper[cmp['x']][cmp['y']]['under'] == '0'){
+                        
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                            toreveal.push(cmp)
+                        }else{
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                        }
+                    }
+                }
+            }
+        }
+
+        cmp = {'x': toreveal[i]['x'] - 1, 'y': toreveal[i]['y'] + 1}
+        if (!isDictionaryInArray(toreveal, cmp)){
+            if (cmp['x'] >= 0 & cmp['x'] < width & cmp['y'] >= 0 & cmp['y'] < height){
+                if (minesweeper[cmp['x']][cmp['y']]['covered'] == 'y'){
+                    if (minesweeper[cmp['x']][cmp['y']]['under'] != 'm'){
+                        if (minesweeper[cmp['x']][cmp['y']]['under'] == '0'){
+                        
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                            toreveal.push(cmp)
+                        }else{
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                        }
+                    }
+                }
+            }
+        }
+
+        cmp = {'x': toreveal[i]['x'] + 1, 'y': toreveal[i]['y'] - 1}
+        if (!isDictionaryInArray(toreveal, cmp)){
+            if (cmp['x'] >= 0 & cmp['x'] < width & cmp['y'] >= 0 & cmp['y'] < height){
+                if (minesweeper[cmp['x']][cmp['y']]['covered'] == 'y'){
+                    if (minesweeper[cmp['x']][cmp['y']]['under'] != 'm'){
+                        if (minesweeper[cmp['x']][cmp['y']]['under'] == '0'){
+                        
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                            toreveal.push(cmp)
+                        }else{
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                        }
+                    }
+                }
+            }
+        }
+
+        cmp = {'x': toreveal[i]['x'] - 1, 'y': toreveal[i]['y'] - 1}
+        if (!isDictionaryInArray(toreveal, cmp)){
+            if (cmp['x'] >= 0 & cmp['x'] < width & cmp['y'] >= 0 & cmp['y'] < height){
+                if (minesweeper[cmp['x']][cmp['y']]['covered'] == 'y'){
+                    if (minesweeper[cmp['x']][cmp['y']]['under'] != 'm'){
+                        if (minesweeper[cmp['x']][cmp['y']]['under'] == '0'){
+                        
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                            toreveal.push(cmp)
+                        }else{
+                            minesweeper[cmp['x']][cmp['y']]['covered'] = 'n'
+                        }
+                    }
+                }
+            }
+        }
+
+        // DRY? Never heard of it.
+
+        i++
+    }
+
+    draw()
+}
+
+function makeflag(event, x, y){
+    if (minesweeper[x][y]['covered'] == 'f'){
+        minesweeper[x][y]['covered'] = 'y'
+    }else{
+        minesweeper[x][y]['covered'] = 'f'
+    }
+
+    event.preventDefault()
+
+    draw()
+}
+
+function addnumbers(){
+
+}
+</script>
