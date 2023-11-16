@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<style>
+.top-bar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.top-bar ul {
+    list-style: none;
+    text-align: center; 
+}
+
+.top-bar ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.top-bar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.top-bar ul li a:hover {
+    text-decoration: underline;
+}
+</style>
+
+<html>
+    <head>
+        <title>foss games</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                color: rgb(0, 0, 0);
+                font-size: 16px;
+            }
+
+            .onbutton {
+                background: white;
+                width: 25px;
+                height: 25px;
+            }
+
+            .offbutton {
+                background: black;
+                width: 25px;
+                height: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top-bar">
+            <ul>
+                <li><div class="name">foss games</div></li>
+                <a style="color: #333;">I know this is sketchy but it'm stupid af and I can't figure out how to move the name to the left, if you know how to, git push me the fix</a>
+                <li><a href="/index.html">games</a></li>
+                <li><a href="https://github.com/umikali222/umikali.eu">github</a></li>
+                <li><a href="/about.html">about</a></li>
+            </ul>
+        </div>
+        <br>
+
+        <div align="center">
+            <input type="number" id="size" name="size">
+            <button onclick="setup()">new game</button>
+
+            <table id="table"></table>
+        </div>
+    </body>
+</html>
+
+<script>
+let size = 5
+
+document.getElementById('size').value = size
+
+let table = document.getElementById('table')
+
+let matrix = []
+
+function setup(){
+    size = document.getElementById('size').value
+
+    matrix = []
+
+    for (i=0;i<size;i++){
+        matrix.push([])
+
+        for (j=0;j<size;j++){
+            matrix[i].push(getrandomboolean())
+        }
+    }
+
+    draw()
+}
+
+function draw(){
+    table.innerHTML = ''
+
+    for (i=0;i<size;i++){
+        let row = table.insertRow(i)
+
+        for (j=0;j<size;j++){
+            let cell = row.insertCell(j)
+
+            let button = document.createElement('button')
+
+            button.setAttribute('onclick', 'switchon(' + i + ', ' + j + ')')
+
+            if (matrix[i][j]){
+                button.classList = 'onbutton'
+            }else{
+                button.classList = 'offbutton'
+            }
+
+            cell.appendChild(button)
+        }
+    }
+}
+
+function getrandomboolean() {
+  return Math.random() < 0.5
+}
+
+
+function switchon(x, y) {
+    matrix[x][y] = !matrix[x][y]
+
+    if (x - 1 >= 0){
+        matrix[x-1][y] = !matrix[x-1][y]
+    }
+    
+    if (x + 1 < size){
+        matrix[x+1][y] = !matrix[x+1][y]
+    }
+
+    if (y + 1 < size){
+        matrix[x][y+1] = !matrix[x][y+1]
+    }
+    
+    if (y - 1 >= 0){
+        matrix[x][y-1] = !matrix[x][y-1]
+    }
+
+    draw()
+}
+
+setup()
+</script>
