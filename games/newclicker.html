@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<style>
+.top-bar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.top-bar ul {
+    list-style: none;
+    text-align: center; 
+}
+
+.top-bar ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.top-bar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.top-bar ul li a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    width: 33%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+</style>
+
+<html>
+    <head>
+        <title>foss games</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                color: rgb(0, 0, 0);
+                font-size: 16px;
+            }
+
+            .upgradebutton{
+                width: 100%;
+                height: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top-bar">
+            <ul>
+                <li><div class="name">foss games</div></li>
+                <a style="color: #333;">I know this is sketchy but it'm stupid af and I can't figure out how to move the name to the left, if you know how to, git push me the fix</a>
+                <li><a href="/index.html">games</a></li>
+                <li><a href="https://github.com/umikali222/umikali.eu">github</a></li>
+                <li><a href="/about.html">about</a></li>
+            </ul>
+        </div>
+        <br>
+
+        <h1>This is a very rough prototype intended for seeing if this game idea has any potential</h1> <br>
+
+        <button onclick="switchtogame()">game</button>
+        <button onclick="switchtosettings()">settings</button> <br> <br>
+
+        <div id="settingsdiv">
+        <button onclick="resetgame()">reset game</button>
+        </div>
+
+        <div id="gamediv">
+        <div class="container">
+            <div class="column">
+                <div id="maufacturingdiv"> <!--I know this is completly useless-->
+                    maufacturing
+                    <hr> 
+
+                    <button id="minebutton" onclick="action('mine')">mine</button>
+                    <span id="ores"></span>/<span id="orestorage"></span> gold ores <br>
+                    <span id="oresperclick"></span> ores per click <br>
+                    <button id="pickaxeupgradebutton" onclick="action('upgradepickaxe')">upgrade pickaxe</button> cost:<span id="pickaxeupgradecost"></span><br>
+                    <button id="orestorageupgradebutton" onclick="action('upgradeorestorage')">upgrade storage</button> cost:<span id="orestorageupgradecost"></span><br><br>
+
+                    <button id="meltbutton" onclick="action('melt')">melt</button>
+                    <span id="moltengold"></span>/<span id="moltengoldstorage"></span> molten gold <br>
+                    <span id="moltengoldperclick"></span> molten gold per click <br>
+                    <button id="furnaceupgradebutton" onclick="action('upgradefurnace')">upgrade furnace</button> cost:<span id="furnaceupgradecost"></span><br>
+                    <button id="moltengoldstorageupgradebutton" onclick="action('upgrademoltengoldstorage')">upgrade storage</button> cost:<span id="moltengoldstorageupgradecost"></span><br><br>
+
+                    <button id="makebarsbutton" onclick="action('makebars')">make bars</button><br>
+                    <h3><span id="goldbars"></span>/<span id="goldbarstorage"></span> gold bars </h3>
+                    <span id="goldbarsperclick"></span> gold bars per click <br>
+                    <button id="moldupgradebutton" onclick="action('upgrademold')">upgrade mold</button> cost:<span id="moldupgradecost"></span><br>
+                    <button id="goldbarstorageupgradebutton" onclick="action('upgradegoldbarstorage')">upgrade storage</button> cost:<span id="goldbarstorageupgradecost"></span><br><br>
+                </div>
+            </div>
+
+            <div class="column">
+                <div id="moneydiv">
+                    money
+                    <hr>
+
+                    sell : 
+                    <button id="sell1goldbarbutton" onclick="sellgoldbars(1)">1 bar</button>
+                    <button id="sell10goldbarbutton" onclick="sellgoldbars(10)">10 bars</button>
+                    <button id="sell100goldbarbutton" onclick="sellgoldbars(100)">100 bars</button>
+                    <button id="sellallgoldbarbutton" onclick="sellgoldbars('all')">all bars</button>
+                    <br>
+                    
+                    <span id="goldprice"></span>$ / gold bar <br> <br>
+
+                    <h3><span id="money"></span>$</h3>
+                </div>
+
+                <div id="automationdiv">
+                    automation
+                    <hr>
+
+                    <div id="autominerdiv"><span id="autominers"></span> <button onclick="action('buyautominer')" id="buyautominerbutton">autominer</button> cost:<span id="autominercost"></span></div>
+                    <div id="autofurnacediv"><span id="autofurnaces"></span> <button onclick="action('buyautofurnace')" id="buyautofurnacebutton">autofurnace</button> cost:<span id="autofurnacecost"></span></div>
+                    <div id="automolddiv"><span id="automolds"></span> <button onclick="action('buyautomold')" id="buyautomoldbutton">automold</button> cost:<span id="automoldcost"></span></div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div id="upgradesdiv">
+                    upgrades
+                    <hr>
+
+                    <button class="upgradebutton" id="autominerupgradebutton" onclick="upgrade('autominerupgrade')"><b>autominers</b> (<span id="autominerupgradecost"></span>$)
+                    <br>allows you to buy autominers, which mine for you</button>
+                    
+                    <button class="upgradebutton" id="autofurnaceupgradebutton" onclick="upgrade('autofurnaceupgrade')"><b>autofurnace</b> (<span id="autofurnaceupgradecost"></span>$)
+                    <br>allows you to buy autofurnaces, which melt gold for you</button>
+                    
+                    <button class="upgradebutton" id="automoldupgradebutton" onclick="upgrade('automoldupgrade')"><b>automold</b> (<span id="automoldupgradecost"></span>$)
+                    <br>allows you to buy automolds, which make bars for you</button>
+                        
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>
+
+<script src="newclicker.js"></script>
